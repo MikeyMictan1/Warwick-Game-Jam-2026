@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="IngredientResource" load_steps=3 format=3 uid="uid://6xax2r7hiw6"]
+
+[ext_resource type="Texture2D" uid="uid://bjxy38vww0ttd" path="res://Assets/Art/UI_Art/pizza.png" id="1_ssgn3"]
+[ext_resource type="Script" uid="uid://d0fahplylun1n" path="res://Scripts/Ingredient.gd" id="1_wwnjt"]
+
+[resource]
+script = ExtResource("1_wwnjt")
+name = "test_ingredient"
+icon = ExtResource("1_ssgn3")
+metadata/_custom_type_script = "uid://d0fahplylun1n"
