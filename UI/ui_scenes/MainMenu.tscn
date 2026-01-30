@@ -1,20 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://x0kdlikdet0y"]
+[gd_scene load_steps=5 format=3 uid="uid://x0kdlikdet0y"]
 
 [ext_resource type="Script" uid="uid://nabomb7ouy6n" path="res://UI/ui_scripts/main_menu.gd" id="1_lget4"]
 [ext_resource type="Theme" uid="uid://b81kaf80j5ngy" path="res://UI/ui_themes/MainMenuButtonTheme.tres" id="1_uyl7m"]
 [ext_resource type="Theme" uid="uid://d1tl4ouhddgg7" path="res://UI/ui_themes/base_theme.tres" id="2_i6s3c"]
+[ext_resource type="Texture2D" uid="uid://bjxy38vww0ttd" path="res://Assets/Art/UI_Art/pizza.png" id="2_ueq4g"]
 
 [node name="MainMenu" type="Node2D"]
 script = ExtResource("1_lget4")
 
 [node name="UI Elements" type="CanvasLayer" parent="."]
-
-[node name="Background" type="ColorRect" parent="UI Elements"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-mouse_filter = 2
-color = Color(0.372692, 0.470724, 0.533148, 1)
 
 [node name="Control" type="Control" parent="UI Elements"]
 layout_mode = 3
@@ -23,6 +17,12 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="UI Elements/Control"]
+layout_mode = 0
+offset_right = 1931.0
+offset_bottom = 1082.0
+texture = ExtResource("2_ueq4g")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UI Elements/Control"]
 layout_mode = 1
@@ -46,7 +46,7 @@ size_flags_stretch_ratio = 0.59
 clip_contents = false
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 70
-text = "Title!"
+text = "Let Him COOK!"
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
@@ -63,6 +63,7 @@ layout_mode = 2
 text = "Play"
 
 [node name="Controls" type="Button" parent="UI Elements/Control/HBoxContainer/VBoxContainer/Buttons"]
+visible = false
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 theme = ExtResource("2_i6s3c")
@@ -70,6 +71,7 @@ text = "Controls
 "
 
 [node name="Credits" type="Button" parent="UI Elements/Control/HBoxContainer/VBoxContainer/Buttons"]
+visible = false
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 text = "Credits
