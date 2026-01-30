@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="godot-ui-template"
+config/name="Game-Jam-2026"
 run/main_scene="uid://x0kdlikdet0y"
 config/use_custom_user_dir=true
 config/custom_user_dir_name="godot-ui-template"
