@@ -1,0 +1,159 @@
+[gd_scene load_steps=3 format=3 uid="uid://c0oax286unqgq"]
+
+[ext_resource type="Script" uid="uid://cqo3ht48mipk8" path="res://UI/ui_scripts/InGameUI.gd" id="1_53alx"]
+[ext_resource type="Theme" uid="uid://d1tl4ouhddgg7" path="res://UI/ui_themes/base_theme.tres" id="1_536eg"]
+
+[node name="InGameUi" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_53alx")
+
+[node name="Pages" type="Node" parent="."]
+
+[node name="PauseMenu" type="Control" parent="Pages"]
+unique_name_in_owner = true
+process_mode = 2
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="FocusFirst" type="Node" parent="Pages/PauseMenu"]
+
+[node name="BackgroundBlocker" type="ColorRect" parent="Pages/PauseMenu"]
+modulate = Color(1, 1, 1, 0.784314)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.298039, 0.298039, 0.298039, 1)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Pages/PauseMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Pages/PauseMenu/HBoxContainer"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="ResumeButton" type="Button" parent="Pages/PauseMenu/HBoxContainer/VBoxContainer" groups=["UIButtons"]]
+layout_mode = 2
+focus_neighbor_top = NodePath("../QuitButton")
+focus_previous = NodePath("../QuitButton")
+theme = ExtResource("1_536eg")
+text = "Resume Game"
+
+[node name="MainMenuButton" type="Button" parent="Pages/PauseMenu/HBoxContainer/VBoxContainer" groups=["UIButtons"]]
+layout_mode = 2
+theme = ExtResource("1_536eg")
+text = "Return to Menu"
+
+[node name="QuitButton" type="Button" parent="Pages/PauseMenu/HBoxContainer/VBoxContainer" groups=["UIButtons"]]
+layout_mode = 2
+focus_neighbor_bottom = NodePath("../ResumeButton")
+focus_next = NodePath("../ResumeButton")
+theme = ExtResource("1_536eg")
+text = "Quit Game"
+
+[node name="Controls" type="Control" parent="Pages"]
+unique_name_in_owner = true
+process_mode = 2
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="FocusFirst" type="Node" parent="Pages/Controls"]
+
+[node name="BackgroundBlocker" type="ColorRect" parent="Pages/Controls"]
+modulate = Color(1, 1, 1, 0.784314)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.298039, 0.298039, 0.298039, 1)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Pages/Controls"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Pages/Controls/HBoxContainer"]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+
+[node name="HeadingContainer" type="CenterContainer" parent="Pages/Controls/HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+
+[node name="HeadingLabel" type="RichTextLabel" parent="Pages/Controls/HBoxContainer/VBoxContainer2/HeadingContainer"]
+layout_mode = 2
+theme = ExtResource("1_536eg")
+theme_type_variation = &"HeadingLabel"
+bbcode_enabled = true
+text = "[center]Controls"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Pages/Controls/HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="KeyboardControls" type="RichTextLabel" parent="Pages/Controls/HBoxContainer/VBoxContainer2/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("1_536eg")
+bbcode_enabled = true
+text = "[b]Keyboard:[/b]
+
+WASD:  Move
+Space: Jump
+C: collect
+Tab: Do a thing
+"
+fit_content = true
+
+[node name="GamepadControls" type="RichTextLabel" parent="Pages/Controls/HBoxContainer/VBoxContainer2/VBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme = ExtResource("1_536eg")
+bbcode_enabled = true
+text = "[b]Gamepad:[/b]
+
+L stick: directions
+B: jump
+A: collect
+ZL: page left
+ZR: page right"
+fit_content = true
+
+[connection signal="pressed" from="Pages/PauseMenu/HBoxContainer/VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="Pages/PauseMenu/HBoxContainer/VBoxContainer/MainMenuButton" to="." method="_on_main_menu_button_pressed"]
+[connection signal="pressed" from="Pages/PauseMenu/HBoxContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

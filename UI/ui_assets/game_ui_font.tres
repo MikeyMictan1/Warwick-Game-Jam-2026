@@ -1,0 +1,9 @@
+[gd_resource type="FontVariation" load_steps=2 format=3 uid="uid://6bkc156x2e4e"]
+
+[ext_resource type="FontFile" uid="uid://bvshh0jqhgll5" path="res://UI/ui_assets/JetBrains_Mono/JetBrainsMono-VariableFont_wght.ttf" id="1_ri304"]
+
+[resource]
+base_font = ExtResource("1_ri304")
+opentype_features = {
+1667329140: 0
+}

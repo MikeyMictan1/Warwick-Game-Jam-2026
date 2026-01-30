@@ -1,0 +1,45 @@
+[gd_scene load_steps=3 format=3 uid="uid://ccarxryw6scdg"]
+
+[ext_resource type="Script" uid="uid://dslbl3i32erhh" path="res://Scripts/MainScene.gd" id="1_hpc76"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_2ia5b"]
+
+[node name="MainScene" type="Node2D"]
+script = ExtResource("1_hpc76")
+
+[node name="PlaceholderBackground" type="TextureRect" parent="."]
+modulate = Color(0.36625516, 0.37767968, 0.63611704, 1)
+offset_right = 1921.0
+offset_bottom = 1082.0
+texture = SubResource("CanvasTexture_2ia5b")
+
+[node name="PlaceholderText" type="Label" parent="PlaceholderBackground"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_left = 774.0
+offset_top = 493.0
+offset_right = 1116.0
+offset_bottom = 533.0
+text = "Stuff will go here!"
+
+[node name="UICanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Settings_Label" type="BoxContainer" parent="UICanvasLayer"]
+offset_right = 252.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="UICanvasLayer/Settings_Label"]
+layout_mode = 2
+text = "ESC : Settings"
+
+[node name="Controls_Label" type="BoxContainer" parent="UICanvasLayer"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 40.0
+grow_vertical = 0
+
+[node name="Label" type="Label" parent="UICanvasLayer/Controls_Label"]
+layout_mode = 2
+text = "TAB : Controls"

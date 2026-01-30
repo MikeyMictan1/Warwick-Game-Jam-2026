@@ -1,0 +1,26 @@
+[gd_resource type="Theme" load_steps=5 format=3 uid="uid://b81kaf80j5ngy"]
+
+[ext_resource type="StyleBox" uid="uid://bcmfwbk5d4xkv" path="res://UI/ui_themes/MainMenuButtonNormalStyle.tres" id="1_pppsc"]
+[ext_resource type="FontVariation" uid="uid://6bkc156x2e4e" path="res://UI/ui_assets/game_ui_font.tres" id="1_yg36r"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pppsc"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yg36r"]
+bg_color = Color(0.18761, 0.390282, 0.457091, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+expand_margin_top = 1.0
+expand_margin_bottom = 1.0
+
+[resource]
+default_font = ExtResource("1_yg36r")
+default_font_size = 30
+Button/colors/font_color = Color(0.536471, 0.829422, 0.895295, 1)
+Button/colors/font_hover_color = Color(0.692421, 0.893795, 0.96887, 1)
+Button/icons/icon = null
+Button/styles/focus = SubResource("StyleBoxEmpty_pppsc")
+Button/styles/hover = SubResource("StyleBoxFlat_yg36r")
+Button/styles/normal = ExtResource("1_pppsc")
+Button/styles/pressed = ExtResource("1_pppsc")

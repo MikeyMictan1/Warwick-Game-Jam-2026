@@ -1,0 +1,9 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://d1tl4ouhddgg7"]
+
+[ext_resource type="FontVariation" uid="uid://6bkc156x2e4e" path="res://UI/ui_assets/game_ui_font.tres" id="1_p8n18"]
+
+[resource]
+default_font = ExtResource("1_p8n18")
+default_font_size = 30
+HeadingLabel/base_type = &"RichTextLabel"
+HeadingLabel/font_sizes/normal_font_size = 50

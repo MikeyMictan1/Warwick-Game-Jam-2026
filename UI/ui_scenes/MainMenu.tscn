@@ -1,0 +1,101 @@
+[gd_scene load_steps=4 format=3 uid="uid://x0kdlikdet0y"]
+
+[ext_resource type="Script" uid="uid://nabomb7ouy6n" path="res://UI/ui_scripts/main_menu.gd" id="1_lget4"]
+[ext_resource type="Theme" uid="uid://b81kaf80j5ngy" path="res://UI/ui_themes/MainMenuButtonTheme.tres" id="1_uyl7m"]
+[ext_resource type="Theme" uid="uid://d1tl4ouhddgg7" path="res://UI/ui_themes/base_theme.tres" id="2_i6s3c"]
+
+[node name="MainMenu" type="Node2D"]
+script = ExtResource("1_lget4")
+
+[node name="UI Elements" type="CanvasLayer" parent="."]
+
+[node name="Background" type="ColorRect" parent="UI Elements"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+color = Color(0.372692, 0.470724, 0.533148, 1)
+
+[node name="Control" type="Control" parent="UI Elements"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI Elements/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI Elements/Control/HBoxContainer"]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 2
+
+[node name="TitleContainer" type="CenterContainer" parent="UI Elements/Control/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.59
+
+[node name="RichTextLabel" type="RichTextLabel" parent="UI Elements/Control/HBoxContainer/VBoxContainer/TitleContainer"]
+clip_contents = false
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 70
+text = "Title!"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Buttons" type="VBoxContainer" parent="UI Elements/Control/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("1_uyl7m")
+theme_override_constants/separation = 50
+
+[node name="Play" type="Button" parent="UI Elements/Control/HBoxContainer/VBoxContainer/Buttons"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+text = "Play"
+
+[node name="Controls" type="Button" parent="UI Elements/Control/HBoxContainer/VBoxContainer/Buttons"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+theme = ExtResource("2_i6s3c")
+text = "Controls
+"
+
+[node name="Credits" type="Button" parent="UI Elements/Control/HBoxContainer/VBoxContainer/Buttons"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+text = "Credits
+"
+
+[node name="Quit" type="Button" parent="UI Elements/Control/HBoxContainer/VBoxContainer/Buttons"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+theme = ExtResource("2_i6s3c")
+text = "Quit"
+
+[node name="CenterContainer" type="CenterContainer" parent="UI Elements/Control/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="UI Elements/Control/HBoxContainer/VBoxContainer/CenterContainer"]
+clip_contents = false
+custom_minimum_size = Vector2(260, 40)
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 30
+text = "Text over here"
+fit_content = true
+
+[connection signal="pressed" from="UI Elements/Control/HBoxContainer/VBoxContainer/Buttons/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="UI Elements/Control/HBoxContainer/VBoxContainer/Buttons/Controls" to="." method="_on_controls_pressed"]
+[connection signal="pressed" from="UI Elements/Control/HBoxContainer/VBoxContainer/Buttons/Credits" to="." method="_on_credits_pressed"]
+[connection signal="pressed" from="UI Elements/Control/HBoxContainer/VBoxContainer/Buttons/Quit" to="." method="_on_quit_pressed"]
