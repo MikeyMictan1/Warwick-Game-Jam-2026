@@ -10,16 +10,55 @@ func _ready() -> void:
 	var lettuce = preload("res://Resources/Lettuce.tres")
 	var tomato_sauce = preload("res://Resources/Tomato_Sauce.tres")
 	var pufferfish = preload("res://Resources/Pufferfish.tres")
-	var garlic = preload("res://Resources/Garlic.tres") # end of basic ingredients
+	var garlic = preload("res://Resources/Garlic.tres")
 	var pasta_salad = preload("res://Resources/Pasta_Salad.tres")
 	var cold_pasta_tomato = preload("res://Resources/Cold_Pasta_Tomato.tres")
 	var cactus = preload("res://Resources/Cactus.tres")
 	var stink_bomb = preload("res://Resources/Stink_Bomb.tres")
 	var dragon_fruit = preload("res://Resources/Dragon_Fruit.tres")
-	var pineapple = preload("res://Resources/Pineapple.tres") 
+	var pineapple = preload("res://Resources/Pineapple.tres")
 	var okonomiyaki = preload("res://Resources/Okonomiyaki.tres")
+	var pineapple_jam = preload("res://Resources/Pineapple_Jam.tres")
+	var komodo_dragon = preload("res://Resources/Komodo_Dragon.tres")
+	var real_bomb = preload("res://Resources/Real_Bomb.tres")
+	var burnt_pasta = preload("res://Resources/Burnt_Pasta.tres")
+	var ice_cream = preload("res://Resources/Ice_Cream.tres")
+	var pufferfish_milk = preload("res://Resources/Pufferfish_Milk.tres")
+	var ai = preload("res://Resources/AI.tres")
+	var alive_pufferfish = preload("res://Resources/Alive_Pufferfish.tres")
+	var arranccinni = preload("res://Resources/Arranccinni.tres")
+	var bomb_picture = preload("res://Resources/Bomb_Picture.tres")
+	var cabbage = preload("res://Resources/Cabbage.tres")
+	var carmelised_onion = preload("res://Resources/Carmelised_Onion.tres")
+	var cooked_lettuce = preload("res://Resources/Cooked_Lettuce.tres")
+	var cooked_pasta = preload("res://Resources/Cooked_Pasta.tres")
+	var croutons = preload("res://Resources/Croutons.tres")
+	var dragon_roll = preload("res://Resources/Dragon_Roll.tres")
+	var feet = preload("res://Resources/Feet.tres")
+	var garlic_bread = preload("res://Resources/Garlic_Bread.tres")
+	var garlic_oil = preload("res://Resources/Garlic_Oil.tres")
+	var garlic_pasta = preload("res://Resources/Garlic_Pasta.tres")
+	var intellagama_lesueurii = preload("res://Resources/Intellagama_Lesueurii.tres")
+	var onion_rings = preload("res://Resources/Onion_Rings.tres")
+	var pasta_sauce = preload("res://Resources/Pasta_Sauce.tres")
+	var petroleum = preload("res://Resources/Petroleum.tres")
+	var pineapple_pizza = preload("res://Resources/Pineapple_Pizza.tres")
+	var pizza_base = preload("res://Resources/Pizza_Base.tres")
+	var red_onion = preload("res://Resources/Red_Onion.tres")
+	var sponge = preload("res://Resources/Sponge.tres")
+	var spring_rolls = preload("res://Resources/Spring_Rolls.tres")
+	var stuffed_pasta = preload("res://Resources/Stuffed_Pasta.tres")
+	var tomato_pasta = preload("res://Resources/Tomato_Pasta.tres")
+	var tomato_pizza = preload("res://Resources/Tomato_Pizza.tres")
+	var tomato_soup = preload("res://Resources/Tomato_Soup.tres")
+	var trash = preload("res://Resources/Trash.tres")
+	var ultimate_pasta = preload("res://Resources/Ultimate_Pasta.tres")
+	var water = preload("res://Resources/Water.tres")
+	var white_onion = preload("res://Resources/White_Onion.tres")
+	var cold_pasta_sauce = preload("res://Resources/Cold_Pasta_Sauce.tres")
 
-	# Register all recipes
+	# Register all recipes ---------------------------------
+	# First Degree Recipes
 	register_recipe(dried_pasta, lettuce, pasta_salad)
 	register_recipe(dried_pasta, tomato_sauce, cold_pasta_tomato)
 	register_recipe(dried_pasta, pufferfish, cactus)
@@ -31,6 +70,52 @@ func _ready() -> void:
 	register_recipe(lettuce, garlic, okonomiyaki)
 	register_recipe(pufferfish, garlic, stink_bomb)
 
+	# Pasta Combination Recipes
+	register_recipe(cooked_pasta, garlic_pasta, ultimate_pasta)
+	register_recipe(cooked_pasta, pasta_salad, ultimate_pasta)
+	register_recipe(cooked_pasta, cold_pasta_tomato, ultimate_pasta)
+	register_recipe(garlic_pasta, pasta_salad, ultimate_pasta)
+	register_recipe(garlic_pasta, cold_pasta_tomato, ultimate_pasta)
+	register_recipe(pasta_salad, cold_pasta_tomato, ultimate_pasta)
+
+	# Second Degree Recipes
+	register_recipe(cold_pasta_tomato, garlic, stuffed_pasta)
+	register_recipe(cold_pasta_tomato, lettuce, spring_rolls)
+	register_recipe(cold_pasta_tomato, pufferfish, dragon_roll)
+	register_recipe(cold_pasta_tomato, garlic_oil, arranccinni)
+	register_recipe(dragon_fruit, lettuce, red_onion)
+	register_recipe(red_onion, tomato_sauce, tomato_sauce)
+	register_recipe(red_onion, dried_pasta, onion_rings)
+	register_recipe(red_onion, garlic, spring_rolls)
+	register_recipe(pasta_salad, tomato_sauce, tomato_soup)
+	register_recipe(pasta_salad, pufferfish, croutons)
+	register_recipe(pasta_salad, garlic, feet)
+	register_recipe(garlic_pasta, tomato_sauce, tomato_soup)
+
+	# Special Recipes
+	register_recipe(pineapple, tomato_pizza, pineapple_pizza)
+	register_recipe(pizza_base, tomato_sauce, tomato_pizza)
+	register_recipe(pizza_base, garlic, garlic_bread)
+	register_recipe(pizza_base, red_onion, onion_rings)
+
+	# Final Recipe
+	register_recipe(cooked_lettuce, tomato_sauce, red_onion)
+	register_recipe(red_onion, garlic_oil, carmelised_onion)
+	register_recipe(carmelised_onion, tomato_sauce, cold_pasta_sauce)
+	register_recipe(cooked_pasta, pasta_sauce, tomato_pasta)
+
+	# EXTRA RECIPES
+	register_recipe(cold_pasta_tomato, tomato_sauce, tomato_soup)
+	register_recipe(pufferfish, pufferfish_milk, alive_pufferfish)
+	register_recipe(pineapple, cactus, pineapple_jam)
+	register_recipe(dragon_fruit, cactus, komodo_dragon)
+	register_recipe(stink_bomb, komodo_dragon, real_bomb)
+	register_recipe(cooked_pasta, garlic_oil, garlic_pasta)
+	register_recipe(pufferfish, water, alive_pufferfish)
+	register_recipe(pufferfish, petroleum, pufferfish_milk)
+	register_recipe(dragon_fruit, ai, intellagama_lesueurii)
+	register_recipe(stink_bomb, bomb_picture, real_bomb)
+
 """
 Takes two ingredients and registers a recipe for their combination
 """
@@ -38,7 +123,8 @@ func register_recipe(ing_a: IngredientResource, ing_b: IngredientResource, resul
 	var key = make_key(ing_a, ing_b)
 	recipe_lookup[key] = result
 	# Auto-populate components on the result
-	result.components = [ing_a, ing_b]
+	result.components.append(ing_a)
+	result.components.append(ing_b)
 
 """
 Takes two ingredients and makes a unique key for them
@@ -73,7 +159,7 @@ func combine(item_a: IngredientScene, item_b: IngredientScene) -> void:
 
 	elif ing_b.contains_ingredient(ing_a):
 		result_ingredient = ing_b
-		
+
 	# Otherwise, resulting ingredient is trash
 	else:
 		result_ingredient = trash_item 

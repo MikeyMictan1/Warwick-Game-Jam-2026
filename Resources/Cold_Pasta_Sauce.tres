@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="IngredientResource" load_steps=3 format=3 uid="uid://bnltdffl0yrj4"]
+
+[ext_resource type="Script" uid="uid://d0fahplylun1n" path="res://Scripts/IngredientResource.gd" id="1_ww2m8"]
+[ext_resource type="Texture2D" uid="uid://os4diqq4go5e" path="res://icon.svg" id="2_rhi03"]
+
+[resource]
+script = ExtResource("1_ww2m8")
+name = "Cold_Pasta_Sauce"
+icon = ExtResource("2_rhi03")
+metadata/_custom_type_script = "uid://d0fahplylun1n"
