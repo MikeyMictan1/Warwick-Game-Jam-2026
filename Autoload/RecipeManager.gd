@@ -1,6 +1,6 @@
 extends Node
 
-@export var trash_item : IngredientResource
+var trash_item : IngredientResource = preload("res://Resources/Trash.tres")
 const INGREDIENT_SCENE = preload("res://Scenes/Ingredient.tscn")
 
 var recipe_lookup = {}
@@ -146,17 +146,17 @@ func combine(item_a: IngredientScene, item_b: IngredientScene) -> void:
 	var result_ingredient: IngredientResource
 	var key = make_key(ing_a, ing_b)
 	
-	# 1) Found the recipe, so return the result
-	if recipe_lookup.has(key):
+	# 1) If same ingredient then just return that same ingredient
+	if ing_a.get_ingredient_name() == ing_b.get_ingredient_name():
+		result_ingredient = ing_a
+		
+	# 2) Found the recipe, so return the result
+	elif recipe_lookup.has(key):
 		result_ingredient = recipe_lookup[key]
-	
-	# 2) Same ingredient, so just return that same ingredient
-	elif ing_a == ing_b:
-			result_ingredient = ing_a
 		
 	# 3) Check if one is a component of the other (any depth)
 	elif ing_a.contains_ingredient(ing_b):
-			result_ingredient = ing_a
+		result_ingredient = ing_a
 
 	elif ing_b.contains_ingredient(ing_a):
 		result_ingredient = ing_b
@@ -177,6 +177,7 @@ func spawn_new_item(ingredient: IngredientResource, position: Vector2) -> Ingred
 	var new_item = INGREDIENT_SCENE.instantiate()
 	new_item.ingredient_data = ingredient
 	new_item.global_position = position
-	get_tree().current_scene.add_child(new_item)
 	print("Created: ", ingredient.get_ingredient_name())
+	get_tree().current_scene.add_child(new_item)
+	
 	return new_item

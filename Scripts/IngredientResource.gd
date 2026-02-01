@@ -19,7 +19,7 @@ func contains_ingredient(target: IngredientResource) -> bool:
 
 	# Check components recursively
 	for component in components:
-		if component.contains_ingredient(target):
+		if component == target:
 			return true
 			
 	return false

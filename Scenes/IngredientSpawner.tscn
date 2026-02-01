@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://cjwj343smscw5"]
+
+[ext_resource type="Script" uid="uid://y60rr4c20kkg" path="res://Scripts/IngredientSpawner.gd" id="1_1ll6g"]
+[ext_resource type="Resource" uid="uid://cd7odfpp1yywl" path="res://Resources/Lettuce.tres" id="2_y7qas"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_spawner"]
+size = Vector2(64, 64)
+
+[node name="IngredientSpawner" type="Area2D"]
+script = ExtResource("1_1ll6g")
+ingredient_data = ExtResource("2_y7qas")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_spawner")
