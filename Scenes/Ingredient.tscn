@@ -1,6 +1,5 @@
-[gd_scene load_steps=4 format=3 uid="uid://ctrn2nwo2rxqi"]
+[gd_scene load_steps=3 format=3 uid="uid://ctrn2nwo2rxqi"]
 
-[ext_resource type="Texture2D" uid="uid://os4diqq4go5e" path="res://icon.svg" id="1_p4p6r"]
 [ext_resource type="Script" uid="uid://chkonkirhweqp" path="res://Scripts/IngredientScene.gd" id="1_qi145"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qi145"]
@@ -11,7 +10,6 @@ script = ExtResource("1_qi145")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-1.1920929e-07, -2.9802322e-07)
 scale = Vector2(0.15625, 0.15625)
-texture = ExtResource("1_p4p6r")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_qi145")

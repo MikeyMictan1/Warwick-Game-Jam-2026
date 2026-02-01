@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://ccarxryw6scdg"]
+[gd_scene load_steps=6 format=3 uid="uid://ccarxryw6scdg"]
 
 [ext_resource type="Script" uid="uid://dslbl3i32erhh" path="res://Scripts/MainScene.gd" id="1_hpc76"]
 [ext_resource type="PackedScene" uid="uid://ctrn2nwo2rxqi" path="res://Scenes/Ingredient.tscn" id="2_tr2i4"]
-[ext_resource type="Resource" uid="uid://6xax2r7hiw6" path="res://Resources/test_ingredient.tres" id="3_nhkr4"]
+[ext_resource type="Resource" uid="uid://cd7odfpp1yywl" path="res://Resources/Lettuce.tres" id="3_7rqgy"]
+[ext_resource type="Resource" uid="uid://iruq2f54b0f5" path="res://Resources/Dried_Pasta.tres" id="4_7rqgy"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_2ia5b"]
 
@@ -46,7 +47,12 @@ grow_vertical = 0
 layout_mode = 2
 text = "TAB : Controls"
 
-[node name="Ingredient" parent="." instance=ExtResource("2_tr2i4")]
+[node name="Ingredient2" parent="." instance=ExtResource("2_tr2i4")]
 position = Vector2(1541, 374)
 scale = Vector2(5.749468, 9.882487)
-ingredient_data = ExtResource("3_nhkr4")
+ingredient_data = ExtResource("3_7rqgy")
+
+[node name="Ingredient" parent="." instance=ExtResource("2_tr2i4")]
+position = Vector2(1278, 417)
+scale = Vector2(5.749468, 9.882487)
+ingredient_data = ExtResource("4_7rqgy")

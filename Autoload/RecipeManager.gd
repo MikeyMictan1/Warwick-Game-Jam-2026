@@ -1,6 +1,7 @@
 extends Node
 
 @export var trash_item : IngredientResource
+const INGREDIENT_SCENE = preload("res://Scenes/Ingredient.tscn")
 
 var recipe_lookup = {}
 
@@ -165,12 +166,17 @@ func combine(item_a: IngredientScene, item_b: IngredientScene) -> void:
 		result_ingredient = trash_item 
 	
 	# Get rid of the two items, and spawn the new one
-	spawn_new_item(result_ingredient, ing_a.global_position)
+	spawn_new_item(result_ingredient, item_a.global_position)
 	item_a.queue_free()
 	item_b.queue_free()
 
 """
-Spawns a new item of the given ingredient at the given position
+Spawns a new IngredientScene of the given ingredient at the given position
 """
-func spawn_new_item(ingredient: IngredientResource, position: Vector2) -> void:
-	pass
+func spawn_new_item(ingredient: IngredientResource, position: Vector2) -> IngredientScene:
+	var new_item = INGREDIENT_SCENE.instantiate()
+	new_item.ingredient_data = ingredient
+	new_item.global_position = position
+	get_tree().current_scene.add_child(new_item)
+	print("Created: ", ingredient.get_ingredient_name())
+	return new_item
