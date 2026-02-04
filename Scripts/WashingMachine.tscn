@@ -1,11 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://dph6b446653jp"]
+[gd_scene load_steps=4 format=3 uid="uid://dph6b446653jp"]
 
 [ext_resource type="Texture2D" uid="uid://bhfopjqexsvo1" path="res://Assets/Art/washing_machine.png" id="1_enw37"]
+[ext_resource type="Script" path="res://Scripts/WashingMachine.gd" id="1_script"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tb5au"]
 size = Vector2(13.333334, 19)
 
 [node name="WashingMachine" type="Area2D"]
+script = ExtResource("1_script")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(9.536743e-07, 1.000001)

@@ -23,7 +23,7 @@ func _on_area_entered(area: Area2D):
 
 func _on_area_exited(area: Area2D):
 	if area is IngredientScene:
-		# Check if any other dragging ingredients are still over the oven
+		# Check if any other dragging ingredients are still over the washing machine
 		var still_hovering = false
 		for other_area in get_overlapping_areas():
 			if other_area is IngredientScene and other_area.is_dragging:

@@ -171,13 +171,62 @@ func combine(item_a: IngredientScene, item_b: IngredientScene) -> void:
 	item_b.queue_free()
 
 """
+Takes two ingredient scenes, combines them with a pop animation at specified position
+Used for mixing bowl combinations
+"""
+func combine_with_pop(item_a: IngredientScene, item_b: IngredientScene, spawn_position: Vector2) -> void:
+	var ing_a = item_a.ingredient_data
+	var ing_b = item_b.ingredient_data
+	var result_ingredient: IngredientResource
+	var key = make_key(ing_a, ing_b)
+	
+	# 1) If same ingredient then just return that same ingredient
+	if ing_a.get_ingredient_name() == ing_b.get_ingredient_name():
+		result_ingredient = ing_a
+		
+	# 2) Found the recipe, so return the result
+	elif recipe_lookup.has(key):
+		result_ingredient = recipe_lookup[key]
+		
+	# 3) Check if one is a component of the other (any depth)
+	elif ing_a.contains_ingredient(ing_b):
+		result_ingredient = ing_a
+
+	elif ing_b.contains_ingredient(ing_a):
+		result_ingredient = ing_b
+
+	# Otherwise, resulting ingredient is trash
+	else:
+		result_ingredient = trash_item 
+	
+	# Get rid of the two items, and spawn the new one with pop animation
+	spawn_new_item(result_ingredient, spawn_position, true)
+	item_a.queue_free()
+	item_b.queue_free()
+
+"""
 Spawns a new IngredientScene of the given ingredient at the given position
 """
-func spawn_new_item(ingredient: IngredientResource, position: Vector2) -> IngredientScene:
+func spawn_new_item(ingredient: IngredientResource, position: Vector2, use_pop_animation: bool = false) -> IngredientScene:
 	var new_item = INGREDIENT_SCENE.instantiate()
 	new_item.ingredient_data = ingredient
 	new_item.global_position = position
 	print("Created: ", ingredient.get_ingredient_name())
 	get_tree().current_scene.add_child(new_item)
 	
+	if use_pop_animation:
+		new_item.pop_out()
+	
 	return new_item
+
+""""
+Adds an ingredient to the oven, and cooks it after 3 seconds
+"""
+func combine_oven(ingredient : IngredientScene):
+	pass
+
+""""
+Adds an ingredient to the washing machine, and washes it after 2 seconds
+"""
+func combine_washing(ingredient : IngredientScene):
+	pass

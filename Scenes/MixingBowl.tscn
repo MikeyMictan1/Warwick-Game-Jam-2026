@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://d1dw40ll10xul"]
+
+[ext_resource type="Texture2D" uid="uid://1neiw2ji83l5" path="res://UI/ui_assets/images/arrow-narrow-down-inverted.png" id="1_kqcsb"]
+[ext_resource type="Script" uid="uid://urjk16eut8hu" path="res://Scripts/MixingBowl.gd" id="1_vxbj7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nm0mo"]
+
+[node name="MixingBowl" type="Area2D"]
+script = ExtResource("1_vxbj7")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.254717, 0.254717)
+texture = ExtResource("1_kqcsb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_nm0mo")
