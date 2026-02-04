@@ -6,12 +6,34 @@ class_name IngredientScene
 @onready var collision: CollisionShape2D = $CollisionShape2D
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var timer : Timer = $Timer
+@onready var blink_timer : Timer = $BlinkTimer
+@onready var fade_player: AnimationPlayer = $FadePlayer
 
 var is_dragging: bool = false
 var drag_offset: Vector2 = Vector2.ZERO
 var is_hovering: bool = false
 var shader_material: ShaderMaterial
 var current_slot: Area2D = null  # Track which slot this ingredient is in
+var is_blinking: bool = false
+
+func start_timers():
+	if timer and blink_timer:
+		timer.one_shot = true
+		blink_timer.one_shot = true
+		timer.start()
+		blink_timer.start()
+		
+func stop_timers():
+	# Logic for blinking
+	is_blinking = false
+	print("stopping fade player")
+	if fade_player:
+		fade_player.stop()
+	timer.stop()
+	blink_timer.stop()
+	
+	sprite.modulate.a = 1.0
 
 func _ready():
 	sprite.texture = ingredient_data.get_ingredient_icon()
@@ -26,6 +48,9 @@ func _ready():
 	# Connect mouse signals
 	mouse_entered.connect(_on_mouse_entered)
 	mouse_exited.connect(_on_mouse_exited)
+	
+	# Setup timer for ingredient lifetime (15 seconds)
+	start_timers()
 
 func _on_mouse_entered():
 	is_hovering = true
@@ -110,6 +135,27 @@ func _process(_delta):
 	if is_dragging:
 		global_position = get_global_mouse_position() + drag_offset
 		update_outline()  # Update outline to check if over appliance
+	
+func ingredient_blink():
+	# Handle blinking for ingredients not on chopping board
+	if current_slot == null and timer:
+		var time_left = timer.time_left
+		
+		# Start blinking after 10 seconds (5 seconds left on timer)
+		if time_left <= 5.0 and not is_blinking:
+			is_blinking = true
+			if fade_player and not fade_player.is_playing():
+				fade_player.play("fade")
+				
+			
+func _on_timer_timeout():
+	print("timeout")
+	# Delete ingredient when timer runs out
+	queue_free()
+
+func _on_blink_timer_timeout() -> void:
+	print("blink timeout")
+	ingredient_blink()
 
 func try_combine():
 	# Check if we're overlapping with chopping board slots first
@@ -136,22 +182,26 @@ func try_combine():
 		if best_slot:
 			var chopping_board = get_tree().get_first_node_in_group("chopping_board")
 			if chopping_board:
+				stop_timers()
 				if chopping_board.try_add_ingredient_to_slot(self, best_slot):
 					return
 	
 	# Check if we're overlapping with appliances
 	for other_area in get_overlapping_areas():
 		if other_area.name == "MixingBowl":
+			stop_timers()
 			print("Adding to mixing bowl: ", ingredient_data.name)
 			other_area.add_ingredient(self)
 			return
 			
 		elif other_area.name == "Oven":
+			stop_timers()
 			print("Adding to oven: ", ingredient_data.name)
 			other_area.add_ingredient(self)
 			return
 
 		elif other_area.name == "WashingMachine":
+			stop_timers()
 			print("Adding to washing machine: ", ingredient_data.name)
 			other_area.add_ingredient(self)
 			return

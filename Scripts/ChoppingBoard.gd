@@ -15,19 +15,28 @@ func try_add_ingredient_to_slot(ingredient: IngredientScene, slot: Area2D) -> bo
 		# Add ingredient to slot
 		slot_contents[slot.name] = ingredient
 		ingredient.current_slot = slot
+
+		# MAKING SURE THE TIMER IS STOPPED, SO IT STAYS ALIVE
+		# Stop timer when placed on board
+		if ingredient.timer:
+			ingredient.timer.stop()
+
 		# Snap ingredient to slot position
 		ingredient.global_position = slot.global_position
 		ingredient.z_index = 1
 		print("Placed ingredient in ", slot.name)
 		return true
 	else:
-		print("Slot ", slot.name, " is already occupied")
 		return false
 
 func remove_ingredient_from_slot(ingredient: IngredientScene):
 	if ingredient.current_slot != null:
 		var slot_name = ingredient.current_slot.name
+		
 		if slot_contents.has(slot_name):
 			slot_contents[slot_name] = null
-			print("Removed ingredient from ", slot_name)
+
 		ingredient.current_slot = null
+
+		# Restart timers when removed to the board
+		ingredient.start_timers()

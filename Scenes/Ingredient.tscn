@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://ctrn2nwo2rxqi"]
+[gd_scene load_steps=9 format=3 uid="uid://ctrn2nwo2rxqi"]
 
 [ext_resource type="Script" uid="uid://chkonkirhweqp" path="res://Scripts/IngredientScene.gd" id="1_qi145"]
 
@@ -114,7 +114,46 @@ _data = {
 &"pop_out": SubResource("Animation_pop_out")
 }
 
+[sub_resource type="Animation" id="Animation_qi145"]
+resource_name = "fade"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.39999998, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_v2xin"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_v2xin"]
+_data = {
+&"RESET": SubResource("Animation_v2xin"),
+&"fade": SubResource("Animation_qi145")
+}
+
 [node name="Ingredient" type="Area2D"]
+modulate = Color(1, 1, 1, 0.086274505)
 script = ExtResource("1_qi145")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -128,3 +167,19 @@ shape = SubResource("RectangleShape2D_qi145")
 libraries = {
 &"": SubResource("AnimationLibrary_pop")
 }
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 15.0
+
+[node name="FadePlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_v2xin")
+}
+
+[node name="BlinkTimer" type="Timer" parent="."]
+wait_time = 10.0
+
+[node name="DeathPlayer" type="AnimationPlayer" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="BlinkTimer" to="." method="_on_blink_timer_timeout"]
