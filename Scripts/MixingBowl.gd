@@ -2,7 +2,7 @@ extends Area2D
 
 var ingredients_in_bowl: Array[IngredientScene] = []
 var shader_material: ShaderMaterial
-const MIXING_BOWL_OFFSET : int = -80 # offset to move the icon of items inside the mixing bowl
+const MIXING_BOWL_OFFSET : int = -50 # offset to move the icon of items inside the mixing bowl
 
 @onready var sprite: Sprite2D = $Sprite2D
 
