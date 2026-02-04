@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://ccarxryw6scdg"]
+[gd_scene load_steps=11 format=3 uid="uid://ccarxryw6scdg"]
 
 [ext_resource type="Script" uid="uid://dslbl3i32erhh" path="res://Scripts/MainScene.gd" id="1_hpc76"]
 [ext_resource type="PackedScene" uid="uid://ctrn2nwo2rxqi" path="res://Scenes/Ingredient.tscn" id="2_tr2i4"]
@@ -6,6 +6,7 @@
 [ext_resource type="Resource" uid="uid://cd7odfpp1yywl" path="res://Resources/Lettuce.tres" id="3_7rqgy"]
 [ext_resource type="Resource" uid="uid://iruq2f54b0f5" path="res://Resources/Dried_Pasta.tres" id="4_7rqgy"]
 [ext_resource type="PackedScene" uid="uid://d1dw40ll10xul" path="res://Scenes/MixingBowl.tscn" id="4_f140w"]
+[ext_resource type="PackedScene" uid="uid://bm4scc4qkrsnt" path="res://Scenes/ChoppingBoard.tscn" id="5_0iob3"]
 [ext_resource type="PackedScene" uid="uid://cjwj343smscw5" path="res://Scenes/IngredientSpawner.tscn" id="5_qxria"]
 [ext_resource type="PackedScene" uid="uid://dph6b446653jp" path="res://Scripts/WashingMachine.tscn" id="7_q68mp"]
 
@@ -64,6 +65,10 @@ scale = Vector2(5, 5)
 [node name="MixingBowl" parent="Appliances" instance=ExtResource("4_f140w")]
 position = Vector2(1678, 677)
 scale = Vector2(5, 5)
+
+[node name="ChoppingBoard" parent="Appliances" instance=ExtResource("5_0iob3")]
+position = Vector2(608, 440)
+scale = Vector2(4, 4)
 
 [node name="IngredientGenerators" type="Node2D" parent="."]
 

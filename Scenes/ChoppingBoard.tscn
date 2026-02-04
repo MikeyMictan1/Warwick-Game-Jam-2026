@@ -1,0 +1,72 @@
+[gd_scene load_steps=3 format=3 uid="uid://bm4scc4qkrsnt"]
+
+[ext_resource type="Texture2D" uid="uid://bkrk6j3vaj5qp" path="res://Assets/Art/Other/cutting_board.webp" id="1_ssvw5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hqiy5"]
+
+[node name="ChoppingBoard" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(84.39239, 16.159311)
+rotation = 1.5707964
+scale = Vector2(0.32597, 0.48879808)
+texture = ExtResource("1_ssvw5")
+
+[node name="slot_1" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="slot_1"]
+shape = SubResource("RectangleShape2D_hqiy5")
+
+[node name="slot_2" type="Area2D" parent="."]
+position = Vector2(32, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="slot_2"]
+shape = SubResource("RectangleShape2D_hqiy5")
+
+[node name="slot_3" type="Area2D" parent="."]
+position = Vector2(64, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="slot_3"]
+shape = SubResource("RectangleShape2D_hqiy5")
+
+[node name="slot_4" type="Area2D" parent="."]
+position = Vector2(96, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="slot_4"]
+shape = SubResource("RectangleShape2D_hqiy5")
+
+[node name="slot_5" type="Area2D" parent="."]
+position = Vector2(128, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="slot_5"]
+shape = SubResource("RectangleShape2D_hqiy5")
+
+[node name="slot_6" type="Area2D" parent="."]
+position = Vector2(0, 32)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="slot_6"]
+shape = SubResource("RectangleShape2D_hqiy5")
+
+[node name="slot_7" type="Area2D" parent="."]
+position = Vector2(32, 32)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="slot_7"]
+shape = SubResource("RectangleShape2D_hqiy5")
+
+[node name="slot_8" type="Area2D" parent="."]
+position = Vector2(64, 32)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="slot_8"]
+shape = SubResource("RectangleShape2D_hqiy5")
+
+[node name="slot_9" type="Area2D" parent="."]
+position = Vector2(96, 32)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="slot_9"]
+shape = SubResource("RectangleShape2D_hqiy5")
+
+[node name="slot_10" type="Area2D" parent="."]
+position = Vector2(128, 32)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="slot_10"]
+shape = SubResource("RectangleShape2D_hqiy5")
