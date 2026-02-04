@@ -3,9 +3,19 @@ extends Node
 var trash_item : IngredientResource = preload("res://Resources/Trash.tres")
 const INGREDIENT_SCENE = preload("res://Scenes/Ingredient.tscn")
 
+# Dummy resources for appliances to use in recipes
+var oven_appliance: IngredientResource
+var washing_appliance: IngredientResource
+
 var recipe_lookup = {}
 
 func _ready() -> void:
+	# Create dummy appliance resources
+	oven_appliance = IngredientResource.new()
+	oven_appliance.name = "_OVEN_"
+	washing_appliance = IngredientResource.new()
+	washing_appliance.name = "_WASHING_"
+	
 	# Preload all ingredients
 	var dried_pasta = preload("res://Resources/Dried_Pasta.tres")
 	var lettuce = preload("res://Resources/Lettuce.tres")
@@ -116,6 +126,14 @@ func _ready() -> void:
 	register_recipe(pufferfish, petroleum, pufferfish_milk)
 	register_recipe(dragon_fruit, ai, intellagama_lesueurii)
 	register_recipe(stink_bomb, bomb_picture, real_bomb)
+	
+	# Oven Recipes
+	register_recipe(garlic, oven_appliance, garlic_oil)
+	register_recipe(dried_pasta, oven_appliance, cooked_pasta)
+	register_recipe(lettuce, oven_appliance, cooked_lettuce)
+	
+	# Washing Machine Recipes
+	register_recipe(sponge, washing_appliance, water)
 
 """
 Takes two ingredients and registers a recipe for their combination
@@ -222,11 +240,43 @@ func spawn_new_item(ingredient: IngredientResource, position: Vector2, use_pop_a
 """"
 Adds an ingredient to the oven, and cooks it after 3 seconds
 """
-func combine_oven(ingredient : IngredientScene):
-	pass
+func combine_oven(ingredient: IngredientScene, oven_position: Vector2) -> void:
+	var ing = ingredient.ingredient_data
+	var key = make_key(ing, oven_appliance)
+	var result_ingredient: IngredientResource
+	
+	# Check if there's an oven recipe
+	if recipe_lookup.has(key):
+		result_ingredient = recipe_lookup[key]
+	else:
+		# If no recipe, burn it (trash)
+		result_ingredient = trash_item
+	
+	# Remove the ingredient
+	ingredient.queue_free()
+	
+	# Wait 3 seconds then spawn result with pop animation
+	await get_tree().create_timer(3.0).timeout
+	spawn_new_item(result_ingredient, oven_position, true)
 
 """"
 Adds an ingredient to the washing machine, and washes it after 2 seconds
 """
-func combine_washing(ingredient : IngredientScene):
-	pass
+func combine_washing(ingredient: IngredientScene, washing_position: Vector2) -> void:
+	var ing = ingredient.ingredient_data
+	var key = make_key(ing, washing_appliance)
+	var result_ingredient: IngredientResource
+	
+	# Check if there's a washing recipe
+	if recipe_lookup.has(key):
+		result_ingredient = recipe_lookup[key]
+	else:
+		# If no recipe, just return water (or just do trash)
+		result_ingredient = preload("res://Resources/Water.tres")
+	
+	# Remove the ingredient
+	ingredient.queue_free()
+	
+	# Wait 2 seconds then spawn result with pop animation
+	await get_tree().create_timer(2.0).timeout
+	spawn_new_item(result_ingredient, washing_position, true)

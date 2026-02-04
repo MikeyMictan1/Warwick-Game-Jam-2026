@@ -42,3 +42,22 @@ func update_outline(show: bool):
 	else:
 		# No outline
 		shader_material.set_shader_parameter("show_outline", false)
+
+func add_ingredient(ingredient: IngredientScene):
+	print("Adding to oven: ", ingredient.ingredient_data.name)
+	
+	# Disable dragging and input for ingredient
+	ingredient.is_dragging = false
+	ingredient.input_pickable = false
+	ingredient.update_outline()
+	
+	# Position ingredient in the oven
+	ingredient.global_position = global_position
+	ingredient.scale = Vector2(0.6, 0.6)
+	ingredient.z_index = 1
+	
+	# Turn off green glow
+	update_outline(false)
+	
+	# Use RecipeManager to cook
+	RecipeManager.combine_oven(ingredient, global_position)

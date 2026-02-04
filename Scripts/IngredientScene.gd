@@ -102,10 +102,18 @@ func _process(_delta):
 		update_outline()  # Update outline to check if over appliance
 
 func try_combine():
-	# Check if we're overlapping with a mixing bowl
+	# Check if we're overlapping with appliances
 	for other_area in get_overlapping_areas():
 		if other_area.name == "MixingBowl":
 			print("Adding to mixing bowl: ", ingredient_data.name)
+			other_area.add_ingredient(self)
+			return
+		elif other_area.name == "Oven":
+			print("Adding to oven: ", ingredient_data.name)
+			other_area.add_ingredient(self)
+			return
+		elif other_area.name == "WashingMachine":
+			print("Adding to washing machine: ", ingredient_data.name)
 			other_area.add_ingredient(self)
 			return
 
