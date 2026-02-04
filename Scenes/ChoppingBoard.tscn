@@ -1,10 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://bm4scc4qkrsnt"]
+[gd_scene load_steps=4 format=3 uid="uid://bm4scc4qkrsnt"]
 
 [ext_resource type="Texture2D" uid="uid://bkrk6j3vaj5qp" path="res://Assets/Art/Other/cutting_board.webp" id="1_ssvw5"]
+[ext_resource type="Script" uid="uid://dbatggo3aclgy" path="res://Scripts/ChoppingBoard.gd" id="1_uxuos"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hqiy5"]
+size = Vector2(30, 30)
 
-[node name="ChoppingBoard" type="Node2D"]
+[node name="ChoppingBoard" type="Node2D" groups=["chopping_board"]]
+script = ExtResource("1_uxuos")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(84.39239, 16.159311)

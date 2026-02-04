@@ -76,7 +76,7 @@ func combine_ingredients():
 	var item_b = ingredients_in_bowl[1]
 	
 	# Store the bowl position for spawning
-	var bowl_position = global_position
+	var bowl_position = Vector2(global_position.x, global_position.y - 80)
 	
 	# Remove from our tracking array
 	ingredients_in_bowl.clear()

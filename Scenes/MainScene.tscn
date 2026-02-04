@@ -1,13 +1,12 @@
-[gd_scene load_steps=11 format=3 uid="uid://ccarxryw6scdg"]
+[gd_scene load_steps=10 format=3 uid="uid://ccarxryw6scdg"]
 
 [ext_resource type="Script" uid="uid://dslbl3i32erhh" path="res://Scripts/MainScene.gd" id="1_hpc76"]
-[ext_resource type="PackedScene" uid="uid://ctrn2nwo2rxqi" path="res://Scenes/Ingredient.tscn" id="2_tr2i4"]
 [ext_resource type="PackedScene" uid="uid://0du1xmf45kuq" path="res://Scenes/Oven.tscn" id="2_y4jh7"]
-[ext_resource type="Resource" uid="uid://cd7odfpp1yywl" path="res://Resources/Lettuce.tres" id="3_7rqgy"]
-[ext_resource type="Resource" uid="uid://iruq2f54b0f5" path="res://Resources/Dried_Pasta.tres" id="4_7rqgy"]
 [ext_resource type="PackedScene" uid="uid://d1dw40ll10xul" path="res://Scenes/MixingBowl.tscn" id="4_f140w"]
 [ext_resource type="PackedScene" uid="uid://bm4scc4qkrsnt" path="res://Scenes/ChoppingBoard.tscn" id="5_0iob3"]
 [ext_resource type="PackedScene" uid="uid://cjwj343smscw5" path="res://Scenes/IngredientSpawner.tscn" id="5_qxria"]
+[ext_resource type="PackedScene" uid="uid://bb8kjvwjtv6qo" path="res://Scenes/Bin.tscn" id="6_f140w"]
+[ext_resource type="Resource" uid="uid://do6hc4bkwpcbk" path="res://Resources/Garlic.tres" id="7_f140w"]
 [ext_resource type="PackedScene" uid="uid://dph6b446653jp" path="res://Scripts/WashingMachine.tscn" id="7_q68mp"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_2ia5b"]
@@ -63,24 +62,41 @@ position = Vector2(403.00006, 876)
 scale = Vector2(5, 5)
 
 [node name="MixingBowl" parent="Appliances" instance=ExtResource("4_f140w")]
-position = Vector2(1678, 677)
+position = Vector2(1735, 504.00006)
 scale = Vector2(5, 5)
 
 [node name="ChoppingBoard" parent="Appliances" instance=ExtResource("5_0iob3")]
 position = Vector2(608, 440)
 scale = Vector2(4, 4)
 
+[node name="Bin" parent="Appliances" instance=ExtResource("6_f140w")]
+position = Vector2(98, 168)
+scale = Vector2(2, 2)
+
 [node name="IngredientGenerators" type="Node2D" parent="."]
 
-[node name="IngredientSpawner" parent="IngredientGenerators" instance=ExtResource("5_qxria")]
-position = Vector2(1673, 920)
+[node name="ColorRect" type="ColorRect" parent="IngredientGenerators"]
+offset_left = 1653.0
+offset_top = 735.0
+offset_right = 1903.0
+offset_bottom = 1065.0
+mouse_filter = 2
 
-[node name="TestItems" type="Node2D" parent="."]
+[node name="LettuceSpawner" parent="IngredientGenerators" instance=ExtResource("5_qxria")]
+position = Vector2(1718, 1006)
 
-[node name="Ingredient2" parent="TestItems" instance=ExtResource("2_tr2i4")]
-position = Vector2(1541, 374)
-ingredient_data = ExtResource("3_7rqgy")
+[node name="GarlicSpawner" parent="IngredientGenerators" instance=ExtResource("5_qxria")]
+position = Vector2(1720, 805)
+ingredient_data = ExtResource("7_f140w")
 
-[node name="Ingredient" parent="TestItems" instance=ExtResource("2_tr2i4")]
-position = Vector2(1399, 375)
-ingredient_data = ExtResource("4_7rqgy")
+[node name="BombPaperSpawner" parent="IngredientGenerators" instance=ExtResource("5_qxria")]
+position = Vector2(1837, 802)
+
+[node name="TomatoSpawner" parent="IngredientGenerators" instance=ExtResource("5_qxria")]
+position = Vector2(1721, 903)
+
+[node name="PufferfishSpawner" parent="IngredientGenerators" instance=ExtResource("5_qxria")]
+position = Vector2(1834, 1007)
+
+[node name="DriedPastaSpawner" parent="IngredientGenerators" instance=ExtResource("5_qxria")]
+position = Vector2(1837, 905)

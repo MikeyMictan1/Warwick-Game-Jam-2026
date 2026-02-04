@@ -11,6 +11,7 @@ var is_dragging: bool = false
 var drag_offset: Vector2 = Vector2.ZERO
 var is_hovering: bool = false
 var shader_material: ShaderMaterial
+var current_slot: Area2D = null  # Track which slot this ingredient is in
 
 func _ready():
 	sprite.texture = ingredient_data.get_ingredient_icon()
@@ -59,6 +60,8 @@ func is_over_appliance() -> bool:
 	for area in get_overlapping_areas():
 		if area.name in ["MixingBowl", "Oven", "WashingMachine"]:
 			return true
+		if area.name.begins_with("slot_"):
+			return true
 	return false
 
 func _input_event(_viewport, event, _shape_idx):
@@ -77,6 +80,13 @@ func _input_event(_viewport, event, _shape_idx):
 				drag_offset = global_position - get_global_mouse_position()
 				# Set z-index to 100 while dragging
 				z_index = 100
+				
+				# If in a slot, remove from it
+				if current_slot != null:
+					var chopping_board = get_tree().get_first_node_in_group("chopping_board")
+					if chopping_board:
+						chopping_board.remove_ingredient_from_slot(self)
+				
 				update_outline()
 				# Prevent this event from reaching ingredients below this one
 				get_viewport().set_input_as_handled()
@@ -87,7 +97,7 @@ func _input(event):
 		return
 	
 	# For the first frame the mouse is released while dragging, set dragging to false, and try combine logic
-	if event is InputEventMouseButton:
+	if event is InputEventMouseButton:		
 		if event.button_index == MOUSE_BUTTON_LEFT and not event.pressed:
 			is_dragging = false
 			# Set z-index back to 1 after release
@@ -102,19 +112,53 @@ func _process(_delta):
 		update_outline()  # Update outline to check if over appliance
 
 func try_combine():
+	# Check if we're overlapping with chopping board slots first
+	var overlapping_slots = []
+	for other_area in get_overlapping_areas():
+		if other_area.name.begins_with("slot_"):
+			overlapping_slots.append(other_area)
+	
+	# If overlapping multiple slots, find the one with most overlap
+	if overlapping_slots.size() > 0:
+		var best_slot = null
+		var max_overlap = 0.0
+		
+		for slot in overlapping_slots:
+			# Calculate overlap distance (closer center = better)
+			var distance = global_position.distance_to(slot.global_position)
+			var overlap_score = 1.0 / (distance + 1.0)  # Inverse distance scoring
+			
+			if overlap_score > max_overlap:
+				max_overlap = overlap_score
+				best_slot = slot
+		
+		# Try to add to the best slot
+		if best_slot:
+			var chopping_board = get_tree().get_first_node_in_group("chopping_board")
+			if chopping_board:
+				if chopping_board.try_add_ingredient_to_slot(self, best_slot):
+					return
+	
 	# Check if we're overlapping with appliances
 	for other_area in get_overlapping_areas():
 		if other_area.name == "MixingBowl":
 			print("Adding to mixing bowl: ", ingredient_data.name)
 			other_area.add_ingredient(self)
 			return
+			
 		elif other_area.name == "Oven":
 			print("Adding to oven: ", ingredient_data.name)
 			other_area.add_ingredient(self)
 			return
+
 		elif other_area.name == "WashingMachine":
 			print("Adding to washing machine: ", ingredient_data.name)
 			other_area.add_ingredient(self)
+			return
+
+		elif other_area.name == "Bin":
+			print("Adding to bin")
+			self.queue_free()
 			return
 
 func pop_out():
