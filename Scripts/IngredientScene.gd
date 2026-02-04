@@ -9,6 +9,7 @@ class_name IngredientScene
 @onready var timer : Timer = $Timer
 @onready var blink_timer : Timer = $BlinkTimer
 @onready var fade_player: AnimationPlayer = $FadePlayer
+@onready var death_player: AnimationPlayer = $DeathPlayer
 
 var is_dragging: bool = false
 var drag_offset: Vector2 = Vector2.ZERO
@@ -151,7 +152,8 @@ func ingredient_blink():
 func _on_timer_timeout():
 	print("timeout")
 	# Delete ingredient when timer runs out
-	queue_free()
+	fade_player.stop()
+	death_player.play("death")
 
 func _on_blink_timer_timeout() -> void:
 	print("blink timeout")

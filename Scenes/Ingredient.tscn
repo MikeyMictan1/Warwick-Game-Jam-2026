@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://ctrn2nwo2rxqi"]
+[gd_scene load_steps=13 format=3 uid="uid://ctrn2nwo2rxqi"]
 
 [ext_resource type="Script" uid="uid://chkonkirhweqp" path="res://Scripts/IngredientScene.gd" id="1_qi145"]
+[ext_resource type="Texture2D" uid="uid://os4diqq4go5e" path="res://icon.svg" id="2_qi145"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qi145"]
 
@@ -152,12 +153,111 @@ _data = {
 &"fade": SubResource("Animation_qi145")
 }
 
+[sub_resource type="Animation" id="Animation_p4p6r"]
+resource_name = "death"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, -5.370378]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.1, 0.1)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_prqvy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qi145"]
+_data = {
+&"RESET": SubResource("Animation_prqvy"),
+&"death": SubResource("Animation_p4p6r")
+}
+
 [node name="Ingredient" type="Area2D"]
-modulate = Color(1, 1, 1, 0.086274505)
 script = ExtResource("1_qi145")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.8, 0.8)
+texture = ExtResource("2_qi145")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(5, 5)
@@ -180,6 +280,9 @@ libraries = {
 wait_time = 10.0
 
 [node name="DeathPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_qi145")
+}
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="BlinkTimer" to="." method="_on_blink_timer_timeout"]
