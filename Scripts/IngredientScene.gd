@@ -210,8 +210,7 @@ func try_combine():
 
 		elif other_area.name == "Bin":
 			print("Adding to bin")
-			self.queue_free()
-			return
+			death_player.play("death")
 
 func pop_out():
 	# Play the pop_out animation from the AnimationPlayer
