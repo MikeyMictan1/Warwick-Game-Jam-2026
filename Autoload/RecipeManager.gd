@@ -2,6 +2,7 @@ extends Node
 
 var trash_item : IngredientResource = preload("res://Resources/Trash.tres")
 const INGREDIENT_SCENE = preload("res://Scenes/Ingredient.tscn")
+const KITCHEN_EXPLOSION = preload("res://Scenes/KitchenExplosion.tscn")
 
 # Dummy resources for appliances to use in recipes
 var oven_appliance: IngredientResource
@@ -68,6 +69,9 @@ func _ready() -> void:
 	var white_onion = preload("res://Resources/White_Onion.tres")
 	var cold_pasta_sauce = preload("res://Resources/Cold_Pasta_Sauce.tres")
 
+	# events
+	var event_explosion = preload("res://Resources/Event_Explosion.tres")
+
 	# Register all recipes ---------------------------------
 	# First Degree Recipes
 	register_recipe(dried_pasta, lettuce, pasta_salad)
@@ -128,7 +132,8 @@ func _ready() -> void:
 	register_recipe(stink_bomb, bomb_picture, real_bomb)
 	
 	# Oven Recipes
-	register_recipe(garlic, oven_appliance, garlic_oil)
+	register_recipe(garlic, oven_appliance, garlic_oil) # and stench
+	register_recipe(tomato_sauce, oven_appliance, event_explosion)
 	register_recipe(dried_pasta, oven_appliance, cooked_pasta)
 	register_recipe(lettuce, oven_appliance, cooked_lettuce)
 	
@@ -144,6 +149,12 @@ func register_recipe(ing_a: IngredientResource, ing_b: IngredientResource, resul
 	# Auto-populate components on the result
 	result.components.append(ing_a)
 	result.components.append(ing_b)
+
+func explode_kitchen():
+	var explosion_scene = KITCHEN_EXPLOSION.instantiate()
+	get_tree().current_scene.add_child(explosion_scene)
+	explosion_scene.run()
+
 
 """
 Takes two ingredients and makes a unique key for them
@@ -244,6 +255,7 @@ func combine_oven(ingredient: IngredientScene, oven_position: Vector2) -> void:
 	var ing = ingredient.ingredient_data
 	var key = make_key(ing, oven_appliance)
 	var result_ingredient: IngredientResource
+
 	
 	# Check if there's an oven recipe
 	if recipe_lookup.has(key):
@@ -254,6 +266,12 @@ func combine_oven(ingredient: IngredientScene, oven_position: Vector2) -> void:
 	
 	# Remove the ingredient
 	ingredient.queue_free()
+	
+		# event handling -------------------
+	print("RESULT IS: ",result_ingredient.get_ingredient_name())
+	if result_ingredient.get_ingredient_name() == "event_explosion":
+		print("explosion")
+		explode_kitchen()
 	
 	# Wait 3 seconds then spawn result with pop animation
 	await get_tree().create_timer(3.0).timeout

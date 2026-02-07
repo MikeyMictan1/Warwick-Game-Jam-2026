@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://rmvvcefp3b4d" path="res://Assets/Art/trash.png" id="2_sfmvk"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sfmvk"]
-radius = 19.945518
+radius = 21.63319
 height = 99.87493
 
 [node name="Bin" type="Area2D"]
