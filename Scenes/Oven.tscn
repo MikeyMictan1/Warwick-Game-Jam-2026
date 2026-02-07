@@ -1,10 +1,10 @@
 [gd_scene load_steps=5 format=3 uid="uid://0du1xmf45kuq"]
 
 [ext_resource type="Script" uid="uid://c1d2i0qshvqaa" path="res://Scripts/Oven.gd" id="1_script"]
-[ext_resource type="Texture2D" uid="uid://dgkaq1ae0t6g8" path="res://Assets/Art/oven.png" id="1_wr84x"]
+[ext_resource type="Texture2D" uid="uid://c64bhap5ekfj7" path="res://Assets/Art/fire.png" id="2_yaxri"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p1esg"]
-size = Vector2(48, 52)
+size = Vector2(421, 460)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yaxri"]
 
@@ -12,19 +12,19 @@ size = Vector2(48, 52)
 script = ExtResource("1_script")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-1.1444092e-05, -1.1444092e-05)
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("1_wr84x")
+position = Vector2(101, -251)
+scale = Vector2(0.56, 0.56)
+texture = ExtResource("2_yaxri")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 1)
+position = Vector2(-83.5, 56)
 shape = SubResource("RectangleShape2D_p1esg")
 
 [node name="Panel" type="Panel" parent="."]
-offset_left = 32.0
-offset_top = -182.0
-offset_right = 710.0
-offset_bottom = -114.0
+offset_left = 28.0
+offset_top = -247.0
+offset_right = 706.0
+offset_bottom = -179.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_yaxri")
 
 [node name="SpeechText" type="RichTextLabel" parent="Panel"]

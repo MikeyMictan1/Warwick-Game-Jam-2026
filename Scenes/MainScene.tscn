@@ -1,7 +1,7 @@
-[gd_scene load_steps=18 format=3 uid="uid://ccarxryw6scdg"]
+[gd_scene load_steps=19 format=3 uid="uid://ccarxryw6scdg"]
 
 [ext_resource type="Script" uid="uid://dslbl3i32erhh" path="res://Scripts/MainScene.gd" id="1_hpc76"]
-[ext_resource type="Texture2D" uid="uid://dw5hxvlvydr6i" path="res://Assets/Art/Other/Untitled_Artwork 126.png" id="2_0iob3"]
+[ext_resource type="Texture2D" uid="uid://brw1tt6v5st7w" path="res://Assets/Art/bg.png" id="2_enc0b"]
 [ext_resource type="PackedScene" uid="uid://0du1xmf45kuq" path="res://Scenes/Oven.tscn" id="2_y4jh7"]
 [ext_resource type="PackedScene" uid="uid://d1dw40ll10xul" path="res://Scenes/MixingBowl.tscn" id="4_f140w"]
 [ext_resource type="PackedScene" uid="uid://bm4scc4qkrsnt" path="res://Scenes/ChoppingBoard.tscn" id="5_0iob3"]
@@ -9,8 +9,8 @@
 [ext_resource type="PackedScene" uid="uid://bb8kjvwjtv6qo" path="res://Scenes/Bin.tscn" id="6_f140w"]
 [ext_resource type="Resource" uid="uid://do6hc4bkwpcbk" path="res://Resources/Garlic.tres" id="7_f140w"]
 [ext_resource type="PackedScene" uid="uid://dph6b446653jp" path="res://Scenes/WashingMachine.tscn" id="7_q68mp"]
-[ext_resource type="Script" uid="uid://j5w5dc311n0s" path="res://Scripts/bell.gd" id="8_xc4hf"]
-[ext_resource type="Script" uid="uid://dqm4cuvlf07ht" path="res://Scripts/Finished.gd" id="9_6rnll"]
+[ext_resource type="Script" path="res://Scripts/bell.gd" id="8_xc4hf"]
+[ext_resource type="Script" path="res://Scripts/Finished.gd" id="9_6rnll"]
 [ext_resource type="Resource" uid="uid://dyrp0xa815j51" path="res://Resources/Bomb_Picture.tres" id="10_4b75m"]
 [ext_resource type="PackedScene" uid="uid://ctrn2nwo2rxqi" path="res://Scenes/Ingredient.tscn" id="10_6rnll"]
 [ext_resource type="Resource" uid="uid://dg2qkiec5x3sg" path="res://Resources/Tomato_Sauce.tres" id="11_8ju71"]
@@ -18,15 +18,16 @@
 [ext_resource type="Resource" uid="uid://cyjxo1ctfjey8" path="res://Resources/Pufferfish.tres" id="12_xb4mg"]
 [ext_resource type="Resource" uid="uid://iruq2f54b0f5" path="res://Resources/Dried_Pasta.tres" id="13_6t1o7"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_enc0b"]
+
 [node name="MainScene" type="Node2D"]
 script = ExtResource("1_hpc76")
 
 [node name="PlaceholderBackground" type="TextureRect" parent="."]
-offset_left = 275.0
-offset_top = 1.0
-offset_right = 1918.0
-offset_bottom = 1074.0
-texture = ExtResource("2_0iob3")
+offset_left = -1.0
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("2_enc0b")
 expand_mode = 1
 
 [node name="UICanvasLayer" type="CanvasLayer" parent="."]
@@ -54,24 +55,24 @@ text = "TAB : Controls"
 [node name="Appliances" type="Node2D" parent="."]
 
 [node name="Oven" parent="Appliances" instance=ExtResource("2_y4jh7")]
-position = Vector2(490.99997, 869)
-scale = Vector2(7, 7)
+z_index = 2
+position = Vector2(859, 795)
 
 [node name="WashingMachine" parent="Appliances" instance=ExtResource("7_q68mp")]
-position = Vector2(1108, 862)
-scale = Vector2(7, 7)
+position = Vector2(1244, 813.00006)
+scale = Vector2(11, 11)
 
 [node name="MixingBowl" parent="Appliances" instance=ExtResource("4_f140w")]
 position = Vector2(1735, 504.00006)
 scale = Vector2(5, 5)
 
 [node name="ChoppingBoard" parent="Appliances" instance=ExtResource("5_0iob3")]
-position = Vector2(808, 279)
-scale = Vector2(4, 4)
+position = Vector2(995, 289.00003)
+scale = Vector2(3.5, 3.5)
 
 [node name="Bin" parent="Appliances" instance=ExtResource("6_f140w")]
-position = Vector2(98, 168)
-scale = Vector2(2, 2)
+position = Vector2(290.00003, 958.00006)
+scale = Vector2(5, 5)
 
 [node name="Bell" type="Area2D" parent="Appliances" node_paths=PackedStringArray("finished_plate")]
 position = Vector2(380, 503)
@@ -79,7 +80,8 @@ script = ExtResource("8_xc4hf")
 finished_plate = NodePath("../FinishedPlate")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Appliances/Bell"]
-polygon = PackedVector2Array(-4, 19, 0, 0, 25, 7, 42, 15, 50, 41, -45, 58, -42, 28, -32, 12, -15, 6, -17, -1, -25, 1, -26, -6, 6, -14, 8, -5, 0, -3, 0, 0, 25, 7)
+position = Vector2(278, 5)
+polygon = PackedVector2Array(0, 0, 25, 7, 33, 15, 40, 40, -35, 55, -36, 28, -29, 14, -15, 6, -17, -1, -25, 1, -26, -6, 6, -14, 8, -5, 0, 0, 25, 7)
 
 [node name="FinishedPlate" type="Area2D" parent="Appliances" node_paths=PackedStringArray("tomato_pasta")]
 position = Vector2(573, 518)
@@ -87,8 +89,8 @@ script = ExtResource("9_6rnll")
 tomato_pasta = NodePath("ModelAnswer")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Appliances/FinishedPlate"]
-position = Vector2(-120, -5)
-polygon = PackedVector2Array(10, -2, 126, -6, 248, -19, 229, 13, 22, 26, -8, 2)
+position = Vector2(117, -3)
+polygon = PackedVector2Array(17, -1, 126, -6, 223, -18, 209, 13, 38, 27, 14, 4)
 
 [node name="ModelAnswer" parent="Appliances/FinishedPlate" instance=ExtResource("10_6rnll")]
 visible = false
@@ -97,24 +99,59 @@ ingredient_data = ExtResource("11_enc0b")
 [node name="IngredientGenerators" type="Node2D" parent="."]
 
 [node name="LettuceSpawner" parent="IngredientGenerators" instance=ExtResource("5_qxria")]
-position = Vector2(1537, 1025)
+position = Vector2(1614, 1017)
 
 [node name="GarlicSpawner" parent="IngredientGenerators" instance=ExtResource("5_qxria")]
-position = Vector2(1509, 680)
+position = Vector2(1575, 676)
 ingredient_data = ExtResource("7_f140w")
 
 [node name="BombPaperSpawner" parent="IngredientGenerators" instance=ExtResource("5_qxria")]
-position = Vector2(1845, 704)
+position = Vector2(1864, 724)
 ingredient_data = ExtResource("10_4b75m")
 
 [node name="TomatoSpawner" parent="IngredientGenerators" instance=ExtResource("5_qxria")]
-position = Vector2(1499, 857)
+position = Vector2(1573, 840)
 ingredient_data = ExtResource("11_8ju71")
 
 [node name="PufferfishSpawner" parent="IngredientGenerators" instance=ExtResource("5_qxria")]
-position = Vector2(1805, 1027)
+position = Vector2(1825, 1012)
 ingredient_data = ExtResource("12_xb4mg")
 
 [node name="DriedPastaSpawner" parent="IngredientGenerators" instance=ExtResource("5_qxria")]
-position = Vector2(1818, 874)
+position = Vector2(1868, 917)
 ingredient_data = ExtResource("13_6t1o7")
+
+[node name="Panel" type="Panel" parent="."]
+offset_left = 23.0
+offset_top = 31.0
+offset_right = 519.0
+offset_bottom = 530.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_enc0b")
+
+[node name="Name" type="RichTextLabel" parent="Panel"]
+clip_contents = false
+layout_mode = 0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 244.0
+offset_bottom = 50.0
+theme_override_font_sizes/normal_font_size = 30
+text = "Father"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="SpeechText" type="RichTextLabel" parent="Panel"]
+clip_contents = false
+layout_mode = 0
+offset_left = 10.0
+offset_top = 55.0
+offset_right = 481.0
+offset_bottom = 486.0
+theme_override_font_sizes/normal_font_size = 30
+text = "Let Him COOK!"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="AudioStreamSpeech" type="AudioStreamPlayer2D" parent="Panel"]
