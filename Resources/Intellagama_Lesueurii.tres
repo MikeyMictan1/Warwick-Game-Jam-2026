@@ -1,9 +1,9 @@
 [gd_resource type="Resource" script_class="IngredientResource" load_steps=3 format=3 uid="uid://exke4hjvv1si"]
 
-[ext_resource type="Texture2D" uid="uid://os4diqq4go5e" path="res://icon.svg" id="1_icon"]
 [ext_resource type="Script" uid="uid://d0fahplylun1n" path="res://Scripts/IngredientResource.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://4lrbllnoq82u" path="res://Assets/Art/Ingredients/ilizzard.png" id="2_tt3o6"]
 
 [resource]
 script = ExtResource("1_script")
 name = "Intellagama_Lesueurii"
-icon = ExtResource("1_icon")
+icon = ExtResource("2_tt3o6")

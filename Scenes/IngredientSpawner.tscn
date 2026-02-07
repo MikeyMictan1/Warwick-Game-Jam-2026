@@ -11,6 +11,7 @@ script = ExtResource("1_1ll6g")
 ingredient_data = ExtResource("2_y7qas")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.05, 0.05)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_spawner")

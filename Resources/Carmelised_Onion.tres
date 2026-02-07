@@ -1,9 +1,9 @@
 [gd_resource type="Resource" script_class="IngredientResource" load_steps=3 format=3 uid="uid://cbnlxcs0f6uu2"]
 
-[ext_resource type="Texture2D" uid="uid://os4diqq4go5e" path="res://icon.svg" id="1_icon"]
 [ext_resource type="Script" uid="uid://d0fahplylun1n" path="res://Scripts/IngredientResource.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://befay1kf5dp3l" path="res://Assets/Art/Ingredients/Untitled_Artwork-12 2.png" id="2_56b63"]
 
 [resource]
 script = ExtResource("1_script")
 name = "Carmelised_Onion"
-icon = ExtResource("1_icon")
+icon = ExtResource("2_56b63")

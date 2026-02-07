@@ -1,9 +1,9 @@
 [gd_resource type="Resource" script_class="IngredientResource" load_steps=3 format=3 uid="uid://co5gbpmk47qi6"]
 
-[ext_resource type="Texture2D" uid="uid://os4diqq4go5e" path="res://icon.svg" id="1_icon"]
 [ext_resource type="Script" uid="uid://d0fahplylun1n" path="res://Scripts/IngredientResource.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://dl2nhha6njm4y" path="res://Assets/Art/Ingredients/Untitled_Artwork-15.png" id="2_wrap4"]
 
 [resource]
 script = ExtResource("1_script")
 name = "Water"
-icon = ExtResource("1_icon")
+icon = ExtResource("2_wrap4")
