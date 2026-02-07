@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="IngredientResource" load_steps=3 format=3 uid="uid://eqwr0s7oowob"]
+
+[ext_resource type="Script" uid="uid://d0fahplylun1n" path="res://Scripts/IngredientResource.gd" id="1_74uxs"]
+[ext_resource type="Texture2D" uid="uid://os4diqq4go5e" path="res://icon.svg" id="2_eisdl"]
+
+[resource]
+script = ExtResource("1_74uxs")
+name = "event_boiling"
+icon = ExtResource("2_eisdl")
+metadata/_custom_type_script = "uid://d0fahplylun1n"
