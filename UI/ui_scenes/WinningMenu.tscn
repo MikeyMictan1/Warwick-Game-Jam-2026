@@ -1,0 +1,61 @@
+[gd_scene load_steps=3 format=3 uid="uid://1krh8agw1lm3"]
+
+[ext_resource type="Script" uid="uid://b81losdd0ykv5" path="res://UI/ui_scripts/winning_menu.gd" id="1_lvbm2"]
+[ext_resource type="Theme" uid="uid://d1tl4ouhddgg7" path="res://UI/ui_themes/base_theme.tres" id="2_x8q7y"]
+
+[node name="WinningMenu" type="Node2D"]
+script = ExtResource("1_lvbm2")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Control"]
+clip_contents = false
+layout_mode = 0
+offset_left = 578.0
+offset_top = 185.0
+offset_right = 1250.0
+offset_bottom = 278.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 70
+text = "Congratulations!"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="MainMenu" type="Button" parent="CanvasLayer/Control"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 0
+offset_left = 493.0
+offset_top = 614.0
+offset_right = 663.0
+offset_bottom = 674.0
+text = "Main Menu"
+
+[node name="Quit" type="Button" parent="CanvasLayer/Control"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 0
+offset_left = 1246.0
+offset_top = 629.0
+offset_right = 1326.0
+offset_bottom = 689.0
+theme = ExtResource("2_x8q7y")
+text = "Quit"
+
+[connection signal="pressed" from="CanvasLayer/Control/MainMenu" to="." method="_on_main_menu_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/Quit" to="." method="_on_quit_pressed"]

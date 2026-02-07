@@ -10,6 +10,7 @@ size = Vector2(30, 30)
 script = ExtResource("1_uxuos")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(84.39239, 16.159311)
 rotation = 1.5707964
 scale = Vector2(0.32597, 0.48879808)
