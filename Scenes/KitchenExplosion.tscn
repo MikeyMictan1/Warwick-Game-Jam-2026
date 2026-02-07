@@ -1,6 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://dqiydo3fyt561"]
+[gd_scene load_steps=14 format=3 uid="uid://dqiydo3fyt561"]
 
 [ext_resource type="Script" uid="uid://du0i2l1tvaudl" path="res://Scripts/KitchenExplosion.gd" id="1_dw6su"]
+[ext_resource type="Texture2D" uid="uid://d166tqt5ufv7w" path="res://Assets/Art/explosion/Untitled_Artwork-1 33.png" id="2_3coj4"]
+[ext_resource type="Texture2D" uid="uid://bbkkp1ybvhv2e" path="res://Assets/Art/explosion/Untitled_Artwork-2 33.png" id="3_cxsxr"]
+[ext_resource type="Texture2D" uid="uid://b7spctvovxc1l" path="res://Assets/Art/explosion/Untitled_Artwork-3 27.png" id="4_adri4"]
+[ext_resource type="Texture2D" uid="uid://cblaxiofvgnu" path="res://Assets/Art/explosion/Untitled_Artwork-4 23.png" id="5_v66jw"]
+[ext_resource type="Texture2D" uid="uid://ddon0dfdsd8o5" path="res://Assets/Art/explosion/Untitled_Artwork-5 18.png" id="6_bqkqt"]
+[ext_resource type="Texture2D" uid="uid://ckt4hill7ad0f" path="res://Assets/Art/explosion/Untitled_Artwork-6 14.png" id="7_3rwld"]
+[ext_resource type="Texture2D" uid="uid://dus8m7e0bjvld" path="res://Assets/Art/explosion/Untitled_Artwork-7 12.png" id="8_gg7ox"]
+[ext_resource type="Texture2D" uid="uid://cr56i3biluxek" path="res://Assets/Art/explosion/Untitled_Artwork-8 8.png" id="9_ppgc1"]
 
 [sub_resource type="Animation" id="Animation_dw6su"]
 resource_name = "explode"
@@ -18,11 +26,71 @@ tracks/0/keys = {
 "method": &"explosion_menu"
 }]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.07085512, 0.141436, 0.23333333, 0.33333334, 0.46666667, 0.6, 0.76666665),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7]
+}
+
+[sub_resource type="Animation" id="Animation_gx5op"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_q106e"]
 _data = {
+&"RESET": SubResource("Animation_gx5op"),
 &"explode": SubResource("Animation_dw6su")
 }
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wc41i"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_3coj4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_cxsxr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_adri4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_v66jw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_bqkqt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_3rwld")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_gg7ox")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_ppgc1")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="KitchenExplosion" type="CanvasLayer"]
 script = ExtResource("1_dw6su")
@@ -31,3 +99,6 @@ script = ExtResource("1_dw6su")
 libraries = {
 &"": SubResource("AnimationLibrary_q106e")
 }
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_wc41i")
