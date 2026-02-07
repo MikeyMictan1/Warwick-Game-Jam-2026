@@ -217,4 +217,9 @@ func pop_out():
 	if animation_player:
 		animation_player.play("pop_out")
 
-		
+"""
+Ingredient name resources getter
+"""
+func get_ingredient_name():
+	if ingredient_data:
+		return ingredient_data.name
