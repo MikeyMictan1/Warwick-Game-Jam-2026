@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://nabomb7ouy6n" path="res://UI/ui_scripts/main_menu.gd" id="1_lget4"]
 [ext_resource type="Theme" uid="uid://b81kaf80j5ngy" path="res://UI/ui_themes/MainMenuButtonTheme.tres" id="1_uyl7m"]
 [ext_resource type="Theme" uid="uid://d1tl4ouhddgg7" path="res://UI/ui_themes/base_theme.tres" id="2_i6s3c"]
-[ext_resource type="Texture2D" uid="uid://bjxy38vww0ttd" path="res://Assets/Art/UI_Art/pizza.png" id="2_ueq4g"]
+[ext_resource type="Texture2D" uid="uid://bjxy38vww0ttd" path="res://Assets/Art/Other/pizza.png" id="2_ueq4g"]
 
 [node name="MainMenu" type="Node2D"]
 script = ExtResource("1_lget4")
