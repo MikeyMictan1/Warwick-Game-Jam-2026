@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://ccarxryw6scdg"]
+[gd_scene load_steps=17 format=3 uid="uid://ccarxryw6scdg"]
 
 [ext_resource type="Script" uid="uid://dslbl3i32erhh" path="res://Scripts/MainScene.gd" id="1_hpc76"]
 [ext_resource type="Texture2D" uid="uid://brw1tt6v5st7w" path="res://Assets/Art/bg.png" id="2_enc0b"]
@@ -12,9 +12,7 @@
 [ext_resource type="Script" uid="uid://j5w5dc311n0s" path="res://Scripts/bell.gd" id="8_xc4hf"]
 [ext_resource type="Script" uid="uid://dqm4cuvlf07ht" path="res://Scripts/Finished.gd" id="9_6rnll"]
 [ext_resource type="Resource" uid="uid://dyrp0xa815j51" path="res://Resources/Bomb_Picture.tres" id="10_4b75m"]
-[ext_resource type="PackedScene" uid="uid://ctrn2nwo2rxqi" path="res://Scenes/Ingredient.tscn" id="10_6rnll"]
 [ext_resource type="Resource" uid="uid://dg2qkiec5x3sg" path="res://Resources/Tomato_Sauce.tres" id="11_8ju71"]
-[ext_resource type="Resource" uid="uid://8mkhxm2664hp" path="res://Resources/Tomato_Pasta.tres" id="11_enc0b"]
 [ext_resource type="Resource" uid="uid://cyjxo1ctfjey8" path="res://Resources/Pufferfish.tres" id="12_xb4mg"]
 [ext_resource type="Resource" uid="uid://iruq2f54b0f5" path="res://Resources/Dried_Pasta.tres" id="13_6t1o7"]
 
@@ -86,15 +84,11 @@ polygon = PackedVector2Array(0, 0, 25, 7, 33, 15, 40, 40, -35, 55, -36, 28, -29,
 [node name="FinishedPlate" type="Area2D" parent="Appliances" node_paths=PackedStringArray("tomato_pasta")]
 position = Vector2(573, 518)
 script = ExtResource("9_6rnll")
-tomato_pasta = NodePath("ModelAnswer")
+tomato_pasta = NodePath("")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Appliances/FinishedPlate"]
 position = Vector2(117, -3)
 polygon = PackedVector2Array(17, -1, 126, -6, 223, -18, 209, 13, 38, 27, 14, 4)
-
-[node name="ModelAnswer" parent="Appliances/FinishedPlate" instance=ExtResource("10_6rnll")]
-visible = false
-ingredient_data = ExtResource("11_enc0b")
 
 [node name="IngredientGenerators" type="Node2D" parent="."]
 

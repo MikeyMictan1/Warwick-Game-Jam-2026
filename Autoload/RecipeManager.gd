@@ -71,6 +71,8 @@ func _ready() -> void:
 
 	# events
 	var event_explosion = preload("res://Resources/Event_Explosion.tres")
+	var event_flood = preload("res://Resources/Event_Flood.tres")
+	var event_boiling = preload("res://Resources/Event_Boiling.tres")
 
 	# Register all recipes ---------------------------------
 	# First Degree Recipes
@@ -114,6 +116,7 @@ func _ready() -> void:
 	register_recipe(pizza_base, red_onion, onion_rings)
 
 	# Final Recipe
+	register_recipe(water, dried_pasta, cooked_pasta)
 	register_recipe(cooked_lettuce, tomato_sauce, red_onion)
 	register_recipe(red_onion, garlic_oil, carmelised_onion)
 	register_recipe(carmelised_onion, tomato_sauce, cold_pasta_sauce)
@@ -134,11 +137,44 @@ func _ready() -> void:
 	# Oven Recipes
 	register_recipe(garlic, oven_appliance, garlic_oil) # and stench
 	register_recipe(tomato_sauce, oven_appliance, event_explosion)
-	register_recipe(dried_pasta, oven_appliance, cooked_pasta)
+	register_recipe(pufferfish, oven_appliance, pufferfish_milk)
 	register_recipe(lettuce, oven_appliance, cooked_lettuce)
-	
+	register_recipe(dried_pasta, oven_appliance, burnt_pasta)
+	register_recipe(bomb_picture, oven_appliance, real_bomb)
+	register_recipe(cold_pasta_tomato, oven_appliance, burnt_pasta)
+	register_recipe(dragon_fruit, oven_appliance, komodo_dragon)
+	register_recipe(pineapple, oven_appliance, pineapple_jam)
+	register_recipe(garlic_oil, oven_appliance, event_explosion)
+	register_recipe(red_onion, oven_appliance, water)
+	register_recipe(sponge, oven_appliance, water)
+	register_recipe(cooked_lettuce, oven_appliance, carmelised_onion)
+	register_recipe(garlic_pasta, oven_appliance, ultimate_pasta)
+	register_recipe(pasta_salad, oven_appliance, ultimate_pasta)
+	register_recipe(cold_pasta_tomato, oven_appliance, ultimate_pasta)
+	register_recipe(cold_pasta_sauce, oven_appliance, pasta_sauce)
+
 	# Washing Machine Recipes
+	register_recipe(cooked_pasta, washing_appliance, pizza_base)
+	register_recipe(pasta_salad, washing_appliance, pizza_base)
+	register_recipe(garlic_pasta, washing_appliance, pizza_base)
+	register_recipe(cold_pasta_tomato, washing_appliance, pizza_base)
+	register_recipe(burnt_pasta, washing_appliance, pizza_base)
+	register_recipe(dried_pasta, washing_appliance, pizza_base)
+	register_recipe(ultimate_pasta, washing_appliance, pizza_base)
+	register_recipe(stuffed_pasta, washing_appliance, pizza_base)
 	register_recipe(sponge, washing_appliance, water)
+	register_recipe(lettuce, washing_appliance, cabbage)
+	register_recipe(pufferfish, washing_appliance, alive_pufferfish)
+	register_recipe(garlic, washing_appliance, garlic_oil)
+	register_recipe(dragon_fruit, washing_appliance, intellagama_lesueurii)
+	register_recipe(pineapple, washing_appliance, sponge)
+	register_recipe(sponge, washing_appliance, event_flood)
+	register_recipe(garlic_oil, washing_appliance, event_explosion)
+	register_recipe(red_onion, washing_appliance, white_onion)
+	register_recipe(white_onion, washing_appliance, red_onion)
+	register_recipe(cooked_lettuce, washing_appliance, lettuce)
+	register_recipe(pufferfish_milk, washing_appliance, ice_cream)
+	register_recipe(carmelised_onion, washing_appliance, onion_rings)
 
 """
 Takes two ingredients and registers a recipe for their combination
@@ -150,11 +186,6 @@ func register_recipe(ing_a: IngredientResource, ing_b: IngredientResource, resul
 	result.components.append(ing_a)
 	result.components.append(ing_b)
 
-func explode_kitchen():
-	var explosion_scene = KITCHEN_EXPLOSION.instantiate()
-	get_tree().current_scene.add_child(explosion_scene)
-	explosion_scene.run()
-
 
 """
 Takes two ingredients and makes a unique key for them
@@ -163,41 +194,6 @@ func make_key(ing_a: IngredientResource, ing_b: IngredientResource) -> String:
 	var names = [ing_a.get_ingredient_name(), ing_b.get_ingredient_name()]
 	names.sort()
 	return names[0] + "|" + names[1]
-
-
-"""
-Takes two ingredient scenes, combines them according to the recipes, and spawns the result
-
-"""
-func combine(item_a: IngredientScene, item_b: IngredientScene) -> void:
-	var ing_a = item_a.ingredient_data
-	var ing_b = item_b.ingredient_data
-	var result_ingredient: IngredientResource
-	var key = make_key(ing_a, ing_b)
-	
-	# 1) If same ingredient then just return that same ingredient
-	if ing_a.get_ingredient_name() == ing_b.get_ingredient_name():
-		result_ingredient = ing_a
-		
-	# 2) Found the recipe, so return the result
-	elif recipe_lookup.has(key):
-		result_ingredient = recipe_lookup[key]
-		
-	# 3) Check if one is a component of the other (any depth)
-	elif ing_a.contains_ingredient(ing_b):
-		result_ingredient = ing_a
-
-	elif ing_b.contains_ingredient(ing_a):
-		result_ingredient = ing_b
-
-	# Otherwise, resulting ingredient is trash
-	else:
-		result_ingredient = trash_item 
-	
-	# Get rid of the two items, and spawn the new one
-	spawn_new_item(result_ingredient, item_a.global_position)
-	item_a.queue_free()
-	item_b.queue_free()
 
 """
 Takes two ingredient scenes, combines them with a pop animation at specified position
@@ -267,11 +263,8 @@ func combine_oven(ingredient: IngredientScene, oven_position: Vector2) -> void:
 	# Remove the ingredient
 	ingredient.queue_free()
 	
-		# event handling -------------------
-	print("RESULT IS: ",result_ingredient.get_ingredient_name())
-	if result_ingredient.get_ingredient_name() == "event_explosion":
-		print("explosion")
-		explode_kitchen()
+	# Event Hndling -------------------
+	event_handler(result_ingredient)
 	
 	# Wait 3 seconds then spawn result with pop animation
 	await get_tree().create_timer(3.0).timeout
@@ -291,10 +284,43 @@ func combine_washing(ingredient: IngredientScene, washing_position: Vector2) -> 
 	else:
 		# If no recipe, just return water (or just do trash)
 		result_ingredient = preload("res://Resources/Water.tres")
-	
+
 	# Remove the ingredient
 	ingredient.queue_free()
+
+	# Event Hndling -------------------
+	event_handler(result_ingredient)
 	
 	# Wait 2 seconds then spawn result with pop animation
 	await get_tree().create_timer(2.0).timeout
 	spawn_new_item(result_ingredient, washing_position, true)
+
+"""
+Handles events e.g. kitchen explosion, flood, smell, etc.
+"""
+func event_handler(result_ingredient : IngredientResource):
+	# explodes the ktichen
+	if result_ingredient.get_ingredient_name() == "event_explosion":
+		explode_kitchen()
+	
+	# floods the kitchen
+	elif result_ingredient.get_ingredient_name() == "event_flood":
+		flood_kitchen()
+
+
+"""
+Event for a kitchen explosion
+"""
+func explode_kitchen():
+	var explosion_scene = KITCHEN_EXPLOSION.instantiate()
+	get_tree().current_scene.add_child(explosion_scene)
+	explosion_scene.run()
+
+"""
+Event for a kitchen flood
+"""
+func flood_kitchen():
+	# var flood_scene = KITCHEN_FLOOD.instantiate()
+	# get_tree().current_scene.add_child(flood_scene)
+	# flood_scene.run()
+	pass

@@ -7,11 +7,13 @@ func _ready():
 	add_to_group("finished_plate")
 
 func submitted():
-	print("Finished: submitted() called")
-	if held_ingredient.get_ingredient_name() == tomato_pasta.get_ingredient_name():
-		get_tree().change_scene_to_file("res://UI/ui_scenes/MainMenu.tscn")
+	if not held_ingredient:
+		return
+	
+	elif held_ingredient:
+		if held_ingredient.get_ingredient_name() == "Tomato_Pasta":
+			get_tree().change_scene_to_file("res://UI/ui_scenes/WinningMenu.tscn")
 
-	else:
 		held_ingredient.kill_ingredient()
 
 # Call this to add an ingredient to Finished
