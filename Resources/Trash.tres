@@ -1,9 +1,9 @@
 [gd_resource type="Resource" script_class="IngredientResource" load_steps=3 format=3 uid="uid://dycl75luctv3d"]
 
-[ext_resource type="Texture2D" uid="uid://os4diqq4go5e" path="res://icon.svg" id="1_icon"]
 [ext_resource type="Script" uid="uid://d0fahplylun1n" path="res://Scripts/IngredientResource.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://c2moo3e6dowj7" path="res://Assets/Art/Other/bin.png" id="2_e8mk2"]
 
 [resource]
 script = ExtResource("1_script")
 name = "Trash"
-icon = ExtResource("1_icon")
+icon = ExtResource("2_e8mk2")

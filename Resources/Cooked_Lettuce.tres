@@ -1,9 +1,9 @@
 [gd_resource type="Resource" script_class="IngredientResource" load_steps=3 format=3 uid="uid://cgj2aws6paesk"]
 
-[ext_resource type="Texture2D" uid="uid://os4diqq4go5e" path="res://icon.svg" id="1_icon"]
 [ext_resource type="Script" uid="uid://d0fahplylun1n" path="res://Scripts/IngredientResource.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://bf67eq0qss0dm" path="res://Assets/Art/Ingredients/Untitled_Artwork-11 3.png" id="2_h37rt"]
 
 [resource]
 script = ExtResource("1_script")
 name = "Cooked_Lettuce"
-icon = ExtResource("1_icon")
+icon = ExtResource("2_h37rt")
