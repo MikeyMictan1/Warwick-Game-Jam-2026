@@ -86,7 +86,10 @@ var is_talking = false
 
 # progresses on dialogue
 func talk():
-	var cur_dialogue: Array = fire_dialogue[cur_ingredient]
+	var cur_dialogue : Array = ["nom nom nom"]
+	if fire_dialogue.has(cur_ingredient):
+		cur_dialogue = fire_dialogue[cur_ingredient]
+	
 	if current_index >= cur_dialogue.size():
 		is_talking = false
 		panel.visible = false
