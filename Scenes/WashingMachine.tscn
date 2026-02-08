@@ -1,7 +1,39 @@
-[gd_scene load_steps=4 format=3 uid="uid://dph6b446653jp"]
+[gd_scene load_steps=9 format=3 uid="uid://dph6b446653jp"]
 
 [ext_resource type="Script" uid="uid://bcl36b4qsltyy" path="res://Scripts/WashingMachine.gd" id="1_script"]
 [ext_resource type="Texture2D" uid="uid://b2q3xx5lgujy1" path="res://Assets/Art/wash.png" id="2_re5p1"]
+[ext_resource type="Texture2D" uid="uid://cwkl3f0e8chki" path="res://Assets/Art/other_anims/Untitled_Artwork-5 20.png" id="3_uusa1"]
+[ext_resource type="Texture2D" uid="uid://njqmcgpqwh0i" path="res://Assets/Art/other_anims/Untitled_Artwork-6 16.png" id="4_a4txe"]
+[ext_resource type="Texture2D" uid="uid://dubalc0vs18u0" path="res://Assets/Art/other_anims/Untitled_Artwork-7 13.png" id="5_xpqkm"]
+[ext_resource type="Texture2D" uid="uid://rt4ig5gacpak" path="res://Assets/Art/other_anims/Untitled_Artwork-8 9.png" id="6_42yga"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qfrsa"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_re5p1")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_uusa1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_a4txe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_xpqkm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_42yga")
+}],
+"loop": true,
+"name": &"on",
+"speed": 3.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tb5au"]
 size = Vector2(12.666667, 15.333334)
@@ -9,10 +41,12 @@ size = Vector2(12.666667, 15.333334)
 [node name="WashingMachine" type="Area2D"]
 script = ExtResource("1_script")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-26, -26)
 scale = Vector2(0.052916616, 0.052916616)
-texture = ExtResource("2_re5p1")
+sprite_frames = SubResource("SpriteFrames_qfrsa")
+autoplay = "default"
+frame_progress = 0.6487573
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(2.3841858e-07, 2.000001)

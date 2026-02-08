@@ -1,7 +1,43 @@
-[gd_scene load_steps=5 format=3 uid="uid://0du1xmf45kuq"]
+[gd_scene load_steps=11 format=3 uid="uid://0du1xmf45kuq"]
 
 [ext_resource type="Script" uid="uid://c1d2i0qshvqaa" path="res://Scripts/Oven.gd" id="1_script"]
-[ext_resource type="Texture2D" uid="uid://c64bhap5ekfj7" path="res://Assets/Art/fire.png" id="2_yaxri"]
+[ext_resource type="Texture2D" uid="uid://btk3uerjrejjv" path="res://Assets/Art/fire_anims/Untitled_Artwork-5 19.png" id="2_h6veu"]
+[ext_resource type="Texture2D" uid="uid://dskxygnrit1kd" path="res://Assets/Art/fire_anims/Untitled_Artwork-6 15.png" id="3_kfvyn"]
+[ext_resource type="Texture2D" uid="uid://bnlmenpawfuot" path="res://Assets/Art/fire_anims/Untitled_Artwork-1 34.png" id="4_ll6d6"]
+[ext_resource type="Texture2D" uid="uid://bbaevot10bbx" path="res://Assets/Art/fire_anims/Untitled_Artwork-2 34.png" id="5_5yjtb"]
+[ext_resource type="Texture2D" uid="uid://di30uvo46cn0t" path="res://Assets/Art/fire_anims/Untitled_Artwork-3 28.png" id="6_g1xsi"]
+[ext_resource type="Texture2D" uid="uid://tuca1kxdka07" path="res://Assets/Art/fire_anims/Untitled_Artwork-4 24.png" id="7_8a87f"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_r2s3j"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_h6veu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_kfvyn")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_ll6d6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_5yjtb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_g1xsi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_8a87f")
+}],
+"loop": true,
+"name": &"talking",
+"speed": 3.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p1esg"]
 size = Vector2(421, 460)
@@ -11,10 +47,13 @@ size = Vector2(421, 460)
 [node name="Oven" type="Area2D"]
 script = ExtResource("1_script")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(101, -251)
 scale = Vector2(0.56, 0.56)
-texture = ExtResource("2_yaxri")
+sprite_frames = SubResource("SpriteFrames_r2s3j")
+animation = &"talking"
+autoplay = "idle"
+frame_progress = 0.0055276724
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-83.5, 56)

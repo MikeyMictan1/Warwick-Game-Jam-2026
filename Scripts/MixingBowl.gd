@@ -4,7 +4,7 @@ var ingredients_in_bowl: Array[IngredientScene] = []
 var shader_material: ShaderMaterial
 const MIXING_BOWL_OFFSET : int = -50 # offset to move the icon of items inside the mixing bowl
 
-@onready var sprite: Sprite2D = $Sprite2D
+@onready var sprite: AnimatedSprite2D = $Sprite2D
 
 func _ready():
 	input_pickable = false
@@ -83,3 +83,7 @@ func combine_ingredients():
 	
 	# Use RecipeManager to combine with pop animation
 	RecipeManager.combine_with_pop(item_a, item_b, bowl_position)
+	
+	sprite.play("on")
+	await get_tree().create_timer(1.5).timeout
+	sprite.play("default")

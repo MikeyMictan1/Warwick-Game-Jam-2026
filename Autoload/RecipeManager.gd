@@ -225,9 +225,11 @@ func combine_with_pop(item_a: IngredientScene, item_b: IngredientScene, spawn_po
 		result_ingredient = trash_item 
 	
 	# Get rid of the two items, and spawn the new one with pop animation
-	spawn_new_item(result_ingredient, spawn_position, true)
 	item_a.queue_free()
 	item_b.queue_free()
+	
+	await get_tree().create_timer(1.5).timeout
+	spawn_new_item(result_ingredient, spawn_position, true)
 
 """
 Spawns a new IngredientScene of the given ingredient at the given position

@@ -2,7 +2,7 @@ extends Area2D
 
 var shader_material: ShaderMaterial
 @onready var audio_stream_speech: AudioStreamPlayer2D = $AudioStreamSpeech
-@onready var sprite: Sprite2D = $Sprite2D
+@onready var sprite: AnimatedSprite2D = $Sprite2D
 @onready var speech_text: RichTextLabel = $Panel/SpeechText
 @onready var panel: Panel = $Panel
 
@@ -69,6 +69,7 @@ func add_ingredient(ingredient: IngredientScene):
 	is_talking = true
 	panel.visible = true
 	talk()
+	sprite.play("talking")
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("click") and is_talking:
@@ -94,6 +95,7 @@ func talk():
 		is_talking = false
 		panel.visible = false
 		actually_cook()
+		sprite.play("idle")
 		return
 	
 	if typing == true: # happens if player presses space again to skip/end dialogue

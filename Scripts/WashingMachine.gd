@@ -2,7 +2,8 @@ extends Area2D
 
 var shader_material: ShaderMaterial
 
-@onready var sprite: Sprite2D = $Sprite2D
+@onready var sprite: AnimatedSprite2D = $Sprite2D
+
 
 func _ready():
 	input_pickable = false
@@ -61,3 +62,7 @@ func add_ingredient(ingredient: IngredientScene):
 	
 	# Use RecipeManager to wash
 	RecipeManager.combine_washing(ingredient, global_position)
+	
+	sprite.play("on")
+	await get_tree().create_timer(2.0).timeout
+	sprite.play("default")

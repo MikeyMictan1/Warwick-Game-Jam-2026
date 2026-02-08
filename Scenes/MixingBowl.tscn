@@ -1,16 +1,53 @@
-[gd_scene load_steps=4 format=3 uid="uid://d1dw40ll10xul"]
+[gd_scene load_steps=8 format=3 uid="uid://d1dw40ll10xul"]
 
-[ext_resource type="Texture2D" uid="uid://1neiw2ji83l5" path="res://UI/ui_assets/images/arrow-narrow-down-inverted.png" id="1_kqcsb"]
 [ext_resource type="Script" uid="uid://urjk16eut8hu" path="res://Scripts/MixingBowl.gd" id="1_vxbj7"]
+[ext_resource type="Texture2D" uid="uid://bbxc4dfvyj7q7" path="res://Assets/Art/other_anims/Untitled_Artwork-1 35.png" id="2_tvpsg"]
+[ext_resource type="Texture2D" uid="uid://cgscpsa17bqnj" path="res://Assets/Art/other_anims/Untitled_Artwork-2 35.png" id="3_naeqm"]
+[ext_resource type="Texture2D" uid="uid://dgvuh7tux5eo7" path="res://Assets/Art/other_anims/Untitled_Artwork-3 29.png" id="4_y3e8s"]
+[ext_resource type="Texture2D" uid="uid://dxfkhlbs63tbi" path="res://Assets/Art/other_anims/Untitled_Artwork-4 25.png" id="5_jepbo"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0xfnn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_tvpsg")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_tvpsg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_naeqm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_y3e8s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_jepbo")
+}],
+"loop": true,
+"name": &"on",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nm0mo"]
+size = Vector2(84, 63)
 
 [node name="MixingBowl" type="Area2D"]
 script = ExtResource("1_vxbj7")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-305, 46)
 scale = Vector2(0.254717, 0.254717)
-texture = ExtResource("1_kqcsb")
+sprite_frames = SubResource("SpriteFrames_0xfnn")
+animation = &"on"
+autoplay = "default"
+frame_progress = 0.63496536
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-11, 7)
 shape = SubResource("RectangleShape2D_nm0mo")
