@@ -52,7 +52,6 @@ position = Vector2(970, 541.00006)
 scale = Vector2(5, 5)
 amount = 10
 texture = ExtResource("2_2u05s")
-trail_enabled = true
 process_material = SubResource("ParticleProcessMaterial_ueq4g")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UI Elements/Control"]

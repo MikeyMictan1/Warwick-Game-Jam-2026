@@ -1,6 +1,7 @@
-[gd_scene load_steps=17 format=3 uid="uid://ccarxryw6scdg"]
+[gd_scene load_steps=18 format=3 uid="uid://ccarxryw6scdg"]
 
 [ext_resource type="Script" uid="uid://dslbl3i32erhh" path="res://Scripts/MainScene.gd" id="1_hpc76"]
+[ext_resource type="PackedScene" path="res://Scenes/RecipeBook.tscn" id="15_rb"]
 [ext_resource type="Texture2D" uid="uid://bqncy4onfyg1q" path="res://Assets/Art/bg.png" id="2_enc0b"]
 [ext_resource type="PackedScene" uid="uid://0du1xmf45kuq" path="res://Scenes/Oven.tscn" id="2_y4jh7"]
 [ext_resource type="PackedScene" uid="uid://d1dw40ll10xul" path="res://Scenes/MixingBowl.tscn" id="4_f140w"]
@@ -113,6 +114,8 @@ ingredient_data = ExtResource("12_xb4mg")
 [node name="DriedPastaSpawner" parent="IngredientGenerators" instance=ExtResource("5_qxria")]
 position = Vector2(1868, 917)
 ingredient_data = ExtResource("13_6t1o7")
+
+[node name="RecipeBook" parent="." instance=ExtResource("15_rb")]
 
 [node name="Panel" type="Panel" parent="."]
 offset_left = 23.0

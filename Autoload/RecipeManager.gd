@@ -242,6 +242,11 @@ func spawn_new_item(ingredient: IngredientResource, position: Vector2, use_pop_a
 	print("Created: ", ingredient.get_ingredient_name())
 	get_tree().current_scene.add_child(new_item)
 	
+	# Register in recipe book
+	var recipe_book = get_tree().current_scene.get_node_or_null("RecipeBook")
+	if recipe_book:
+		recipe_book.discover_ingredient(ingredient)
+	
 	if use_pop_animation:
 		new_item.pop_out()
 	
