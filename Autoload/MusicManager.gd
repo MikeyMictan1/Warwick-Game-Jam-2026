@@ -1,6 +1,7 @@
 extends Node
 
 func _ready():
+	process_mode = Node.PROCESS_MODE_ALWAYS
 	var music_player = AudioStreamPlayer.new()
 	add_child(music_player)
 	var stream = load("res://Assets/Music/bg_music.mp3")

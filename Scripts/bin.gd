@@ -16,9 +16,14 @@ func _ready():
 	# Connect area signals to detect when ingredients hover over
 	area_entered.connect(_on_area_entered)
 	area_exited.connect(_on_area_exited)
+	
+	# Show white outline by default
+	shader_material.set_shader_parameter("outline_color", Color(1.0, 1.0, 1.0, 1.0))
+	shader_material.set_shader_parameter("show_outline", true)
 
 func _on_area_entered(area: Area2D):
 	if area is IngredientScene and area.is_dragging:
+		RecipeManager.play_hover_sfx()
 		update_outline(true)
 
 func _on_area_exited(area: Area2D):
@@ -36,9 +41,10 @@ func update_outline(show: bool):
 		return
 	
 	if show:
-		# Green outline when ingredient is dragging over
+		# Red outline when ingredient is dragging over
 		shader_material.set_shader_parameter("outline_color", Color(1.0, 0.0, 0.0, 1.0))
 		shader_material.set_shader_parameter("show_outline", true)
 	else:
-		# No outline
-		shader_material.set_shader_parameter("show_outline", false)
+		# White outline by default
+		shader_material.set_shader_parameter("outline_color", Color(1.0, 1.0, 1.0, 1.0))
+		shader_material.set_shader_parameter("show_outline", true)

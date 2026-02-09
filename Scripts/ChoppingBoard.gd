@@ -8,6 +8,13 @@ func _ready() -> void:
 	for i in range(1, 11):
 		var slot_name = "slot_" + str(i)
 		slot_contents[slot_name] = null
+		# Connect hover SFX for each slot
+		var slot = get_node(slot_name)
+		slot.area_entered.connect(_on_slot_area_entered)
+
+func _on_slot_area_entered(area: Area2D):
+	if area is IngredientScene and area.is_dragging:
+		RecipeManager.play_hover_sfx()
 
 func try_add_ingredient_to_slot(ingredient: IngredientScene, slot: Area2D) -> bool:
 	# Check if slot is empty

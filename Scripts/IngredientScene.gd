@@ -11,6 +11,7 @@ class_name IngredientScene
 @onready var fade_player: AnimationPlayer = $FadePlayer
 @onready var death_player: AnimationPlayer = $DeathPlayer
 
+var sfx_bin: AudioStreamPlayer = AudioStreamPlayer.new()
 var is_dragging: bool = false
 var drag_offset: Vector2 = Vector2.ZERO
 var is_hovering: bool = false
@@ -37,7 +38,10 @@ func stop_timers():
 	sprite.modulate.a = 1.0
 
 func _ready():
-
+	# audio
+	sfx_bin.stream = load("res://Assets/Music/bin_sfx.mp3")
+	add_child(sfx_bin)
+	
 	sprite.texture = ingredient_data.get_ingredient_icon()
 	input_pickable = true
 	
@@ -46,6 +50,7 @@ func _ready():
 	shader_material = ShaderMaterial.new()
 	shader_material.shader = shader
 	sprite.material = shader_material
+	shader_material.set_shader_parameter("outline_width", 20.0)
 	
 	# Connect mouse signals
 	mouse_entered.connect(_on_mouse_entered)
@@ -56,6 +61,8 @@ func _ready():
 
 func _on_mouse_entered():
 	is_hovering = true
+	if not is_dragging:
+		RecipeManager.play_hover_sfx()
 	update_outline()
 
 func _on_mouse_exited():
@@ -211,6 +218,7 @@ func try_combine():
 			if other_area.add_ingredient(self):
 				return
 		elif other_area.name == "Bin":
+			sfx_bin.play()
 			kill_ingredient()
 
 func pop_out():
@@ -226,4 +234,5 @@ func get_ingredient_name():
 		return ingredient_data.name
 
 func kill_ingredient():
+	sfx_bin.play()
 	death_player.play("death")

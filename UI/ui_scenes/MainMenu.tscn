@@ -50,8 +50,9 @@ color = Color(0.89492244, 0.89492244, 0.8949224, 1)
 modulate = Color(0.8477911, 0.83137745, 3.080368e-06, 1)
 position = Vector2(970, 541.00006)
 scale = Vector2(5, 5)
-amount = 10
+amount = 5
 texture = ExtResource("2_2u05s")
+lifetime = 3.0
 process_material = SubResource("ParticleProcessMaterial_ueq4g")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UI Elements/Control"]

@@ -2,6 +2,7 @@ extends CanvasLayer
 
 # Discovered ingredients stored by name to avoid duplicates
 var discovered: Dictionary = {}
+var shader_material: ShaderMaterial
 
 @onready var panel: Panel = $Panel
 @onready var grid: GridContainer = $Panel/ScrollContainer/GridContainer
@@ -23,6 +24,16 @@ func _ready():
 	close_button.pressed.connect(_on_close_pressed)
 	book_button.pressed.connect(_on_book_pressed)
 	
+	# Setup outline shader for book button
+	var shader = preload("res://Assets/Art/outline.gdshader")
+	shader_material = ShaderMaterial.new()
+	shader_material.shader = shader
+	book_button.material = shader_material
+	
+	# Show white outline by default
+	shader_material.set_shader_parameter("outline_color", Color(1.0, 1.0, 1.0, 1.0))
+	shader_material.set_shader_parameter("show_outline", true)
+	
 	# Register default ingredients
 	for path in default_ingredients:
 		var res: IngredientResource = load(path)
@@ -30,12 +41,33 @@ func _ready():
 			discover_ingredient(res)
 
 func _on_book_pressed():
-	panel.visible = true
-	get_tree().paused = true
+	# Toggle the panel
+	if panel.visible:
+		_on_close_pressed()
+	else:
+		panel.visible = true
+		get_tree().paused = true
 
 func _on_close_pressed():
 	panel.visible = false
 	get_tree().paused = false
+
+func _unhandled_input(event):
+	if not panel.visible:
+		return
+	
+	# Close on Escape — mark handled so it doesn't trigger the settings menu
+	if event.is_action_pressed("ui_cancel"):
+		_on_close_pressed()
+		get_viewport().set_input_as_handled()
+		return
+	
+	# Close when clicking outside the panel
+	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+		var panel_rect = Rect2(panel.global_position, panel.size)
+		if not panel_rect.has_point(event.global_position):
+			_on_close_pressed()
+			get_viewport().set_input_as_handled()
 
 func discover_ingredient(ingredient: IngredientResource) -> void:
 	var ing_name = ingredient.get_ingredient_name()

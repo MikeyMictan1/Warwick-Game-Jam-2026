@@ -10,6 +10,13 @@ var washing_appliance: IngredientResource
 
 var recipe_lookup = {}
 
+var sfx_explosion: AudioStreamPlayer = AudioStreamPlayer.new()
+var sfx_bin: AudioStreamPlayer = AudioStreamPlayer.new()
+var sfx_fire: AudioStreamPlayer = AudioStreamPlayer.new()
+var sfx_wash: AudioStreamPlayer = AudioStreamPlayer.new()
+var sfx_mix: AudioStreamPlayer = AudioStreamPlayer.new()
+var sfx_hover: AudioStreamPlayer = AudioStreamPlayer.new()
+
 func _ready() -> void:
 	# Create dummy appliance resources
 	oven_appliance = IngredientResource.new()
@@ -176,6 +183,21 @@ func _ready() -> void:
 	register_recipe(pufferfish_milk, washing_appliance, ice_cream)
 	register_recipe(carmelised_onion, washing_appliance, onion_rings)
 
+	# AUDIO
+	sfx_bin.stream = load("res://Assets/Music/bin_sfx.mp3")
+	sfx_explosion.stream = load("res://Assets/Music/explosion_sfx.mp3")
+	sfx_fire.stream = load("res://Assets/Music/fire_sfx.mp3")
+	sfx_wash.stream = load("res://Assets/Music/washing_machine_sfx.mp3")
+	sfx_mix.stream = load("res://Assets/Music/mixing_sfx.mp3")
+	sfx_hover.stream = load("res://Assets/Music/hover_sfx.mp3")
+
+	add_child(sfx_bin)
+	add_child(sfx_explosion)
+	add_child(sfx_fire)
+	add_child(sfx_wash)
+	add_child(sfx_mix)
+	add_child(sfx_hover)
+
 """
 Takes two ingredients and registers a recipe for their combination
 """
@@ -228,6 +250,8 @@ func combine_with_pop(item_a: IngredientScene, item_b: IngredientScene, spawn_po
 	item_a.queue_free()
 	item_b.queue_free()
 	
+	# Play mixing sfx before waiting
+	play_mix_sfx()
 	await get_tree().create_timer(1.5).timeout
 	spawn_new_item(result_ingredient, spawn_position, true)
 
@@ -271,6 +295,9 @@ func combine_oven(ingredient: IngredientScene, oven_position: Vector2) -> void:
 	# Remove the ingredient
 	ingredient.queue_free()
 	
+	# Play fire sfx before removing ingredient
+	play_fire_sfx()
+	
 	# Event Hndling -------------------
 	event_handler(result_ingredient)
 	
@@ -295,6 +322,9 @@ func combine_washing(ingredient: IngredientScene, washing_position: Vector2) -> 
 	# Remove the ingredient
 	ingredient.queue_free()
 
+	# Play washing sfx before removing ingredient
+	play_wash_sfx()
+	
 	# Event Hndling -------------------
 	event_handler(result_ingredient)
 	
@@ -318,10 +348,19 @@ func event_handler(result_ingredient : IngredientResource):
 """
 Event for a kitchen explosion
 """
+
 func explode_kitchen():
 	var explosion_scene = KITCHEN_EXPLOSION.instantiate()
 	get_tree().current_scene.add_child(explosion_scene)
+	# Center the explosion in the middle of the screen
+	var viewport = get_viewport()
+	if explosion_scene.has_method("set_global_position"):
+		explosion_scene.global_position = viewport.get_visible_rect().size / 2
+	elif explosion_scene.has_node("AnimatedSprite2D"):
+		explosion_scene.get_node("AnimatedSprite2D").global_position = viewport.get_visible_rect().size / 2
+	# Run the explosion animation
 	explosion_scene.run()
+	sfx_explosion.play()
 
 """
 Event for a kitchen flood
@@ -331,3 +370,19 @@ func flood_kitchen():
 	# get_tree().current_scene.add_child(flood_scene)
 	# flood_scene.run()
 	pass
+
+func play_bin_sfx():
+	sfx_bin.play()
+
+func play_fire_sfx():
+	sfx_fire.play()
+
+func play_wash_sfx():
+	sfx_wash.play()
+
+func play_mix_sfx():
+	sfx_mix.play()
+
+func play_hover_sfx():
+	if not sfx_hover.playing:
+		sfx_hover.play()
