@@ -144,22 +144,26 @@ func _ready() -> void:
 	
 	# Oven Recipes
 	register_recipe(garlic, oven_appliance, garlic_oil) # and stench
-	register_recipe(tomato_sauce, oven_appliance, event_explosion)
 	register_recipe(pufferfish, oven_appliance, pufferfish_milk)
 	register_recipe(lettuce, oven_appliance, cooked_lettuce)
 	register_recipe(dried_pasta, oven_appliance, burnt_pasta)
 	register_recipe(bomb_picture, oven_appliance, real_bomb)
-	register_recipe(cold_pasta_tomato, oven_appliance, burnt_pasta)
 	register_recipe(dragon_fruit, oven_appliance, komodo_dragon)
 	register_recipe(pineapple, oven_appliance, pineapple_jam)
-	register_recipe(garlic_oil, oven_appliance, event_explosion)
 	register_recipe(red_onion, oven_appliance, water)
 	register_recipe(sponge, oven_appliance, water)
 	register_recipe(cooked_lettuce, oven_appliance, carmelised_onion)
 	register_recipe(garlic_pasta, oven_appliance, ultimate_pasta)
 	register_recipe(pasta_salad, oven_appliance, ultimate_pasta)
-	register_recipe(cold_pasta_tomato, oven_appliance, ultimate_pasta)
 	register_recipe(cold_pasta_sauce, oven_appliance, pasta_sauce)
+	register_recipe(red_onion, oven_appliance, water)
+
+	# Wildcard oven recipes: any tomato ingredient causes explosion
+	register_recipe(tomato_sauce, oven_appliance, event_explosion)
+	register_recipe(cold_pasta_tomato, oven_appliance, event_explosion)
+	register_recipe(tomato_pasta, oven_appliance, event_explosion)
+	register_recipe(tomato_pizza, oven_appliance, event_explosion)
+	register_recipe(tomato_soup, oven_appliance, event_explosion)
 
 	# Washing Machine Recipes
 	register_recipe(cooked_pasta, washing_appliance, pizza_base)
@@ -186,6 +190,22 @@ func _ready() -> void:
 
 	# wildcard recipes
 	register_recipe(pufferfish_milk, null, ice_cream)
+	register_recipe(tomato_sauce, null, tomato_soup)
+	register_recipe(garlic, null, garlic_oil)
+	register_recipe(sponge, null, event_flood)
+	register_recipe(dried_pasta, null, pizza_base)
+	register_recipe(cooked_pasta, null, pizza_base)
+	register_recipe(garlic_pasta, null, pizza_base)
+	register_recipe(pasta_salad, null, pizza_base)
+	register_recipe(cold_pasta_tomato, null, pizza_base)
+	register_recipe(burnt_pasta, null, pizza_base)
+	register_recipe(ultimate_pasta, null, pizza_base)
+	register_recipe(stuffed_pasta, null, pizza_base)
+	register_recipe(lettuce, null, cabbage)
+	register_recipe(pufferfish, null, red_onion)
+	register_recipe(dragon_fruit, null, intellagama_lesueurii)
+	register_recipe(pineapple, null, sponge)
+	register_recipe(ai, null, event_explosion)
 
 	
 

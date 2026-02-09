@@ -1,7 +1,6 @@
-[gd_scene load_steps=18 format=3 uid="uid://ccarxryw6scdg"]
+[gd_scene load_steps=19 format=3 uid="uid://ccarxryw6scdg"]
 
 [ext_resource type="Script" uid="uid://dslbl3i32erhh" path="res://Scripts/MainScene.gd" id="1_hpc76"]
-[ext_resource type="PackedScene" path="res://Scenes/RecipeBook.tscn" id="15_rb"]
 [ext_resource type="Texture2D" uid="uid://bqncy4onfyg1q" path="res://Assets/Art/bg.png" id="2_enc0b"]
 [ext_resource type="PackedScene" uid="uid://0du1xmf45kuq" path="res://Scenes/Oven.tscn" id="2_y4jh7"]
 [ext_resource type="PackedScene" uid="uid://d1dw40ll10xul" path="res://Scenes/MixingBowl.tscn" id="4_f140w"]
@@ -16,6 +15,8 @@
 [ext_resource type="Resource" uid="uid://dg2qkiec5x3sg" path="res://Resources/Tomato_Sauce.tres" id="11_8ju71"]
 [ext_resource type="Resource" uid="uid://cyjxo1ctfjey8" path="res://Resources/Pufferfish.tres" id="12_xb4mg"]
 [ext_resource type="Resource" uid="uid://iruq2f54b0f5" path="res://Resources/Dried_Pasta.tres" id="13_6t1o7"]
+[ext_resource type="PackedScene" uid="uid://6msliswhcegf" path="res://Scenes/RecipeBook.tscn" id="15_rb"]
+[ext_resource type="Texture2D" uid="uid://qmruegh8vfrd" path="res://Assets/Art/Other/arrow.png" id="17_enc0b"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_enc0b"]
 
@@ -58,10 +59,12 @@ z_index = 2
 position = Vector2(859, 795)
 
 [node name="WashingMachine" parent="Appliances" instance=ExtResource("7_q68mp")]
+z_index = 1
 position = Vector2(1244, 813.00006)
 scale = Vector2(11, 11)
 
 [node name="MixingBowl" parent="Appliances" instance=ExtResource("4_f140w")]
+z_index = 1
 position = Vector2(1636.9999, 438)
 scale = Vector2(2.2, 2.2)
 
@@ -70,6 +73,7 @@ position = Vector2(995, 289.00003)
 scale = Vector2(3.5, 3.5)
 
 [node name="Bin" parent="Appliances" instance=ExtResource("6_f140w")]
+z_index = 1
 position = Vector2(290.00003, 958.00006)
 scale = Vector2(5, 5)
 
@@ -124,6 +128,14 @@ offset_right = 519.0
 offset_bottom = 530.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_enc0b")
 
+[node name="ColorRect" type="ColorRect" parent="Panel"]
+layout_mode = 0
+offset_left = -23.0
+offset_top = -33.0
+offset_right = 1897.0
+offset_bottom = 1057.0
+color = Color(0.7411765, 0.7411765, 0.7411765, 0.62352943)
+
 [node name="Name" type="RichTextLabel" parent="Panel"]
 clip_contents = false
 layout_mode = 0
@@ -148,6 +160,58 @@ theme_override_font_sizes/normal_font_size = 30
 text = "Let Him COOK!"
 fit_content = true
 scroll_active = false
-autowrap_mode = 0
 
 [node name="AudioStreamSpeech" type="AudioStreamPlayer2D" parent="Panel"]
+
+[node name="arrows" type="Node2D" parent="."]
+position = Vector2(33, 86)
+
+[node name="arrow_1" type="TextureRect" parent="arrows"]
+visible = false
+offset_left = 1221.0
+offset_top = 1261.9999
+offset_right = 2680.5808
+offset_bottom = 2721.5806
+rotation = -2.2723894
+texture = ExtResource("17_enc0b")
+expand_mode = 1
+
+[node name="arrow_2" type="TextureRect" parent="arrows"]
+visible = false
+offset_left = 356.0
+offset_top = 618.0
+offset_right = 795.98444
+offset_bottom = 1204.0302
+rotation = -1.6288335
+texture = ExtResource("17_enc0b")
+expand_mode = 1
+
+[node name="arrow_3" type="TextureRect" parent="arrows"]
+visible = false
+offset_left = 790.0
+offset_top = 1102.0
+offset_right = 1899.0
+offset_bottom = 1943.0
+rotation = -2.0156693
+texture = ExtResource("17_enc0b")
+expand_mode = 1
+
+[node name="arrow_4" type="TextureRect" parent="arrows"]
+visible = false
+offset_left = 296.00003
+offset_top = 707.00006
+offset_right = 736.8617
+offset_bottom = 1147.8618
+rotation = -1.5081911
+texture = ExtResource("17_enc0b")
+expand_mode = 1
+
+[node name="arrow_5" type="TextureRect" parent="arrows"]
+visible = false
+offset_left = 860.0
+offset_top = 521.0
+offset_right = 1596.5199
+offset_bottom = 1311.8977
+rotation = -2.3536022
+texture = ExtResource("17_enc0b")
+expand_mode = 1
