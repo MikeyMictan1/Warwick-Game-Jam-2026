@@ -1,0 +1,262 @@
+[gd_scene load_steps=27 format=3 uid="uid://bh0vdbnopgu7"]
+
+[ext_resource type="Script" uid="uid://dre2bydpqpl77" path="res://Scripts/real_bomb.gd" id="1_56tdl"]
+[ext_resource type="Texture2D" uid="uid://b4hk0568ru4xn" path="res://Assets/Art/real_bomb_assets/Untitled_Artwork-1 36.png" id="1_lsk1u"]
+[ext_resource type="Texture2D" uid="uid://ohgii8dxx42g" path="res://Assets/Art/real_bomb_assets/Untitled_Artwork-2 36.png" id="3_7f2a3"]
+[ext_resource type="Texture2D" uid="uid://d3udgva7gkv06" path="res://Assets/Art/real_bomb_assets/Untitled_Artwork-3 30.png" id="4_taqr1"]
+[ext_resource type="Texture2D" uid="uid://bblgugbv30ive" path="res://Assets/Art/real_bomb_assets/Untitled_Artwork-4 26.png" id="5_o8vyv"]
+[ext_resource type="Texture2D" uid="uid://xx3esxevh1si" path="res://Assets/Art/real_bomb_assets/Untitled_Artwork-5 21.png" id="6_cfeih"]
+[ext_resource type="Texture2D" uid="uid://l7wnxrdo4sfr" path="res://Assets/Art/real_bomb_assets/Untitled_Artwork-6 17.png" id="7_2dgdm"]
+[ext_resource type="Texture2D" uid="uid://bbf54rgi80o0u" path="res://Assets/Art/real_bomb_assets/Untitled_Artwork-7 14.png" id="8_xfm83"]
+[ext_resource type="Texture2D" uid="uid://b3f56v618iwiy" path="res://Assets/Art/real_bomb_assets/Untitled_Artwork-8 10.png" id="9_ltj5k"]
+[ext_resource type="Texture2D" uid="uid://dyhsxlikwabsx" path="res://Assets/Art/real_bomb_assets/Untitled_Artwork-9 6.png" id="10_fnnrm"]
+[ext_resource type="Texture2D" uid="uid://cl2gcdatvvucy" path="res://Assets/Art/real_bomb_assets/Untitled_Artwork-10 5.png" id="11_aju7g"]
+[ext_resource type="Texture2D" uid="uid://bxk3s0wxen22n" path="res://Assets/Art/real_bomb_assets/Untitled_Artwork-11 4.png" id="12_mean0"]
+[ext_resource type="Texture2D" uid="uid://c38n2uwtg4yms" path="res://Assets/Art/real_bomb_assets/Untitled_Artwork-12 3.png" id="13_h8yeb"]
+[ext_resource type="Texture2D" uid="uid://belsk8fj02pax" path="res://Assets/Art/real_bomb_assets/Untitled_Artwork-13 3.png" id="14_43pwn"]
+[ext_resource type="Texture2D" uid="uid://dtqq240ju0d18" path="res://Assets/Art/real_bomb_assets/Untitled_Artwork-14 2.png" id="15_6137j"]
+[ext_resource type="Texture2D" uid="uid://oq1crifdyu4f" path="res://Assets/Art/real_bomb_assets/Untitled_Artwork-15 2.png" id="16_robi4"]
+[ext_resource type="Texture2D" uid="uid://byi62n0qduk75" path="res://Assets/Art/real_bomb_assets/Untitled_Artwork-16 2.png" id="17_5luja"]
+[ext_resource type="Texture2D" uid="uid://bc4w7ftv8p2ns" path="res://Assets/Art/real_bomb_assets/Untitled_Artwork-17 2.png" id="18_x4m8q"]
+[ext_resource type="Texture2D" uid="uid://cnxypfq17ghh5" path="res://Assets/Art/real_bomb_assets/Untitled_Artwork-18 2.png" id="19_2rbh6"]
+[ext_resource type="Texture2D" uid="uid://dolta67t51xw5" path="res://Assets/Art/real_bomb_assets/Untitled_Artwork-19 2.png" id="20_kvi4m"]
+[ext_resource type="Texture2D" uid="uid://cdjtlofoq05hq" path="res://Assets/Art/real_bomb_assets/Untitled_Artwork-20 2.png" id="21_jf68a"]
+[ext_resource type="Texture2D" uid="uid://d1jpqgysyyfn0" path="res://Assets/Art/real_bomb_assets/Untitled_Artwork-21 2.png" id="22_jay20"]
+[ext_resource type="Texture2D" uid="uid://dxfrsn4ppdx70" path="res://Assets/Art/real_bomb_assets/Untitled_Artwork-22 2.png" id="23_iv3id"]
+[ext_resource type="Texture2D" uid="uid://wlcpml8sklct" path="res://Assets/Art/real_bomb_assets/Untitled_Artwork-23 2.png" id="24_miwcb"]
+[ext_resource type="Texture2D" uid="uid://b0lxbcsv7yc07" path="res://Assets/Art/real_bomb_assets/Untitled_Artwork-24.png" id="25_b6vos"]
+[ext_resource type="Texture2D" uid="uid://8qypla6i874t" path="res://Assets/Art/real_bomb_assets/Untitled_Artwork-25.png" id="26_6bde8"]
+
+[node name="RealBomb" type="Node2D"]
+script = ExtResource("1_56tdl")
+
+[node name="BombBg" type="Sprite2D" parent="."]
+position = Vector2(930, 523)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_lsk1u")
+
+[node name="CorrectButton" type="Sprite2D" parent="BombBg"]
+texture = ExtResource("9_ltj5k")
+
+[node name="Area2D" type="Area2D" parent="BombBg/CorrectButton"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BombBg/CorrectButton/Area2D"]
+position = Vector2(-1924, -925.5)
+polygon = PackedVector2Array(1472, 661, 1463, 692, 1411, 728, 1410, 780, 1438, 777, 1445, 741, 1491, 698, 1493, 658)
+
+[node name="BombButton" type="Sprite2D" parent="BombBg"]
+texture = ExtResource("3_7f2a3")
+
+[node name="Area2D" type="Area2D" parent="BombBg/BombButton"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BombBg/BombButton/Area2D"]
+position = Vector2(-1700, -957)
+polygon = PackedVector2Array(1566, 672.5, 1571, 700.5, 1584, 725.5, 1597, 746.5, 1600, 766.5, 1630, 766.5, 1624, 732.5, 1609, 706.5, 1590, 686.5, 1584, 668.5)
+
+[node name="BombButton2" type="Sprite2D" parent="BombBg"]
+texture = ExtResource("4_taqr1")
+
+[node name="Area2D" type="Area2D" parent="BombBg/BombButton2"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BombBg/BombButton2/Area2D"]
+position = Vector2(-1700, -957)
+polygon = PackedVector2Array(1521, 676.5, 1540, 675.5, 1545, 767.5, 1520, 767.5)
+
+[node name="BombButton3" type="Sprite2D" parent="BombBg"]
+texture = ExtResource("5_o8vyv")
+
+[node name="Area2D" type="Area2D" parent="BombBg/BombButton3"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BombBg/BombButton3/Area2D"]
+position = Vector2(-1792, -949.5)
+polygon = PackedVector2Array(1566, 672.5, 1566, 763, 1594, 763, 1590, 686.5, 1584, 668.5)
+
+[node name="BombButton4" type="Sprite2D" parent="BombBg"]
+texture = ExtResource("6_cfeih")
+
+[node name="Area2D" type="Area2D" parent="BombBg/BombButton4"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BombBg/BombButton4/Area2D"]
+position = Vector2(-1833, -943.5)
+polygon = PackedVector2Array(1566, 672.5, 1566, 702, 1571, 759, 1594, 759, 1590, 686.5, 1584, 668.5)
+
+[node name="BombButton5" type="Sprite2D" parent="BombBg"]
+texture = ExtResource("7_2dgdm")
+
+[node name="Area2D" type="Area2D" parent="BombBg/BombButton5"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BombBg/BombButton5/Area2D"]
+position = Vector2(-1833, -943.5)
+polygon = PackedVector2Array(1480, 672, 1482, 714, 1501, 734, 1507, 766, 1534, 764, 1527, 721, 1508, 701, 1502, 669)
+
+[node name="BombButton6" type="Sprite2D" parent="BombBg"]
+texture = ExtResource("8_xfm83")
+
+[node name="Area2D" type="Area2D" parent="BombBg/BombButton6"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BombBg/BombButton6/Area2D"]
+position = Vector2(-1833, -943.5)
+polygon = PackedVector2Array(1438, 673, 1437, 702, 1411, 749, 1410, 780, 1438, 777, 1445, 741, 1462, 708, 1463, 673)
+
+[node name="BombButton7" type="Sprite2D" parent="BombBg"]
+texture = ExtResource("10_fnnrm")
+
+[node name="Area2D" type="Area2D" parent="BombBg/BombButton7"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BombBg/BombButton7/Area2D"]
+position = Vector2(-1407, -973.5)
+polygon = PackedVector2Array(1711, 586, 1696, 614, 1630, 624, 1546, 619, 1451, 637, 1415, 686, 1408, 782, 1451, 784, 1454, 698, 1485, 658, 1695, 639, 1733, 623, 1742, 583)
+
+[node name="BombButton8" type="Sprite2D" parent="BombBg"]
+texture = ExtResource("11_aju7g")
+
+[node name="Area2D" type="Area2D" parent="BombBg/BombButton8"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BombBg/BombButton8/Area2D"]
+position = Vector2(-1216, -931.5)
+polygon = PackedVector2Array(1655, 776, 1537, 769, 1410, 774, 1417, 799, 1613, 794, 1624, 804, 1667, 805)
+
+[node name="BombButton9" type="Sprite2D" parent="BombBg"]
+texture = ExtResource("12_mean0")
+
+[node name="Area2D" type="Area2D" parent="BombBg/BombButton9"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BombBg/BombButton9/Area2D"]
+position = Vector2(-1166, -811.5)
+polygon = PackedVector2Array(1646, 789, 1645, 816, 1627, 830, 1570, 838, 1539, 855, 1525, 867, 1523, 907, 1520, 918, 1504, 900, 1483, 903, 1485, 926, 1501, 933, 1499, 945, 1510, 954, 1515, 933, 1536, 915, 1538, 875, 1546, 860, 1602, 842, 1651, 829, 1659, 813, 1659, 789)
+
+[node name="BombButton10" type="Sprite2D" parent="BombBg"]
+texture = ExtResource("13_h8yeb")
+
+[node name="Area2D" type="Area2D" parent="BombBg/BombButton10"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BombBg/BombButton10/Area2D"]
+position = Vector2(-1166, -811.5)
+polygon = PackedVector2Array(1572, 784, 1574, 808, 1552, 833, 1509, 851, 1493, 871, 1499, 891, 1523, 896, 1549, 887, 1614, 821, 1641, 811, 1664, 819, 1682, 852, 1681, 884, 1665, 894, 1641, 885, 1609, 894, 1596, 910, 1603, 944, 1570, 950, 1567, 959, 1578, 961, 1584, 954, 1614, 952, 1609, 915, 1621, 898, 1640, 895, 1665, 903, 1688, 896, 1698, 862, 1687, 825, 1652, 804, 1612, 811, 1539, 880, 1524, 887, 1511, 883, 1512, 865, 1535, 850, 1568, 838, 1588, 807, 1583, 778)
+
+[node name="BombButton11" type="Sprite2D" parent="BombBg"]
+texture = ExtResource("14_43pwn")
+
+[node name="Area2D" type="Area2D" parent="BombBg/BombButton11"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BombBg/BombButton11/Area2D"]
+position = Vector2(-1166, -811.5)
+polygon = PackedVector2Array(1495, 777, 1505, 776, 1503, 818, 1517, 830, 1531, 830, 1558, 799, 1591, 794, 1609, 805, 1616, 828, 1592, 861, 1594, 874, 1604, 877, 1630, 844, 1651, 841, 1659, 858, 1651, 887, 1634, 906, 1578, 904, 1566, 916, 1580, 924, 1637, 917, 1658, 928, 1654, 954, 1643, 954, 1640, 930, 1611, 930, 1569, 934, 1553, 923, 1558, 903, 1575, 895, 1628, 899, 1650, 870, 1644, 849, 1630, 862, 1616, 880, 1598, 886, 1580, 880, 1581, 860, 1603, 820, 1590, 805, 1566, 805, 1544, 831, 1525, 839, 1503, 834, 1491, 820, 1489, 792)
+
+[node name="BombButton12" type="Sprite2D" parent="BombBg"]
+texture = ExtResource("15_6137j")
+
+[node name="Area2D" type="Area2D" parent="BombBg/BombButton12"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BombBg/BombButton12/Area2D"]
+position = Vector2(-1166, -811.5)
+polygon = PackedVector2Array(1554, 1051, 1581, 1053, 1585, 1224, 1559, 1224)
+
+[node name="BombButton13" type="Sprite2D" parent="BombBg"]
+texture = ExtResource("16_robi4")
+
+[node name="Area2D" type="Area2D" parent="BombBg/BombButton13"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BombBg/BombButton13/Area2D"]
+position = Vector2(-1166, -811.5)
+polygon = PackedVector2Array(1626, 1290, 1587, 1306, 1583, 1376, 1624, 1395, 1649, 1396, 1688, 1381, 1691, 1318, 1660, 1295)
+
+[node name="BombButton14" type="Sprite2D" parent="BombBg"]
+texture = ExtResource("17_5luja")
+
+[node name="Area2D" type="Area2D" parent="BombBg/BombButton14"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BombBg/BombButton14/Area2D"]
+position = Vector2(-1326, -813.5)
+polygon = PackedVector2Array(1626, 1290, 1587, 1306, 1583, 1376, 1624, 1395, 1649, 1396, 1688, 1381, 1691, 1318, 1660, 1295)
+
+[node name="BombButton15" type="Sprite2D" parent="BombBg"]
+texture = ExtResource("18_x4m8q")
+
+[node name="Area2D" type="Area2D" parent="BombBg/BombButton15"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BombBg/BombButton15/Area2D"]
+position = Vector2(-1482, -807.5)
+polygon = PackedVector2Array(1624, 1278, 1587, 1306, 1583, 1376, 1614, 1405, 1671, 1399, 1697, 1381, 1700, 1318, 1668, 1282)
+
+[node name="BombButton16" type="Sprite2D" parent="BombBg"]
+texture = ExtResource("19_2rbh6")
+
+[node name="Area2D" type="Area2D" parent="BombBg/BombButton16"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BombBg/BombButton16/Area2D"]
+position = Vector2(-1482, -807.5)
+polygon = PackedVector2Array(1344, 1196, 1363, 1195, 1371, 1305, 1400, 1328, 1509, 1332, 1509, 1350, 1389, 1348, 1353, 1326, 1344, 1292)
+
+[node name="BombButton17" type="Sprite2D" parent="BombBg"]
+texture = ExtResource("20_kvi4m")
+
+[node name="Area2D" type="Area2D" parent="BombBg/BombButton17"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BombBg/BombButton17/Area2D"]
+position = Vector2(-1482, -807.5)
+polygon = PackedVector2Array(1513, 845, 1550, 841, 1579, 865, 1583, 914, 1555, 946, 1505, 943, 1477, 914, 1480, 877, 1509, 846)
+
+[node name="BombButton18" type="Sprite2D" parent="BombBg"]
+texture = ExtResource("21_jf68a")
+
+[node name="Area2D" type="Area2D" parent="BombBg/BombButton18"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BombBg/BombButton18/Area2D"]
+position = Vector2(-1482, -807.5)
+polygon = PackedVector2Array(1065, 809, 1022, 844, 1070, 888, 1110, 844)
+
+[node name="BombButton19" type="Sprite2D" parent="BombBg"]
+texture = ExtResource("22_jay20")
+
+[node name="Area2D" type="Area2D" parent="BombBg/BombButton19"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BombBg/BombButton19/Area2D"]
+position = Vector2(-1436, -856.5)
+polygon = PackedVector2Array(1065, 809, 1029, 850, 1070, 888, 1110, 844)
+
+[node name="BombButton20" type="Sprite2D" parent="BombBg"]
+texture = ExtResource("23_iv3id")
+
+[node name="Area2D" type="Area2D" parent="BombBg/BombButton20"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BombBg/BombButton20/Area2D"]
+position = Vector2(-1486, -900.5)
+polygon = PackedVector2Array(1065, 809, 1029, 850, 1070, 888, 1110, 844)
+
+[node name="BombButton21" type="Sprite2D" parent="BombBg"]
+texture = ExtResource("24_miwcb")
+
+[node name="Area2D" type="Area2D" parent="BombBg/BombButton21"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BombBg/BombButton21/Area2D"]
+position = Vector2(-1534, -854.5)
+polygon = PackedVector2Array(1065, 809, 1029, 850, 1070, 888, 1110, 844)
+
+[node name="BombButton22" type="Sprite2D" parent="BombBg"]
+texture = ExtResource("25_b6vos")
+
+[node name="Area2D" type="Area2D" parent="BombBg/BombButton22"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BombBg/BombButton22/Area2D"]
+position = Vector2(-1534, -854.5)
+polygon = PackedVector2Array(1407, 800, 1402, 881, 1354, 948, 1184, 1020, 1157, 1049, 1155, 1102, 1173, 1114, 1188, 1103, 1204, 1051, 1277, 1005, 1396, 965, 1436, 907, 1444, 836, 1444, 807, 1422, 791)
+
+[node name="BombButton23" type="Sprite2D" parent="BombBg"]
+texture = ExtResource("26_6bde8")
+
+[node name="Area2D" type="Area2D" parent="BombBg/BombButton23"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BombBg/BombButton23/Area2D"]
+position = Vector2(-1654, -860.5)
+polygon = PackedVector2Array(1438, 807, 1437, 844, 1424, 881, 1354, 941, 1242, 981, 1179, 1017, 1157, 1049, 1155, 1102, 1184, 1120, 1206, 1107, 1204, 1051, 1277, 1005, 1396, 965, 1466, 901, 1477, 837, 1465, 797, 1448, 793)
+
+[node name="TimerText" type="RichTextLabel" parent="."]
+offset_left = 712.00006
+offset_top = 303.0
+offset_right = 966.00006
+offset_bottom = 382.0
+rotation = -0.034906585
+theme_override_colors/default_color = Color(1, 0.30980393, 0.2627451, 1)
+theme_override_font_sizes/normal_font_size = 50
+text = "00:00"
