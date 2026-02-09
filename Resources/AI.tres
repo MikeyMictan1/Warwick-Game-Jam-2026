@@ -1,7 +1,9 @@
-[gd_resource type="Resource" script_class="IngredientResource" load_steps=2 format=3 uid="uid://bufmh60vgt4sb"]
+[gd_resource type="Resource" script_class="IngredientResource" load_steps=3 format=3 uid="uid://bufmh60vgt4sb"]
 
 [ext_resource type="Script" uid="uid://d0fahplylun1n" path="res://Scripts/IngredientResource.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://bjjy1o12trlpc" path="res://Assets/Art/Ingredients/ai.png" id="2_cqar1"]
 
 [resource]
 script = ExtResource("1_script")
 name = "AI"
+icon = ExtResource("2_cqar1")

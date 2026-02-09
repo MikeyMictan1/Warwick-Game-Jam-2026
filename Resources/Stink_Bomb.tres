@@ -1,9 +1,9 @@
 [gd_resource type="Resource" script_class="IngredientResource" load_steps=3 format=3 uid="uid://cfov80o71a8ku"]
 
-[ext_resource type="Texture2D" uid="uid://os4diqq4go5e" path="res://icon.svg" id="1_icon"]
 [ext_resource type="Script" uid="uid://d0fahplylun1n" path="res://Scripts/IngredientResource.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://dcbfbj35qpy0m" path="res://Assets/Art/Ingredients/stink_bomb.png" id="2_tpyqq"]
 
 [resource]
 script = ExtResource("1_script")
 name = "Stink_Bomb"
-icon = ExtResource("1_icon")
+icon = ExtResource("2_tpyqq")

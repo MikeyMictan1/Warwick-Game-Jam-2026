@@ -9,6 +9,7 @@ var oven_appliance: IngredientResource
 var washing_appliance: IngredientResource
 
 var recipe_lookup = {}
+var wildcard_recipes = {}  # Stores recipes with "any" ingredient
 
 var sfx_explosion: AudioStreamPlayer = AudioStreamPlayer.new()
 var sfx_bin: AudioStreamPlayer = AudioStreamPlayer.new()
@@ -92,7 +93,7 @@ func _ready() -> void:
 	register_recipe(tomato_sauce, garlic, stink_bomb)
 	register_recipe(lettuce, pufferfish, pineapple)
 	register_recipe(lettuce, garlic, okonomiyaki)
-	register_recipe(pufferfish, garlic, stink_bomb)
+	register_recipe(pufferfish, garlic, stink_bomb)#
 
 	# Pasta Combination Recipes
 	register_recipe(cooked_pasta, garlic_pasta, ultimate_pasta)
@@ -183,6 +184,11 @@ func _ready() -> void:
 	register_recipe(pufferfish_milk, washing_appliance, ice_cream)
 	register_recipe(carmelised_onion, washing_appliance, onion_rings)
 
+	# wildcard recipes
+	register_recipe(pufferfish_milk, null, ice_cream)
+
+	
+
 	# AUDIO
 	sfx_bin.stream = load("res://Assets/Music/bin_sfx.mp3")
 	sfx_explosion.stream = load("res://Assets/Music/explosion_sfx.mp3")
@@ -200,13 +206,22 @@ func _ready() -> void:
 
 """
 Takes two ingredients and registers a recipe for their combination
+Pass null for either ingredient to create a wildcard "any" recipe
 """
-func register_recipe(ing_a: IngredientResource, ing_b: IngredientResource, result: IngredientResource):
-	var key = make_key(ing_a, ing_b)
-	recipe_lookup[key] = result
-	# Auto-populate components on the result
-	result.components.append(ing_a)
-	result.components.append(ing_b)
+func register_recipe(ing_a, ing_b, result: IngredientResource):
+	# Handle wildcard recipes (null means "any")
+	if ing_a == null or ing_b == null:
+		var specific_ing = ing_a if ing_a != null else ing_b
+		if specific_ing != null:
+			wildcard_recipes[specific_ing.get_ingredient_name()] = result
+			# Only add the specific ingredient to components for wildcard recipes
+			result.components.append(specific_ing)
+	else:
+		var key = make_key(ing_a, ing_b)
+		recipe_lookup[key] = result
+		# Auto-populate components on the result
+		result.components.append(ing_a)
+		result.components.append(ing_b)
 
 
 """
@@ -235,7 +250,14 @@ func combine_with_pop(item_a: IngredientScene, item_b: IngredientScene, spawn_po
 	elif recipe_lookup.has(key):
 		result_ingredient = recipe_lookup[key]
 		
-	# 3) Check if one is a component of the other (any depth)
+	# 3) Check for wildcard recipes
+	elif wildcard_recipes.has(ing_a.get_ingredient_name()):
+		result_ingredient = wildcard_recipes[ing_a.get_ingredient_name()]
+		
+	elif wildcard_recipes.has(ing_b.get_ingredient_name()):
+		result_ingredient = wildcard_recipes[ing_b.get_ingredient_name()]
+		
+	# 4) Check if one is a component of the other (any depth)
 	elif ing_a.contains_ingredient(ing_b):
 		result_ingredient = ing_a
 
