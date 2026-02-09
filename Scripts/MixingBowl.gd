@@ -62,7 +62,7 @@ func add_ingredient(ingredient: IngredientScene):
 	ingredient.scale = Vector2(0.6, 0.6)
 	ingredient.global_position.x = global_position.x
 	ingredient.global_position.y = global_position.y + MIXING_BOWL_OFFSET
-	ingredient.z_index = 1
+	ingredient.z_index = 11
 	
 	# If we have 2 or more ingredients, combine them
 	if ingredients_in_bowl.size() >= 2:

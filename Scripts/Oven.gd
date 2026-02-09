@@ -59,7 +59,7 @@ func add_ingredient(ingredient: IngredientScene):
 	# Position ingredient in the oven
 	ingredient.global_position = global_position
 	ingredient.scale = Vector2(0.6, 0.6)
-	ingredient.z_index = 1
+	ingredient.z_index = 11
 	
 	# Turn off green glow
 	update_outline(false)

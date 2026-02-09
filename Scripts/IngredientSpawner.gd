@@ -30,5 +30,6 @@ func spawn_ingredient() -> IngredientScene:
 	new_ingredient.global_position = get_global_mouse_position()
 	new_ingredient.is_dragging = true
 	new_ingredient.drag_offset = Vector2.ZERO
+	new_ingredient.z_index = 110  # Set dragging z_index
 	
 	return new_ingredient

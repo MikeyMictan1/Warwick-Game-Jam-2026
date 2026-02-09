@@ -105,8 +105,8 @@ func _input_event(_viewport, event, _shape_idx):
 			if topmost:
 				is_dragging = true
 				drag_offset = global_position - get_global_mouse_position()
-				# Set z-index to 100 while dragging
-				z_index = 100
+				# Set z-index to 110 while dragging
+				z_index = 110
 
 				# If in finished plate, remove from it
 				var finished_plate = get_tree().get_first_node_in_group("finished_plate")
@@ -132,8 +132,8 @@ func _input(event):
 	if event is InputEventMouseButton:		
 		if event.button_index == MOUSE_BUTTON_LEFT and not event.pressed:
 			is_dragging = false
-			# Set z-index back to 1 after release
-			z_index = 1
+			# Set z-index back to 100 after release
+			z_index = 100
 			update_outline()
 			try_combine()
 

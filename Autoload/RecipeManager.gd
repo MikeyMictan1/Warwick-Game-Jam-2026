@@ -238,6 +238,7 @@ func spawn_new_item(ingredient: IngredientResource, position: Vector2, use_pop_a
 	var new_item = INGREDIENT_SCENE.instantiate()
 	new_item.ingredient_data = ingredient
 	new_item.global_position = position
+	new_item.z_index = 150  # Set proper z_index for spawned ingredients
 	print("Created: ", ingredient.get_ingredient_name())
 	get_tree().current_scene.add_child(new_item)
 	
@@ -268,8 +269,7 @@ func combine_oven(ingredient: IngredientScene, oven_position: Vector2) -> void:
 	# Event Hndling -------------------
 	event_handler(result_ingredient)
 	
-	# Wait 3 seconds then spawn result with pop animation
-	await get_tree().create_timer(3.0).timeout
+	# spawn result with pop animation
 	spawn_new_item(result_ingredient, oven_position, true)
 
 """"

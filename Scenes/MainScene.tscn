@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://bb8kjvwjtv6qo" path="res://Scenes/Bin.tscn" id="6_f140w"]
 [ext_resource type="Resource" uid="uid://do6hc4bkwpcbk" path="res://Resources/Garlic.tres" id="7_f140w"]
 [ext_resource type="PackedScene" uid="uid://dph6b446653jp" path="res://Scenes/WashingMachine.tscn" id="7_q68mp"]
-[ext_resource type="Script" path="res://Scripts/bell.gd" id="8_xc4hf"]
+[ext_resource type="Script" uid="uid://j5w5dc311n0s" path="res://Scripts/bell.gd" id="8_xc4hf"]
 [ext_resource type="Script" uid="uid://dqm4cuvlf07ht" path="res://Scripts/Finished.gd" id="9_6rnll"]
 [ext_resource type="Resource" uid="uid://dyrp0xa815j51" path="res://Resources/Bomb_Picture.tres" id="10_4b75m"]
 [ext_resource type="Resource" uid="uid://dg2qkiec5x3sg" path="res://Resources/Tomato_Sauce.tres" id="11_8ju71"]
@@ -82,11 +82,11 @@ position = Vector2(278, 5)
 polygon = PackedVector2Array(0, 0, 25, 7, 33, 15, 40, 40, -35, 55, -36, 28, -29, 14, -15, 6, -17, -1, -25, 1, -26, -6, 6, -14, 8, -5, 0, 0, 25, 7)
 
 [node name="FinishedPlate" type="Area2D" parent="Appliances"]
-position = Vector2(573, 518)
+position = Vector2(810, 460)
 script = ExtResource("9_6rnll")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Appliances/FinishedPlate"]
-position = Vector2(117, -3)
+position = Vector2(-121, 55)
 polygon = PackedVector2Array(17, -1, 126, -6, 223, -18, 209, 13, 38, 27, 14, 4)
 
 [node name="IngredientGenerators" type="Node2D" parent="."]

@@ -22,7 +22,7 @@ func add_ingredient(ingredient: IngredientScene):
 		held_ingredient = ingredient
 		# Snap ingredient to Finished position
 		ingredient.global_position = global_position
-		ingredient.z_index = 1
+		ingredient.z_index = 11
 		# Stop ingredient timer
 		if ingredient.timer:
 			ingredient.timer.stop()
