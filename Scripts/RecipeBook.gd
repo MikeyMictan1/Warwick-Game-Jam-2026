@@ -8,6 +8,7 @@ var shader_material: ShaderMaterial
 @onready var grid: GridContainer = $Panel/ScrollContainer/GridContainer
 @onready var close_button: Button = $Panel/CloseButton
 @onready var book_button: TextureButton = $BookButton
+@onready var book_texture : TextureRect = $BookTexture
 
 # Default ingredients that are known from the start (the 6 spawners)
 var default_ingredients: Array[String] = [
@@ -23,12 +24,15 @@ func _ready():
 	panel.visible = false
 	close_button.pressed.connect(_on_close_pressed)
 	book_button.pressed.connect(_on_book_pressed)
+	book_button.mouse_entered.connect(_on_book_mouse_entered)
+	book_button.mouse_exited.connect(_on_book_mouse_exited)
 	
 	# Setup outline shader for book button
 	var shader = preload("res://Assets/Art/outline.gdshader")
 	shader_material = ShaderMaterial.new()
 	shader_material.shader = shader
 	book_button.material = shader_material
+	book_texture.material = shader_material
 	
 	# Show white outline by default
 	shader_material.set_shader_parameter("outline_color", Color(1.0, 1.0, 1.0, 1.0))
@@ -99,3 +103,12 @@ func _add_entry(ingredient: IngredientResource) -> void:
 	entry.add_child(label)
 	
 	grid.add_child(entry)
+
+func _on_book_mouse_entered():
+	# Play tick SFX and change outline to grey
+	RecipeManager.play_hover_sfx()
+	shader_material.set_shader_parameter("outline_color", Color(0.5, 0.5, 0.5, 1.0))
+
+func _on_book_mouse_exited():
+	# Change outline back to white
+	shader_material.set_shader_parameter("outline_color", Color(1.0, 1.0, 1.0, 1.0))

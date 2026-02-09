@@ -252,6 +252,8 @@ func combine_with_pop(item_a: IngredientScene, item_b: IngredientScene, spawn_po
 	
 	# Play mixing sfx before waiting
 	play_mix_sfx()
+	# Start screen shake for mixing duration
+	shake_screen(1.5)
 	await get_tree().create_timer(1.5).timeout
 	spawn_new_item(result_ingredient, spawn_position, true)
 
@@ -328,6 +330,8 @@ func combine_washing(ingredient: IngredientScene, washing_position: Vector2) -> 
 	# Event Hndling -------------------
 	event_handler(result_ingredient)
 	
+	# Start screen shake for washing duration
+	shake_screen(2.0)
 	# Wait 2 seconds then spawn result with pop animation
 	await get_tree().create_timer(2.0).timeout
 	spawn_new_item(result_ingredient, washing_position, true)
@@ -386,3 +390,22 @@ func play_mix_sfx():
 func play_hover_sfx():
 	if not sfx_hover.playing:
 		sfx_hover.play()
+
+func shake_screen(duration: float) -> void:
+	var main_scene = get_tree().current_scene
+	if main_scene == null:
+		return
+	
+	var original_position = main_scene.position
+	var shake_strength = 1.0
+	var shake_interval = 0.05
+	var elapsed = 0.0
+	
+	while elapsed < duration:
+		var offset_x = randf_range(-shake_strength, shake_strength)
+		var offset_y = randf_range(-shake_strength, shake_strength)
+		main_scene.position = original_position + Vector2(offset_x, offset_y)
+		elapsed += shake_interval
+		await get_tree().create_timer(shake_interval).timeout
+	
+	main_scene.position = original_position
