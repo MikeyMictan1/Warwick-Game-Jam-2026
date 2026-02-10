@@ -48,7 +48,7 @@ func play_track(track_path: String) -> void:
 		music_player.stream = stream
 		music_player.play()
 		current_track = track_path
-		print("Now playing: ", track_path)
+	
 
 func play_menu_music():
 	play_track(TRACK_MENUS)

@@ -54,7 +54,6 @@ func update_outline(show: bool):
 
 
 func add_ingredient(ingredient: IngredientScene):
-	print("Adding to oven: ", ingredient.ingredient_data.name)
 	cur_ingredient_obj = ingredient
 	
 	# Disable dragging and input for ingredient

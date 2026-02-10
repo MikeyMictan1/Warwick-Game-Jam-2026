@@ -31,7 +31,6 @@ func try_add_ingredient_to_slot(ingredient: IngredientScene, slot: Area2D) -> bo
 		# Snap ingredient to slot position
 		ingredient.global_position = slot.global_position
 		ingredient.z_index = 11
-		print("Placed ingredient in ", slot.name)
 		return true
 	else:
 		return false

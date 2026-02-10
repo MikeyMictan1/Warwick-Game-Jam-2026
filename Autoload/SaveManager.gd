@@ -21,11 +21,10 @@ func save_progress(discovered_ingredients: Array[String]):
 		}
 		save_file.store_var(save_data)
 		save_file.close()
-		print("Progress saved: ", discovered_ingredients.size(), " ingredients")
+
 
 func load_progress() :
 	if not FileAccess.file_exists(SAVE_PATH):
-		print("No save file found")
 		return []
 	
 	var save_file = FileAccess.open(SAVE_PATH, FileAccess.READ)
@@ -33,16 +32,13 @@ func load_progress() :
 		var save_data = save_file.get_var()
 		save_file.close()
 		if save_data and save_data.has("discovered_ingredients"):
-			print("Progress loaded: ", save_data["discovered_ingredients"].size(), " ingredients")
 			return save_data["discovered_ingredients"]
 	return []
 
 func reset_progress():
 	if FileAccess.file_exists(SAVE_PATH):
 		DirAccess.remove_absolute(SAVE_PATH)
-		print("Progress reset")
-	else:
-		print("No save file to reset")
+
 
 func save_settings() -> void:
 	var save_file = FileAccess.open(SETTINGS_PATH, FileAccess.WRITE)
@@ -54,11 +50,10 @@ func save_settings() -> void:
 		}
 		save_file.store_var(save_data)
 		save_file.close()
-		print("Settings saved")
+
 
 func load_settings() -> void:
 	if not FileAccess.file_exists(SETTINGS_PATH):
-		print("No settings file found, using defaults")
 		return
 	
 	var save_file = FileAccess.open(SETTINGS_PATH, FileAccess.READ)
@@ -70,7 +65,6 @@ func load_settings() -> void:
 				screen_shake_enabled = save_data["screen_shake_enabled"]
 			if save_data.has("resolution_w") and save_data.has("resolution_h"):
 				resolution = Vector2i(save_data["resolution_w"], save_data["resolution_h"])
-			print("Settings loaded")
 
 func apply_resolution() -> void:
 	DisplayServer.window_set_size(resolution)

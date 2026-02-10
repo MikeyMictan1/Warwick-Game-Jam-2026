@@ -330,7 +330,7 @@ func spawn_new_item(ingredient: IngredientResource, position: Vector2, use_pop_a
 	new_item.ingredient_data = ingredient
 	new_item.global_position = position
 	new_item.z_index = 150  # Set proper z_index for spawned ingredients
-	print("Created: ", ingredient.get_ingredient_name())
+
 	get_tree().current_scene.add_child(new_item)
 	
 	# Register in recipe book

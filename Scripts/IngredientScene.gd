@@ -213,22 +213,18 @@ func try_combine():
 	for other_area in get_overlapping_areas():
 		if other_area.name == "MixingBowl":
 			stop_timers()
-			print("Adding to mixing bowl: ", ingredient_data.name)
 			other_area.add_ingredient(self)
 			return
 		elif other_area.name == "Oven":
 			stop_timers()
-			print("Adding to oven: ", ingredient_data.name)
 			other_area.add_ingredient(self)
 			return
 		elif other_area.name == "WashingMachine":
 			stop_timers()
-			print("Adding to washing machine: ", ingredient_data.name)
 			other_area.add_ingredient(self)
 			return
 		elif other_area.name == "FinishedPlate":
 			stop_timers()
-			print("Adding to finished plate: ", ingredient_data.name)
 			if other_area.add_ingredient(self):
 				return
 		elif other_area.name == "Bin":

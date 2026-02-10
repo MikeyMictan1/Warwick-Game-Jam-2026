@@ -50,7 +50,6 @@ func update_outline(show: bool):
 		shader_material.set_shader_parameter("show_outline", true)
 
 func add_ingredient(ingredient: IngredientScene):
-	print("Adding to washing machine: ", ingredient.ingredient_data.name)
 	
 	# Disable dragging and input for ingredient
 	ingredient.is_dragging = false

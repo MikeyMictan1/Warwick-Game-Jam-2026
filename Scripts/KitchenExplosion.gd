@@ -3,7 +3,6 @@ extends CanvasLayer
 
 func run():
 	# still need to add the actual animations
-	print("playing anim explosion: ", anim)
 	anim.play("explode")
 
 func explosion_menu():

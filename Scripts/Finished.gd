@@ -38,10 +38,8 @@ func add_ingredient(ingredient: IngredientScene):
 		# Stop ingredient timer
 		if ingredient.timer:
 			ingredient.timer.stop()
-		print("Ingredient added to Finished.")
 		return true
 	else:
-		print("Finished already holding an ingredient.")
 		return false
 
 func remove_ingredient():
@@ -49,7 +47,6 @@ func remove_ingredient():
 		# Restart timers when removed
 		held_ingredient.start_timers()
 		held_ingredient = null
-		print("Ingredient removed from Finished.")
 		
 		
 		
