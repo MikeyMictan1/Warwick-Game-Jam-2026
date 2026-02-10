@@ -43,15 +43,11 @@ func _on_area_exited(area: Area2D):
 
 func boom(viewport: Viewport,event: InputEvent,shape_idx: int,area: Area2D):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-		var button := area.get_parent()
-		# Call whatever your button normally does
-		print("BOOM")
+		RecipeManager.explode_kitchen()
 
 func yay(viewport: Viewport,event: InputEvent,shape_idx: int,area: Area2D):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-		var button := area.get_parent()
-		# Call whatever your button normally does
-		print("YAYYY")
+		self.queue_free()
 
 func update_outline(show: bool):
 	if not shader_material:

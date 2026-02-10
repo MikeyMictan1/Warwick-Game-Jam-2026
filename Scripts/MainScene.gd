@@ -39,6 +39,7 @@ var current_index = 0
 var is_talking = false
 var auto_advance_timer: Timer
 
+#var dialogue = []
 var dialogue = [
 	"Hey'a Young'in!",
 	"Welcome to the restaurant!",
@@ -130,12 +131,14 @@ func start_typing(text: String) -> void:
 		audio_stream_speech.pitch_scale = 0.8 + randf_range(-0.1,0.1)
 		if text.substr(0, i + 1) in ['a','e','i','o','u']:
 			audio_stream_speech.pitch_scale += 0.2
-		audio_stream_speech.play()
 		
 		if typing == true:
 			await get_tree().create_timer(typing_delay).timeout
 			# wait a bit before next letter is added
-		audio_stream_speech.stop()
+		
+		if audio_stream_speech.playing == false:
+			audio()
+		
 	if typing == true:
 		typing = false
 		current_index+=1
@@ -147,6 +150,11 @@ func start_typing(text: String) -> void:
 func _on_auto_advance_timeout():
 	if is_talking and not typing:
 		talk()
+
+func audio():
+	audio_stream_speech.play()
+	await get_tree().create_timer(0.02).timeout
+	audio_stream_speech.stop()
 
 func get_typing_delay() -> float:
 	if current_index > 38:  

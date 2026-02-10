@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://ccarxryw6scdg"]
+[gd_scene load_steps=25 format=3 uid="uid://ccarxryw6scdg"]
 
 [ext_resource type="Script" uid="uid://dslbl3i32erhh" path="res://Scripts/MainScene.gd" id="1_hpc76"]
 [ext_resource type="Texture2D" uid="uid://bqncy4onfyg1q" path="res://Assets/Art/bg.png" id="2_enc0b"]
@@ -9,16 +9,17 @@
 [ext_resource type="PackedScene" uid="uid://bb8kjvwjtv6qo" path="res://Scenes/Bin.tscn" id="6_f140w"]
 [ext_resource type="Resource" uid="uid://do6hc4bkwpcbk" path="res://Resources/Garlic.tres" id="7_f140w"]
 [ext_resource type="PackedScene" uid="uid://dph6b446653jp" path="res://Scenes/WashingMachine.tscn" id="7_q68mp"]
-[ext_resource type="Script" uid="uid://j5w5dc311n0s" path="res://Scripts/bell.gd" id="8_xc4hf"]
+[ext_resource type="Script" path="res://Scripts/bell.gd" id="8_xc4hf"]
 [ext_resource type="Script" uid="uid://dqm4cuvlf07ht" path="res://Scripts/Finished.gd" id="9_6rnll"]
 [ext_resource type="Resource" uid="uid://dyrp0xa815j51" path="res://Resources/Bomb_Picture.tres" id="10_4b75m"]
 [ext_resource type="Texture2D" uid="uid://pbr6jhrt36h6" path="res://Assets/Art/lights/green_light.png" id="10_hx8n4"]
-[ext_resource type="Script" uid="uid://dwpipm78lnuhh" path="res://Scripts/light.gd" id="10_i0j58"]
+[ext_resource type="Script" path="res://Scripts/light.gd" id="10_i0j58"]
 [ext_resource type="Resource" uid="uid://dg2qkiec5x3sg" path="res://Resources/Tomato_Sauce.tres" id="11_8ju71"]
 [ext_resource type="Resource" uid="uid://cyjxo1ctfjey8" path="res://Resources/Pufferfish.tres" id="12_xb4mg"]
 [ext_resource type="Resource" uid="uid://iruq2f54b0f5" path="res://Resources/Dried_Pasta.tres" id="13_6t1o7"]
 [ext_resource type="PackedScene" uid="uid://6msliswhcegf" path="res://Scenes/RecipeBook.tscn" id="15_rb"]
 [ext_resource type="Texture2D" uid="uid://qmruegh8vfrd" path="res://Assets/Art/Other/arrow.png" id="17_enc0b"]
+[ext_resource type="AudioStream" uid="uid://dbloxoi3li3au" path="res://Assets/Art/meowNEW.mp3" id="19_c1ier"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i0j58"]
 size = Vector2(124.08628, 135.00142)
@@ -33,6 +34,7 @@ fill = 1
 fill_from = Vector2(0.5, 0.508547)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_enc0b"]
+bg_color = Color(0.93333334, 0.7294118, 0.34901962, 1)
 
 [node name="MainScene" type="Node2D"]
 script = ExtResource("1_hpc76")
@@ -158,13 +160,15 @@ ingredient_data = ExtResource("13_6t1o7")
 [node name="RecipeBook" parent="." instance=ExtResource("15_rb")]
 
 [node name="Panel" type="Panel" parent="."]
+z_index = 1
 offset_left = 23.0
 offset_top = 31.0
 offset_right = 519.0
-offset_bottom = 530.0
+offset_bottom = 419.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_enc0b")
 
 [node name="ColorRect" type="ColorRect" parent="Panel"]
+z_as_relative = false
 layout_mode = 0
 offset_left = -23.0
 offset_top = -33.0
@@ -179,6 +183,7 @@ offset_left = 10.0
 offset_top = 10.0
 offset_right = 244.0
 offset_bottom = 50.0
+theme_override_colors/default_color = Color(0.65882355, 0.5058824, 0.22352941, 1)
 theme_override_font_sizes/normal_font_size = 30
 text = "Father"
 fit_content = true
@@ -192,12 +197,14 @@ offset_left = 10.0
 offset_top = 55.0
 offset_right = 481.0
 offset_bottom = 486.0
+theme_override_colors/default_color = Color(0.6392157, 0.49019608, 0.21568628, 1)
 theme_override_font_sizes/normal_font_size = 30
 text = "Let Him COOK!"
 fit_content = true
 scroll_active = false
 
 [node name="AudioStreamSpeech" type="AudioStreamPlayer2D" parent="Panel"]
+stream = ExtResource("19_c1ier")
 
 [node name="arrows" type="Node2D" parent="."]
 position = Vector2(33, 86)

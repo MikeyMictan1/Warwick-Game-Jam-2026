@@ -28,7 +28,16 @@
 [ext_resource type="Texture2D" uid="uid://8qypla6i874t" path="res://Assets/Art/real_bomb_assets/Untitled_Artwork-25.png" id="26_6bde8"]
 
 [node name="RealBomb" type="Node2D"]
+z_index = 200
 script = ExtResource("1_56tdl")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = 541.0
+offset_top = 102.0
+offset_right = 1780.0
+offset_bottom = 974.0
+mouse_filter = 2
+color = Color(0.77254903, 0.5803922, 0.19607843, 0.49411765)
 
 [node name="BombBg" type="Sprite2D" parent="."]
 position = Vector2(930, 523)
@@ -260,3 +269,22 @@ rotation = -0.034906585
 theme_override_colors/default_color = Color(1, 0.30980393, 0.2627451, 1)
 theme_override_font_sizes/normal_font_size = 50
 text = "00:00"
+
+[node name="SpeechText" type="RichTextLabel" parent="."]
+clip_contents = false
+offset_left = 1292.0
+offset_top = 148.0
+offset_right = 1730.0
+offset_bottom = 916.0
+theme_override_colors/default_color = Color(0.6392157, 0.49019608, 0.21568628, 1)
+theme_override_font_sizes/normal_font_size = 28
+text = "Bomb Detonation Manual:
+1. If there is a vowel on the bomb tag, cut the white cable.
+2. If there are an odd number of purple cables, cut the yellow cable.
+3. If the button reads 'STOP', do not cut the stripped purple cable.
+4. If you don't want to explode, cut the red cable.
+5. If the tag ends in 0, press the Blue button
+6. If there is a simon says, cut one of the ong blue cables.
+7. If there is a balck button, press 'STOP'."
+fit_content = true
+scroll_active = false

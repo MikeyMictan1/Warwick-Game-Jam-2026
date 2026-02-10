@@ -1,9 +1,9 @@
 [gd_resource type="Resource" script_class="IngredientResource" load_steps=3 format=3 uid="uid://ct1qn4xbke384"]
 
-[ext_resource type="Texture2D" uid="uid://os4diqq4go5e" path="res://icon.svg" id="1_icon"]
 [ext_resource type="Script" uid="uid://d0fahplylun1n" path="res://Scripts/IngredientResource.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://bnybl3wyh3u4k" path="res://Assets/Art/Ingredients/Untitled_Artwork-3 31.png" id="2_mvlkc"]
 
 [resource]
 script = ExtResource("1_script")
 name = "Garlic_Pasta"
-icon = ExtResource("1_icon")
+icon = ExtResource("2_mvlkc")
