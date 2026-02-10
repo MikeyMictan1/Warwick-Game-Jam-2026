@@ -201,7 +201,6 @@ func _ready() -> void:
 	register_recipe(pufferfish_milk, null, ice_cream)
 	register_recipe(tomato_sauce, null, tomato_soup)
 	register_recipe(garlic, null, garlic_oil)
-	register_recipe(sponge, null, event_flood)
 	register_recipe(dried_pasta, null, pizza_base)
 	register_recipe(cooked_pasta, null, pizza_base)
 	register_recipe(garlic_pasta, null, pizza_base)
@@ -217,6 +216,8 @@ func _ready() -> void:
 	register_recipe(ai, null, event_explosion)
 	register_recipe(pineapple_pizza, null, event_explosion)
 	register_recipe(carmelised_onion, null, carmelised_onion)
+	register_recipe(red_onion, null, red_onion)
+	register_recipe(white_onion, null, white_onion)
 
 	
 
