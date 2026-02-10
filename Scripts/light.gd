@@ -84,7 +84,7 @@ func _on_check_timer_timeout():
 func _on_state_timer_timeout():
 	# If red light was not pressed, explode
 	if current_state == LightState.RED and not red_was_pressed:
-		RecipeManager.explode_kitchen()
+		RecipeManager.explode_kitchen("You didn't press the red light in time!")
 	
 	# Return to green after 3 seconds
 	set_state(LightState.GREEN)
@@ -138,6 +138,6 @@ func on_pressed_red():
 func on_pressed_orange():
 	# Pressing orange causes explosion
 	state_timer.stop()
-	RecipeManager.explode_kitchen()
+	RecipeManager.explode_kitchen("Don't press the light when it is atomic tangerine.")
 	set_state(LightState.GREEN)
 	pass

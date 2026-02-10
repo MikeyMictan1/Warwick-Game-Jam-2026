@@ -54,7 +54,8 @@ func _on_book_pressed():
 
 func _on_close_pressed():
 	panel.visible = false
-	get_tree().paused = false
+	if get_tree():
+		get_tree().paused = false
 
 func _unhandled_input(event):
 	if not panel.visible:

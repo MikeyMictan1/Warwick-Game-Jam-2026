@@ -307,6 +307,17 @@ func combine_with_pop(item_a: IngredientScene, item_b: IngredientScene, spawn_po
 	# Start screen shake for mixing duration
 	shake_screen(1.5)
 	await get_tree().create_timer(1.5).timeout
+
+		# AI 
+	if ing_a.get_ingredient_name() == "AI" or ing_b.get_ingredient_name() == "AI":
+		event_handler(result_ingredient, "The AI became self-aware and caused an explosion. Maybe don't create AI next time.")
+		return
+	
+	# pineapple pizza 
+	elif ing_a.get_ingredient_name() == "Pineapple_Pizza" or ing_b.get_ingredient_name() == "Pineapple_Pizza":
+		event_handler(result_ingredient, "The pineapple pizza was too controversial and caused an explosion. Maybe don't make pineapple pizza next time.")
+		return
+
 	spawn_new_item(result_ingredient, spawn_position, true)
 
 """
@@ -353,6 +364,25 @@ func combine_oven(ingredient: IngredientScene, oven_position: Vector2) -> void:
 	play_fire_sfx()
 	
 	# Event Hndling -------------------
+	if ing.get_ingredient_name() == "Tomato_Sauce" or ing.get_ingredient_name() == "Cold_Pasta_Tomato" or ing.get_ingredient_name() == "Tomato_Pasta" or ing.get_ingredient_name() == "Tomato_Pizza" or ing.get_ingredient_name() == "Tomato_Soup":
+		event_handler(result_ingredient, "Falsie HATES tomatoes. Except for a certain pasta sauce...")
+		return
+	
+	# Wildcard oven recipe for garlic oil causes explosion with custom message
+	elif ing.get_ingredient_name() == "Garlic_Oil":
+		event_handler(result_ingredient, "The garlic oil caught fire! Maybe don't put flammable liquids in there next time.")
+		return
+	
+	# AI 
+	elif ing.get_ingredient_name() == "AI":
+		event_handler(result_ingredient, "The AI became self-aware and caused an explosion. Maybe don't create AI next time.")
+		return
+	
+	# pineapple pizza 
+	elif ing.get_ingredient_name() == "Pineapple_Pizza":
+		event_handler(result_ingredient, "The pineapple pizza was too controversial and caused an explosion. Maybe don't make pineapple pizza next time.")
+		return
+
 	event_handler(result_ingredient)
 	
 	# spawn result with pop animation
@@ -380,6 +410,17 @@ func combine_washing(ingredient: IngredientScene, washing_position: Vector2) -> 
 	play_wash_sfx()
 	
 	# Event Hndling -------------------
+
+	# AI 
+	if ing.get_ingredient_name() == "AI":
+		event_handler(result_ingredient, "The AI became self-aware and caused an explosion. Maybe don't create AI next time.")
+		return
+	
+	# pineapple pizza 
+	elif ing.get_ingredient_name() == "Pineapple_Pizza":
+		event_handler(result_ingredient, "The pineapple pizza was too controversial and caused an explosion. Maybe don't make pineapple pizza next time.")
+		return
+
 	event_handler(result_ingredient)
 	
 	# Start screen shake for washing duration
@@ -391,30 +432,34 @@ func combine_washing(ingredient: IngredientScene, washing_position: Vector2) -> 
 """
 Handles events e.g. kitchen explosion, flood, smell, etc.
 """
-func event_handler(result_ingredient : IngredientResource):
+func event_handler(result_ingredient : IngredientResource, message : String = "") -> void:
 	# explodes the ktichen
 	if result_ingredient.get_ingredient_name() == "event_explosion":
-		explode_kitchen()
+		explode_kitchen(message)
 	
 	# floods the kitchen
 	elif result_ingredient.get_ingredient_name() == "event_flood":
 		flood_kitchen()
 
 
+var explosion_message : String = "It exploded!"
 """
 Event for a kitchen explosion
 """
-
-func explode_kitchen():
+func explode_kitchen(message : String = "") -> void:
 	var explosion_scene = KITCHEN_EXPLOSION.instantiate()
 	get_tree().current_scene.add_child(explosion_scene)
+	
 	# Center the explosion in the middle of the screen
 	var viewport = get_viewport()
 	if explosion_scene.has_method("set_global_position"):
 		explosion_scene.global_position = viewport.get_visible_rect().size / 2
+		
 	elif explosion_scene.has_node("AnimatedSprite2D"):
 		explosion_scene.get_node("AnimatedSprite2D").global_position = viewport.get_visible_rect().size / 2
+		
 	# Run the explosion animation
+	explosion_message = message
 	explosion_scene.run()
 	sfx_explosion.play()
 

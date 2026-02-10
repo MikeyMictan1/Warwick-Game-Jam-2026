@@ -43,7 +43,7 @@ func _on_area_exited(area: Area2D):
 
 func boom(viewport: Viewport,event: InputEvent,shape_idx: int,area: Area2D):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-		RecipeManager.explode_kitchen()
+		RecipeManager.explode_kitchen("Read the bomb manual better next time :)")
 		resume_light()
 
 func yay(viewport: Viewport,event: InputEvent,shape_idx: int,area: Area2D):
@@ -80,4 +80,4 @@ func _process(delta: float) -> void:
 	timer_text.text = "%02d:%02d" % [seconds, milliseconds]
 	
 	if seconds <= 0:
-		RecipeManager.explode_kitchen()
+		RecipeManager.explode_kitchen("Time's up! The bomb exploded.")

@@ -28,9 +28,9 @@ grow_vertical = 2
 clip_contents = false
 layout_mode = 0
 offset_left = 458.0
-offset_top = 190.0
+offset_top = 92.0
 offset_right = 1508.0
-offset_bottom = 376.0
+offset_bottom = 278.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 70
 text = "You Exploded The Kitchen.
@@ -38,6 +38,20 @@ Do Better."
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
+horizontal_alignment = 1
+
+[node name="ExplosionText" type="RichTextLabel" parent="CanvasLayer/Control"]
+clip_contents = false
+layout_mode = 0
+offset_left = 270.0
+offset_top = 341.0
+offset_right = 1675.0
+offset_bottom = 575.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 50
+text = "You exploded!"
+fit_content = true
+scroll_active = false
 horizontal_alignment = 1
 
 [node name="MainMenu" type="Button" parent="CanvasLayer/Control"]

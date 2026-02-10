@@ -30,7 +30,6 @@ func start_timers():
 func stop_timers():
 	# Logic for blinking
 	is_blinking = false
-	print("stopping fade player")
 	if fade_player:
 		fade_player.stop()
 	timer.stop()
@@ -64,7 +63,7 @@ func _ready():
 		var bomb_scene = load("res://Scenes/RealBomb.tscn")
 		var new_bomb: Node2D = bomb_scene.instantiate()
 		get_parent().add_child(new_bomb)
-		
+		self.queue_free()
 		# Pause the light system during bomb minigame
 		var light = get_tree().get_first_node_in_group("light")
 		if light:
@@ -180,13 +179,11 @@ func ingredient_blink():
 				
 			
 func _on_timer_timeout():
-	print("timeout")
 	# Delete ingredient when timer runs out
 	fade_player.stop()
 	death_player.play("death")
 
 func _on_blink_timer_timeout() -> void:
-	print("blink timeout")
 	ingredient_blink()
 
 func try_combine():
