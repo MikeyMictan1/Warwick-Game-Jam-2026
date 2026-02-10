@@ -88,8 +88,19 @@ offset_bottom = 519.0
 theme = ExtResource("1_a4ynq")
 text = "Mute Game"
 
+[node name="ResolutionButton" type="Button" parent="CanvasLayer/Control"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 0
+offset_left = 67.0
+offset_top = 600.0
+offset_right = 491.0
+offset_bottom = 660.0
+theme = ExtResource("1_a4ynq")
+text = "Resolution: 1920x1080"
+
 [connection signal="pressed" from="CanvasLayer/Control/MainMenu" to="." method="_on_main_menu_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/Quit" to="." method="_on_quit_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/ResetProgress" to="." method="_on_reset_progress_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/ScreenShakeButton" to="." method="_on_screen_shake_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/MuteButton" to="." method="_on_mute_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/ResolutionButton" to="." method="_on_resolution_button_pressed"]

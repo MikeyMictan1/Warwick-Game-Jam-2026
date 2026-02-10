@@ -1,12 +1,15 @@
 extends Node2D
 
 @onready var screen_shake_button: CheckButton = $CanvasLayer/Control/ScreenShakeButton
+@onready var resolution_button: Button = $CanvasLayer/Control/ResolutionButton
 
 func _ready() -> void:
 	MusicManager.play_menu_music()
 	# Update button state to match current setting
 	if screen_shake_button:
 		screen_shake_button.button_pressed = not SaveManager.screen_shake_enabled
+	# Update resolution button text
+	update_resolution_label()
 
 func _on_quit_pressed() -> void:
 	get_tree().quit()
@@ -33,3 +36,12 @@ func _on_screen_shake_button_pressed() -> void:
 
 func _on_mute_button_pressed() -> void:
 	MusicManager.mute()
+
+func _on_resolution_button_pressed() -> void:
+	SaveManager.toggle_resolution()
+	update_resolution_label()
+
+func update_resolution_label() -> void:
+	if resolution_button:
+		var res = SaveManager.resolution
+		resolution_button.text = "Resolution: %dx%d" % [res.x, res.y]
