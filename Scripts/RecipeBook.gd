@@ -1,12 +1,12 @@
-extends CanvasLayer
+extends Node2D
 
 # Discovered ingredients stored by name to avoid duplicates
 var discovered: Dictionary = {}
 var shader_material: ShaderMaterial
 
-@onready var panel: Panel = $Panel
-@onready var grid: GridContainer = $Panel/ScrollContainer/GridContainer
-@onready var close_button: Button = $Panel/CloseButton
+@onready var panel: Panel = $CanvasLayer/Panel
+@onready var grid: GridContainer = $CanvasLayer/Panel/ScrollContainer/GridContainer
+@onready var close_button: Button = $CanvasLayer/Panel/CloseButton
 @onready var book_button: TextureButton = $BookButton
 @onready var book_texture : TextureRect = $BookTexture
 
@@ -22,10 +22,6 @@ var default_ingredients: Array[String] = [
 
 func _ready():
 	panel.visible = false
-	close_button.pressed.connect(_on_close_pressed)
-	book_button.pressed.connect(_on_book_pressed)
-	book_button.mouse_entered.connect(_on_book_mouse_entered)
-	book_button.mouse_exited.connect(_on_book_mouse_exited)
 	
 	# Setup outline shader for book button
 	var shader = preload("res://Assets/Art/outline.gdshader")
@@ -44,26 +40,13 @@ func _ready():
 		if res:
 			discover_ingredient(res)
 
-func _on_book_pressed():
-	# Toggle the panel
-	if panel.visible:
-		_on_close_pressed()
-	else:
-		panel.visible = true
-		get_tree().paused = true
-
-func _on_close_pressed():
-	panel.visible = false
-	if get_tree():
-		get_tree().paused = false
-
 func _unhandled_input(event):
 	if not panel.visible:
 		return
 	
 	# Close on Escape — mark handled so it doesn't trigger the settings menu
 	if event.is_action_pressed("ui_cancel"):
-		_on_close_pressed()
+		_on_close_button_pressed()
 		get_viewport().set_input_as_handled()
 		return
 	
@@ -71,7 +54,7 @@ func _unhandled_input(event):
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 		var panel_rect = Rect2(panel.global_position, panel.size)
 		if not panel_rect.has_point(event.global_position):
-			_on_close_pressed()
+			_on_close_button_pressed()
 			get_viewport().set_input_as_handled()
 
 func discover_ingredient(ingredient: IngredientResource) -> void:
@@ -105,11 +88,27 @@ func _add_entry(ingredient: IngredientResource) -> void:
 	
 	grid.add_child(entry)
 
-func _on_book_mouse_entered():
+
+func _on_book_button_pressed() -> void:
+	# Toggle the panel
+	if panel.visible:
+		_on_close_button_pressed()
+	else:
+		panel.visible = true
+		get_tree().paused = true
+
+
+func _on_close_button_pressed() -> void:
+	panel.visible = false
+	if get_tree():
+		get_tree().paused = false
+
+
+func _on_book_button_mouse_entered() -> void:
 	# Play tick SFX and change outline to grey
 	RecipeManager.play_hover_sfx()
 	shader_material.set_shader_parameter("outline_color", Color(0.5, 0.5, 0.5, 1.0))
 
-func _on_book_mouse_exited():
+func _on_book_button_mouse_exited() -> void:
 	# Change outline back to white
 	shader_material.set_shader_parameter("outline_color", Color(1.0, 1.0, 1.0, 1.0))

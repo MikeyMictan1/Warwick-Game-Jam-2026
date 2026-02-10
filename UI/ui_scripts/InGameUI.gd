@@ -43,7 +43,7 @@ func _input(event):
 func _toggle_pause_menu():
 	if recipe_book and recipe_book.panel.visible:
 		# Close recipe book first
-		recipe_book._on_close_pressed()
+		recipe_book._on_close_button_pressed()
 	
 	GameManager.toggle_pause()
 	if pause_menu:
@@ -51,7 +51,7 @@ func _toggle_pause_menu():
 
 func _toggle_recipe_book():
 	if recipe_book and not GameManager.is_paused:
-		recipe_book._on_book_pressed()
+		recipe_book._on_book_button_pressed()
 			
 func _on_game_state_changed(in_game: bool):
 	visible = in_game
@@ -65,7 +65,7 @@ func _on_game_state_changed(in_game: bool):
 		if controls_menu:
 			controls_menu.visible = false
 		if recipe_book:
-			recipe_book._on_close_pressed()
+			recipe_book._on_close_button_pressed()
 
 func _on_pause_state_changed(paused: bool):
 	if pause_menu:

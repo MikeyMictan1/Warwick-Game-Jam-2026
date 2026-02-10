@@ -95,6 +95,19 @@ layout_mode = 2
 theme = ExtResource("3_ueq4g")
 text = "Play"
 
+[node name="Credits" type="Button" parent="UI Elements/Control/HBoxContainer/VBoxContainer/Buttons"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+theme = ExtResource("3_ueq4g")
+text = "Credits
+"
+
+[node name="Settings" type="Button" parent="UI Elements/Control/HBoxContainer/VBoxContainer/Buttons"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+theme = ExtResource("3_ueq4g")
+text = "Settings"
+
 [node name="Quit" type="Button" parent="UI Elements/Control/HBoxContainer/VBoxContainer/Buttons"]
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
@@ -105,7 +118,7 @@ text = "Quit"
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 size_flags_vertical = 3
-size_flags_stretch_ratio = 0.0
+size_flags_stretch_ratio = 0.95
 
 [node name="TextureRect" type="TextureRect" parent="UI Elements"]
 offset_left = 223.0
@@ -117,4 +130,6 @@ texture = ExtResource("4_ueq4g")
 expand_mode = 1
 
 [connection signal="pressed" from="UI Elements/Control/HBoxContainer/VBoxContainer/Buttons/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="UI Elements/Control/HBoxContainer/VBoxContainer/Buttons/Credits" to="." method="_on_credits_pressed"]
+[connection signal="pressed" from="UI Elements/Control/HBoxContainer/VBoxContainer/Buttons/Settings" to="." method="_on_settings_pressed"]
 [connection signal="pressed" from="UI Elements/Control/HBoxContainer/VBoxContainer/Buttons/Quit" to="." method="_on_quit_pressed"]

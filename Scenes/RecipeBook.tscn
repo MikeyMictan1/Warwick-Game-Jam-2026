@@ -3,9 +3,8 @@
 [ext_resource type="Script" uid="uid://cfsglxs3kh3mx" path="res://Scripts/RecipeBook.gd" id="1_rb"]
 [ext_resource type="Texture2D" uid="uid://dprrmfyt4mcq6" path="res://Assets/Art/recipe_book.png" id="2_a0oe7"]
 
-[node name="RecipeBook" type="CanvasLayer"]
+[node name="RecipeBook" type="Node2D"]
 process_mode = 3
-layer = 0
 script = ExtResource("1_rb")
 
 [node name="BookTexture" type="TextureRect" parent="."]
@@ -13,6 +12,7 @@ offset_left = 57.0
 offset_top = 117.0
 offset_right = 1647.8094
 offset_bottom = 1013.0
+mouse_filter = 2
 texture = ExtResource("2_a0oe7")
 expand_mode = 1
 
@@ -20,26 +20,31 @@ expand_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -1666.0
-offset_top = 527.0
-offset_right = -1625.2
-offset_bottom = 565.8
+offset_left = 260.00003
+offset_top = 524.00006
+offset_right = 300.80008
+offset_bottom = 562.80005
 grow_horizontal = 0
 scale = Vector2(5, 5)
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="Panel" type="Panel" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Panel" type="Panel" parent="CanvasLayer"]
 visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 200.0
-offset_top = 80.0
-offset_right = -200.0
-offset_bottom = -80.0
+offset_left = 140.0
+offset_top = 92.0
+offset_right = -151.26917
+offset_bottom = -87.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 
-[node name="TitleLabel" type="Label" parent="Panel"]
+[node name="TitleLabel" type="Label" parent="CanvasLayer/Panel"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -53,7 +58,7 @@ text = "Recipe Book"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="CloseButton" type="Button" parent="Panel"]
+[node name="CloseButton" type="Button" parent="CanvasLayer/Panel"]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -65,7 +70,7 @@ offset_bottom = 40.0
 grow_horizontal = 0
 text = "X"
 
-[node name="ScrollContainer" type="ScrollContainer" parent="Panel"]
+[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/Panel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -77,8 +82,13 @@ offset_bottom = -20.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="GridContainer" type="GridContainer" parent="Panel/ScrollContainer"]
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/Panel/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 columns = 6
+
+[connection signal="mouse_entered" from="BookButton" to="." method="_on_book_button_mouse_entered"]
+[connection signal="mouse_exited" from="BookButton" to="." method="_on_book_button_mouse_exited"]
+[connection signal="pressed" from="BookButton" to="." method="_on_book_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Panel/CloseButton" to="." method="_on_close_button_pressed"]

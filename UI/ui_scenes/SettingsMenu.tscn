@@ -1,10 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://bv611hw22sn7p"]
+[gd_scene load_steps=3 format=3 uid="uid://3yoofqbk7xua"]
 
-[ext_resource type="Theme" uid="uid://dpvcn618erk1d" path="res://UI/ui_themes/OtherButtonTheme.tres" id="1_cwyfi"]
-[ext_resource type="Script" uid="uid://b81losdd0ykv5" path="res://UI/ui_scripts/winning_menu.gd" id="1_gnruo"]
+[ext_resource type="Theme" uid="uid://dpvcn618erk1d" path="res://UI/ui_themes/OtherButtonTheme.tres" id="1_a4ynq"]
+[ext_resource type="Script" uid="uid://bapwfj8jvs3la" path="res://UI/ui_scripts/settings_menu.gd" id="1_njpsc"]
 
-[node name="CreditsMenu" type="Node2D"]
-script = ExtResource("1_gnruo")
+[node name="SettingsMenu" type="Node2D"]
+script = ExtResource("1_njpsc")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -28,12 +28,11 @@ grow_vertical = 2
 clip_contents = false
 layout_mode = 0
 offset_left = 412.0
-offset_top = 6.0
 offset_right = 1462.0
-offset_bottom = 192.0
+offset_bottom = 186.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 70
-text = "Credits"
+text = "Settings"
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
@@ -42,24 +41,36 @@ horizontal_alignment = 1
 [node name="MainMenu" type="Button" parent="CanvasLayer/Control"]
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 0
-offset_left = 577.0
-offset_top = 953.0
-offset_right = 749.0
-offset_bottom = 1013.0
+offset_left = 80.0
+offset_top = 744.0
+offset_right = 252.0
+offset_bottom = 804.0
 scale = Vector2(1.5, 1.5)
-theme = ExtResource("1_cwyfi")
+theme = ExtResource("1_a4ynq")
 text = "Main Menu"
 
 [node name="Quit" type="Button" parent="CanvasLayer/Control"]
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 0
-offset_left = 1218.0
-offset_top = 957.0
-offset_right = 1300.0
-offset_bottom = 1017.0
+offset_left = 78.0
+offset_top = 918.0
+offset_right = 160.0
+offset_bottom = 978.0
 scale = Vector2(1.5, 1.5)
-theme = ExtResource("1_cwyfi")
+theme = ExtResource("1_a4ynq")
 text = "Quit"
+
+[node name="ResetProgress" type="Button" parent="CanvasLayer/Control"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 0
+offset_left = 71.0
+offset_top = 378.0
+offset_right = 261.0
+offset_bottom = 438.0
+scale = Vector2(1.5, 1.5)
+theme = ExtResource("1_a4ynq")
+text = "Reset Game"
 
 [connection signal="pressed" from="CanvasLayer/Control/MainMenu" to="." method="_on_main_menu_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/ResetProgress" to="." method="_on_reset_progress_pressed"]

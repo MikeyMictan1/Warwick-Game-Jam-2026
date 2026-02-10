@@ -189,7 +189,9 @@ func _ready() -> void:
 	register_recipe(dragon_fruit, washing_appliance, intellagama_lesueurii)
 	register_recipe(pineapple, washing_appliance, sponge)
 	register_recipe(sponge, washing_appliance, event_flood)
-	register_recipe(garlic_oil, washing_appliance, event_explosion)
+	register_recipe(water, washing_appliance, event_flood)
+	register_recipe(garlic_oil, washing_appliance, event_flood)
+	register_recipe(alive_pufferfish, washing_appliance, event_flood)
 	register_recipe(red_onion, washing_appliance, white_onion)
 	register_recipe(white_onion, washing_appliance, red_onion)
 	register_recipe(cooked_lettuce, washing_appliance, lettuce)
@@ -421,12 +423,18 @@ func combine_washing(ingredient: IngredientScene, washing_position: Vector2) -> 
 		event_handler(result_ingredient, "The pineapple pizza was too controversial and caused an explosion. Maybe don't make pineapple pizza next time.")
 		return
 
-	event_handler(result_ingredient)
+	
 	
 	# Start screen shake for washing duration
 	shake_screen(2.0)
 	# Wait 2 seconds then spawn result with pop animation
 	await get_tree().create_timer(2.0).timeout
+
+	event_handler(result_ingredient)
+
+	if result_ingredient.get_ingredient_name() == "event_flood":
+		return
+
 	spawn_new_item(result_ingredient, washing_position, true)
 
 """
@@ -467,10 +475,8 @@ func explode_kitchen(message : String = "") -> void:
 Event for a kitchen flood
 """
 func flood_kitchen():
-	# var flood_scene = KITCHEN_FLOOD.instantiate()
-	# get_tree().current_scene.add_child(flood_scene)
-	# flood_scene.run()
-	pass
+	get_tree().current_scene.get_node("FloodSprite").visible = true
+	MusicManager.play_flood_sfx()
 
 func play_bin_sfx():
 	sfx_bin.play()

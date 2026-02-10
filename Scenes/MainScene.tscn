@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://ccarxryw6scdg"]
+[gd_scene load_steps=35 format=3 uid="uid://ccarxryw6scdg"]
 
 [ext_resource type="Script" uid="uid://dslbl3i32erhh" path="res://Scripts/MainScene.gd" id="1_hpc76"]
 [ext_resource type="Texture2D" uid="uid://bqncy4onfyg1q" path="res://Assets/Art/bg.png" id="2_enc0b"]
@@ -25,6 +25,8 @@
 [ext_resource type="Theme" uid="uid://dpvcn618erk1d" path="res://UI/ui_themes/OtherButtonTheme.tres" id="20_gyaec"]
 [ext_resource type="Texture2D" uid="uid://c807xrpnfl6kr" path="res://Assets/Art/Other/goal.png" id="21_3va76"]
 [ext_resource type="Texture2D" uid="uid://cst84vkobjixm" path="res://Assets/Art/Ingredients/tomatopasta.png" id="22_wmecs"]
+[ext_resource type="Shader" uid="uid://b1oxm1wbbfh7g" path="res://Scripts/water.gdshader" id="26_4sso6"]
+[ext_resource type="Texture2D" uid="uid://eux8sei1h5gp" path="res://Assets/Art/Other/box.png" id="26_mymud"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i0j58"]
 size = Vector2(124.08628, 135.00142)
@@ -40,6 +42,18 @@ fill_from = Vector2(0.5, 0.508547)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_enc0b"]
 bg_color = Color(0.93333334, 0.7294118, 0.34901962, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_4sso6"]
+frequency = 0.0148
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_r0vnq"]
+noise = SubResource("FastNoiseLite_4sso6")
+seamless = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_r0vnq"]
+shader = ExtResource("26_4sso6")
+shader_parameter/water_color = Color(0.22091639, 0.54781777, 0.70906067, 0.38700002)
+shader_parameter/wave_noise = SubResource("NoiseTexture2D_r0vnq")
 
 [node name="MainScene" type="Node2D"]
 script = ExtResource("1_hpc76")
@@ -174,8 +188,11 @@ position = Vector2(1868, 917)
 ingredient_data = ExtResource("13_6t1o7")
 
 [node name="RecipeBook" parent="." instance=ExtResource("15_rb")]
+z_index = 1
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="GoalPoster" type="Node2D" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="GoalPoster"]
 offset_left = 1094.0
 offset_top = 27.0
 offset_right = 1280.0
@@ -183,7 +200,7 @@ offset_bottom = 213.0
 texture = ExtResource("21_3va76")
 expand_mode = 1
 
-[node name="TextureRect2" type="TextureRect" parent="."]
+[node name="TextureRect2" type="TextureRect" parent="GoalPoster"]
 offset_left = 1144.5592
 offset_top = 91.72484
 offset_right = 1262.0823
@@ -302,6 +319,14 @@ offset_bottom = 619.50854
 rotation = -2.3536022
 texture = ExtResource("17_enc0b")
 expand_mode = 1
+
+[node name="FloodSprite" type="Sprite2D" parent="."]
+visible = false
+z_index = 400
+material = SubResource("ShaderMaterial_r0vnq")
+position = Vector2(961, 541)
+scale = Vector2(22.32558, 25.761904)
+texture = ExtResource("26_mymud")
 
 [connection signal="mouse_entered" from="Appliances/Bell" to="Appliances/Bell" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="Appliances/Bell" to="Appliances/Bell" method="_on_mouse_exited"]
