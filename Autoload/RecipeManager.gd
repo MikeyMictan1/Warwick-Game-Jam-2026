@@ -495,6 +495,10 @@ func play_hover_sfx():
 		sfx_hover.play()
 
 func shake_screen(duration: float) -> void:
+	# Check if screen shake is disabled
+	if not SaveManager.screen_shake_enabled:
+		return
+	
 	var main_scene = get_tree().current_scene
 	if main_scene == null:
 		return

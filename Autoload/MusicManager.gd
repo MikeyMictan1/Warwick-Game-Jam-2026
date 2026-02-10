@@ -3,10 +3,12 @@ extends Node
 var sfx_click: AudioStreamPlayer = AudioStreamPlayer.new()
 var sfx_bell: AudioStreamPlayer = AudioStreamPlayer.new()
 var sfx_flood: AudioStreamPlayer = AudioStreamPlayer.new()
+var sfx_recipe: AudioStreamPlayer = AudioStreamPlayer.new()
+var music_player: AudioStreamPlayer = AudioStreamPlayer.new()
+var game_muted : bool = false
 
 func _ready():
 	process_mode = Node.PROCESS_MODE_ALWAYS
-	var music_player = AudioStreamPlayer.new()
 	add_child(music_player)
 	var stream = load("res://Assets/Music/bg_music.mp3")
 	if stream is AudioStream:
@@ -27,6 +29,9 @@ func _ready():
 	sfx_flood.stream = load("res://Assets/Music/flood_sfx.mp3")
 	add_child(sfx_flood)
 
+	sfx_recipe.stream = load("res://Assets/Music/recipe_sfx.mp3")
+	add_child(sfx_recipe)
+
 func play_click_sfx():
 	sfx_click.play()
 
@@ -36,12 +41,20 @@ func play_bell_sfx():
 func play_flood_sfx():
 	sfx_flood.play()
 
+func play_recipe_sfx():
+	sfx_recipe.play()
+
 func lower_music_volume():
-	var music_player = get_node_or_null("AudioStreamPlayer")
 	if music_player:
-		music_player.volume_db = -20  # Lower volume by 20 dB
+		music_player.volume_db = -20  
 
 func increase_music_volume():
-	var music_player = get_node_or_null("AudioStreamPlayer")
 	if music_player:
-		music_player.volume_db = 0  # Reset to original volume
+		music_player.volume_db = 0  
+
+func mute():
+	if music_player and music_player.volume_db == -80:
+		music_player.volume_db = 0
+	elif music_player:
+		music_player.volume_db = -80
+	

@@ -23,6 +23,7 @@ InGameUI="*res://UI/ui_scenes/InGameUI.tscn"
 GameManager="*res://Autoload/GameManager.gd"
 MusicManager="*res://Autoload/MusicManager.gd"
 RecipeManager="*res://Autoload/RecipeManager.gd"
+SaveManager="*res://Autoload/SaveManager.gd"
 
 [display]
 

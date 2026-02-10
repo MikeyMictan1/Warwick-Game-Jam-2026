@@ -41,10 +41,10 @@ horizontal_alignment = 1
 [node name="MainMenu" type="Button" parent="CanvasLayer/Control"]
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 0
-offset_left = 80.0
-offset_top = 744.0
-offset_right = 252.0
-offset_bottom = 804.0
+offset_left = 492.0
+offset_top = 878.0
+offset_right = 664.0
+offset_bottom = 938.0
 scale = Vector2(1.5, 1.5)
 theme = ExtResource("1_a4ynq")
 text = "Main Menu"
@@ -52,10 +52,10 @@ text = "Main Menu"
 [node name="Quit" type="Button" parent="CanvasLayer/Control"]
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 0
-offset_left = 78.0
-offset_top = 918.0
-offset_right = 160.0
-offset_bottom = 978.0
+offset_left = 1126.0
+offset_top = 879.0
+offset_right = 1208.0
+offset_bottom = 939.0
 scale = Vector2(1.5, 1.5)
 theme = ExtResource("1_a4ynq")
 text = "Quit"
@@ -64,13 +64,32 @@ text = "Quit"
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 0
 offset_left = 71.0
-offset_top = 378.0
-offset_right = 261.0
-offset_bottom = 438.0
-scale = Vector2(1.5, 1.5)
+offset_top = 174.0
+offset_right = 495.0
+offset_bottom = 234.0
 theme = ExtResource("1_a4ynq")
 text = "Reset Game"
+
+[node name="ScreenShakeButton" type="CheckButton" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = 67.0
+offset_top = 325.0
+offset_right = 491.0
+offset_bottom = 375.0
+theme = ExtResource("1_a4ynq")
+text = "Disable Screen Shake "
+
+[node name="MuteButton" type="CheckButton" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = 67.0
+offset_top = 469.0
+offset_right = 491.0
+offset_bottom = 519.0
+theme = ExtResource("1_a4ynq")
+text = "Mute Game"
 
 [connection signal="pressed" from="CanvasLayer/Control/MainMenu" to="." method="_on_main_menu_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/Quit" to="." method="_on_quit_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/ResetProgress" to="." method="_on_reset_progress_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/ScreenShakeButton" to="." method="_on_screen_shake_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/MuteButton" to="." method="_on_mute_button_pressed"]
