@@ -17,7 +17,8 @@ https://pixabay.com/sound-effects/nature-fire-457848/ <br>
 https://pixabay.com/sound-effects/film-special-effects-computer-mouse-click-351398/ <br>
 https://pixabay.com/sound-effects/film-special-effects-bell-98033/ <br>
 https://pixabay.com/sound-effects/nature-bubbles-003-6397/ <br>
-https://pixabay.com/sound-effects/film-special-effects-book-opening-345808/
+https://pixabay.com/sound-effects/film-special-effects-book-opening-345808/ <br>
+https://pixabay.com/sound-effects/film-special-effects-lighter-154853/
 
 
 ## Tutorial Credits:
