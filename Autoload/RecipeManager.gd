@@ -163,7 +163,6 @@ func _ready() -> void:
 	register_recipe(cold_pasta_sauce, oven_appliance, pasta_sauce)
 	register_recipe(red_onion, oven_appliance, carmelised_onion)
 	register_recipe(white_onion, oven_appliance, carmelised_onion)
-	register_recipe(pineapple, oven_appliance, sponge)
 
 	# Wildcard oven recipes: any tomato ingredient causes explosion
 	register_recipe(tomato_sauce, oven_appliance, event_explosion)
