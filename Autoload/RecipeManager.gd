@@ -87,7 +87,7 @@ func _ready() -> void:
 	register_recipe(dried_pasta, lettuce, pasta_salad)
 	register_recipe(dried_pasta, tomato_sauce, cold_pasta_tomato)
 	register_recipe(dried_pasta, pufferfish, cactus)
-	register_recipe(dried_pasta, garlic, stink_bomb)
+	register_recipe(dried_pasta, garlic, garlic_pasta)
 	register_recipe(tomato_sauce, lettuce, dried_pasta)
 	register_recipe(tomato_sauce, pufferfish, dragon_fruit)
 	register_recipe(tomato_sauce, garlic, stink_bomb)
@@ -116,6 +116,7 @@ func _ready() -> void:
 	register_recipe(pasta_salad, pufferfish, croutons)
 	register_recipe(pasta_salad, garlic, feet)
 	register_recipe(garlic_pasta, tomato_sauce, tomato_soup)
+	register_recipe(alive_pufferfish, ice_cream, ai)
 
 	# Special Recipes
 	register_recipe(pineapple, tomato_pizza, pineapple_pizza)
@@ -126,12 +127,15 @@ func _ready() -> void:
 	# Final Recipe
 	register_recipe(water, dried_pasta, cooked_pasta)
 	register_recipe(cooked_lettuce, tomato_sauce, red_onion)
+	register_recipe(cabbage, tomato_sauce, red_onion)
+	register_recipe(white_onion, garlic_oil, carmelised_onion)
 	register_recipe(red_onion, garlic_oil, carmelised_onion)
 	register_recipe(carmelised_onion, tomato_sauce, cold_pasta_sauce)
 	register_recipe(cooked_pasta, pasta_sauce, tomato_pasta)
 
 	# EXTRA RECIPES
 	register_recipe(cold_pasta_tomato, tomato_sauce, tomato_soup)
+	register_recipe(cold_pasta_tomato, carmelised_onion, cold_pasta_sauce)
 	register_recipe(pufferfish, pufferfish_milk, alive_pufferfish)
 	register_recipe(pineapple, cactus, pineapple_jam)
 	register_recipe(dragon_fruit, cactus, komodo_dragon)
@@ -146,17 +150,20 @@ func _ready() -> void:
 	register_recipe(garlic, oven_appliance, garlic_oil) # and stench
 	register_recipe(pufferfish, oven_appliance, pufferfish_milk)
 	register_recipe(lettuce, oven_appliance, cooked_lettuce)
+	register_recipe(cabbage, oven_appliance, cooked_lettuce)
+	register_recipe(cooked_lettuce, oven_appliance, cabbage)
 	register_recipe(dried_pasta, oven_appliance, burnt_pasta)
 	register_recipe(bomb_picture, oven_appliance, real_bomb)
 	register_recipe(dragon_fruit, oven_appliance, komodo_dragon)
 	register_recipe(pineapple, oven_appliance, pineapple_jam)
-	register_recipe(red_onion, oven_appliance, water)
 	register_recipe(sponge, oven_appliance, water)
 	register_recipe(cooked_lettuce, oven_appliance, carmelised_onion)
 	register_recipe(garlic_pasta, oven_appliance, ultimate_pasta)
 	register_recipe(pasta_salad, oven_appliance, ultimate_pasta)
 	register_recipe(cold_pasta_sauce, oven_appliance, pasta_sauce)
-	register_recipe(red_onion, oven_appliance, water)
+	register_recipe(red_onion, oven_appliance, carmelised_onion)
+	register_recipe(white_onion, oven_appliance, carmelised_onion)
+	register_recipe(pineapple, oven_appliance, sponge)
 
 	# Wildcard oven recipes: any tomato ingredient causes explosion
 	register_recipe(tomato_sauce, oven_appliance, event_explosion)
@@ -165,7 +172,7 @@ func _ready() -> void:
 	register_recipe(tomato_pizza, oven_appliance, event_explosion)
 	register_recipe(tomato_soup, oven_appliance, event_explosion)
 	register_recipe(garlic_oil, oven_appliance, event_explosion)
-
+	
 	# Washing Machine Recipes
 	register_recipe(cooked_pasta, washing_appliance, pizza_base)
 	register_recipe(pasta_salad, washing_appliance, pizza_base)
@@ -207,6 +214,8 @@ func _ready() -> void:
 	register_recipe(dragon_fruit, null, intellagama_lesueurii)
 	register_recipe(pineapple, null, sponge)
 	register_recipe(ai, null, event_explosion)
+	register_recipe(pineapple_pizza, null, event_explosion)
+	register_recipe(carmelised_onion, null, carmelised_onion)
 
 	
 

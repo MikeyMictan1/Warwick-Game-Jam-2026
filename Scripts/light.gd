@@ -11,17 +11,15 @@ var red_was_pressed: bool = false
 @onready var sprite: Sprite2D = $Sprite2D
 
 @onready var point_light: PointLight2D = $PointLight2D
+var shader_material: ShaderMaterial
 
 func _ready():
 	# Create timer for checking every 10 seconds
 	check_timer = Timer.new()
-	check_timer.wait_time = 5.0
+	check_timer.wait_time = 10.0
 	check_timer.one_shot = false
 	check_timer.timeout.connect(_on_check_timer_timeout)
 	add_child(check_timer)
-	# Don't start timer yet - wait for dialogue to finish
-	
-	# Create timer for state duration (3 seconds)
 	state_timer = Timer.new()
 	state_timer.wait_time = 5.0
 	state_timer.one_shot = true
@@ -31,8 +29,27 @@ func _ready():
 	# Connect input event
 	input_event.connect(_on_input_event)
 	
+	# SHADRESSS
+	# Setup outline shader
+	var shader = preload("res://Assets/Art/outline.gdshader")
+	shader_material = ShaderMaterial.new()
+	shader_material.shader = shader
+	sprite.material = shader_material
+	shader_material.set_shader_parameter("outline_width", 20.0)
+	
+	# Show white outline by default
+	shader_material.set_shader_parameter("outline_color", Color(1.0, 1.0, 1.0, 1.0))
+	shader_material.set_shader_parameter("show_outline", true)
+	
 	# Set initial green state
 	update_sprite()
+	
+func _on_mouse_entered():
+	RecipeManager.play_hover_sfx()
+	shader_material.set_shader_parameter("outline_color", Color(0.5, 0.5, 0.5, 1.0))
+
+func _on_mouse_exited():
+	shader_material.set_shader_parameter("outline_color", Color(1.0, 1.0, 1.0, 1.0))
 
 func start_timer():
 	# Called when dialogue is complete to start the light cycle
@@ -81,6 +98,7 @@ func update_sprite():
 
 func _on_input_event(_viewport, event, _shape_idx):
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+		MusicManager.play_click_sfx()
 		match current_state:
 			LightState.GREEN:
 				on_pressed_green()

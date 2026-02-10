@@ -10,7 +10,7 @@ var game_timer
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	game_timer = 60
+	game_timer = 30
 	# Setup outline shader
 	var shader = preload("res://Assets/Art/outline.gdshader")
 	

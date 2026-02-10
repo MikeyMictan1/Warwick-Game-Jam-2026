@@ -12,6 +12,7 @@ var start_intro: bool
 @onready var arrow_5 : TextureRect = $arrows/arrow_5
 
 @onready var light: Area2D = $Appliances/light
+@onready var skip_button: Button = $Panel/SkipButton
 
 func _ready():
 	# Set game state when entering the game scene
@@ -23,7 +24,6 @@ func _ready():
 	auto_advance_timer.one_shot = true
 	auto_advance_timer.timeout.connect(_on_auto_advance_timeout)
 	add_child(auto_advance_timer)
-
 
 func _exit_tree():
 	# Reset game state when leaving the game scene
@@ -150,7 +150,7 @@ func start_typing(text: String) -> void:
 func _on_auto_advance_timeout():
 	if is_talking and not typing:
 		talk()
-
+		
 func audio():
 	audio_stream_speech.play()
 	await get_tree().create_timer(0.02).timeout
@@ -204,3 +204,11 @@ func update_arrow():
 		arrow_4.visible = true
 	elif current_index == 13:  # "this light over here will sometimes turn red."
 		arrow_5.visible = true
+
+
+func _on_skip_button_pressed() -> void:
+	# Skip all remaining dialogue
+	typing = false
+	auto_advance_timer.stop()
+	current_index = dialogue.size()
+	talk()
