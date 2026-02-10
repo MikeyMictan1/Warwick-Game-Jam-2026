@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://ccarxryw6scdg"]
+[gd_scene load_steps=24 format=3 uid="uid://ccarxryw6scdg"]
 
 [ext_resource type="Script" uid="uid://dslbl3i32erhh" path="res://Scripts/MainScene.gd" id="1_hpc76"]
 [ext_resource type="Texture2D" uid="uid://bqncy4onfyg1q" path="res://Assets/Art/bg.png" id="2_enc0b"]
@@ -22,6 +22,15 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i0j58"]
 size = Vector2(124.08628, 135.00142)
+
+[sub_resource type="Gradient" id="Gradient_i0j58"]
+offsets = PackedFloat32Array(0, 0.69058293)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_c1ier"]
+gradient = SubResource("Gradient_i0j58")
+fill = 1
+fill_from = Vector2(0.5, 0.508547)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_enc0b"]
 
@@ -113,6 +122,13 @@ shape = SubResource("RectangleShape2D_i0j58")
 position = Vector2(498.48334, 261.7523)
 scale = Vector2(0.078306556, 0.078306556)
 texture = ExtResource("10_hx8n4")
+
+[node name="PointLight2D" type="PointLight2D" parent="Appliances/light"]
+position = Vector2(496.36026, 261.05075)
+scale = Vector2(9.917133, 9.917133)
+color = Color(0.012920001, 0.2827793, 0, 1)
+energy = 10.36
+texture = SubResource("GradientTexture2D_c1ier")
 
 [node name="IngredientGenerators" type="Node2D" parent="."]
 

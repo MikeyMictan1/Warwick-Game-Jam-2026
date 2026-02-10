@@ -10,10 +10,12 @@ var red_was_pressed: bool = false
 
 @onready var sprite: Sprite2D = $Sprite2D
 
+@onready var point_light: PointLight2D = $PointLight2D
+
 func _ready():
 	# Create timer for checking every 10 seconds
 	check_timer = Timer.new()
-	check_timer.wait_time = 10.0
+	check_timer.wait_time = 5.0
 	check_timer.one_shot = false
 	check_timer.timeout.connect(_on_check_timer_timeout)
 	add_child(check_timer)
@@ -21,7 +23,7 @@ func _ready():
 	
 	# Create timer for state duration (3 seconds)
 	state_timer = Timer.new()
-	state_timer.wait_time = 3.0
+	state_timer.wait_time = 5.0
 	state_timer.one_shot = true
 	state_timer.timeout.connect(_on_state_timer_timeout)
 	add_child(state_timer)
@@ -66,10 +68,16 @@ func update_sprite():
 	match current_state:
 		LightState.GREEN:
 			sprite.texture = load("res://Assets/Art/lights/green_light.png")
+			point_light.color = Color(0.001, 0.065, 0.0, 1)
+			point_light.energy = 10.36
 		LightState.RED:
 			sprite.texture = load("res://Assets/Art/lights/red_light.png")
+			point_light.color = Color(0.8, 0.004, 0.0, 1)
+			point_light.energy = 5
 		LightState.ORANGE:
 			sprite.texture = load("res://Assets/Art/lights/orange_light.png")
+			point_light.color = Color(0.493, 0.117, 0.0, 1)
+			point_light.energy = 5
 
 func _on_input_event(_viewport, event, _shape_idx):
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
