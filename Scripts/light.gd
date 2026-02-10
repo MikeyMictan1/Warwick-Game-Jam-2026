@@ -14,6 +14,9 @@ var red_was_pressed: bool = false
 var shader_material: ShaderMaterial
 
 func _ready():
+	# Add to light group for easy access
+	add_to_group("light")
+	
 	# Create timer for checking every 10 seconds
 	check_timer = Timer.new()
 	check_timer.wait_time = 10.0
@@ -54,6 +57,19 @@ func _on_mouse_exited():
 func start_timer():
 	# Called when dialogue is complete to start the light cycle
 	check_timer.start()
+
+func pause_light_system():
+	# Pause all timers and reset to green state
+	check_timer.paused = true
+	state_timer.paused = true
+	if current_state != LightState.GREEN:
+		set_state(LightState.GREEN)
+		red_was_pressed = false
+
+func resume_light_system():
+	# Resume the light cycle
+	check_timer.paused = false
+	state_timer.paused = false
 
 func _on_check_timer_timeout():
 	# Random chance to turn red or orange
@@ -107,7 +123,7 @@ func _on_input_event(_viewport, event, _shape_idx):
 			LightState.ORANGE:
 				on_pressed_orange()
 
-# Called when pressed while green (fault state)
+# pressed while green
 func on_pressed_green():
 	pass
 

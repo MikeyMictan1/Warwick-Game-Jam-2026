@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://ccarxryw6scdg"]
+[gd_scene load_steps=30 format=3 uid="uid://ccarxryw6scdg"]
 
 [ext_resource type="Script" uid="uid://dslbl3i32erhh" path="res://Scripts/MainScene.gd" id="1_hpc76"]
 [ext_resource type="Texture2D" uid="uid://bqncy4onfyg1q" path="res://Assets/Art/bg.png" id="2_enc0b"]
@@ -11,16 +11,20 @@
 [ext_resource type="PackedScene" uid="uid://dph6b446653jp" path="res://Scenes/WashingMachine.tscn" id="7_q68mp"]
 [ext_resource type="Script" uid="uid://j5w5dc311n0s" path="res://Scripts/bell.gd" id="8_xc4hf"]
 [ext_resource type="Script" uid="uid://dqm4cuvlf07ht" path="res://Scripts/Finished.gd" id="9_6rnll"]
+[ext_resource type="Texture2D" uid="uid://cyi5sqmpqmsgl" path="res://Assets/Art/bell.png" id="9_bpy1e"]
 [ext_resource type="Resource" uid="uid://dyrp0xa815j51" path="res://Resources/Bomb_Picture.tres" id="10_4b75m"]
 [ext_resource type="Texture2D" uid="uid://pbr6jhrt36h6" path="res://Assets/Art/lights/green_light.png" id="10_hx8n4"]
 [ext_resource type="Script" uid="uid://dwpipm78lnuhh" path="res://Scripts/light.gd" id="10_i0j58"]
 [ext_resource type="Resource" uid="uid://dg2qkiec5x3sg" path="res://Resources/Tomato_Sauce.tres" id="11_8ju71"]
+[ext_resource type="Texture2D" uid="uid://dpktgkcwjuivc" path="res://Assets/Art/plate.png" id="11_p5ymy"]
 [ext_resource type="Resource" uid="uid://cyjxo1ctfjey8" path="res://Resources/Pufferfish.tres" id="12_xb4mg"]
 [ext_resource type="Resource" uid="uid://iruq2f54b0f5" path="res://Resources/Dried_Pasta.tres" id="13_6t1o7"]
 [ext_resource type="PackedScene" uid="uid://6msliswhcegf" path="res://Scenes/RecipeBook.tscn" id="15_rb"]
 [ext_resource type="Texture2D" uid="uid://qmruegh8vfrd" path="res://Assets/Art/Other/arrow.png" id="17_enc0b"]
 [ext_resource type="AudioStream" uid="uid://dbloxoi3li3au" path="res://Assets/Art/meowNEW.mp3" id="19_c1ier"]
 [ext_resource type="Theme" uid="uid://dpvcn618erk1d" path="res://UI/ui_themes/OtherButtonTheme.tres" id="20_gyaec"]
+[ext_resource type="Texture2D" uid="uid://c807xrpnfl6kr" path="res://Assets/Art/Other/goal.png" id="21_3va76"]
+[ext_resource type="Texture2D" uid="uid://cst84vkobjixm" path="res://Assets/Art/Ingredients/tomatopasta.png" id="22_wmecs"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i0j58"]
 size = Vector2(124.08628, 135.00142)
@@ -67,7 +71,7 @@ grow_vertical = 0
 
 [node name="Label" type="Label" parent="UICanvasLayer/Controls_Label"]
 layout_mode = 2
-text = "TAB : Controls"
+text = "TAB : Recipe Book"
 
 [node name="Appliances" type="Node2D" parent="."]
 
@@ -99,16 +103,27 @@ position = Vector2(380, 503)
 script = ExtResource("8_xc4hf")
 finished_plate = NodePath("../FinishedPlate")
 
+[node name="Sprite2D" type="Sprite2D" parent="Appliances/Bell"]
+position = Vector2(587, 37.999985)
+scale = Vector2(0.5804177, 0.5804177)
+texture = ExtResource("9_bpy1e")
+
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Appliances/Bell"]
 position = Vector2(278, 5)
 polygon = PackedVector2Array(0, 0, 25, 7, 33, 15, 40, 40, -35, 55, -36, 28, -29, 14, -15, 6, -17, -1, -25, 1, -26, -6, 6, -14, 8, -5, 0, 0, 25, 7)
 
 [node name="FinishedPlate" type="Area2D" parent="Appliances"]
-position = Vector2(810, 460)
+z_index = 1
+position = Vector2(811, 477)
 script = ExtResource("9_6rnll")
 
+[node name="Sprite2D2" type="Sprite2D" parent="Appliances/FinishedPlate"]
+position = Vector2(154.31938, 65.656334)
+scale = Vector2(0.58136433, 0.5813643)
+texture = ExtResource("11_p5ymy")
+
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Appliances/FinishedPlate"]
-position = Vector2(-121, 55)
+position = Vector2(-119.6806, 39.65631)
 polygon = PackedVector2Array(17, -1, 126, -6, 223, -18, 209, 13, 38, 27, 14, 4)
 
 [node name="light" type="Area2D" parent="Appliances"]
@@ -159,6 +174,23 @@ position = Vector2(1868, 917)
 ingredient_data = ExtResource("13_6t1o7")
 
 [node name="RecipeBook" parent="." instance=ExtResource("15_rb")]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = 1094.0
+offset_top = 27.0
+offset_right = 1280.0
+offset_bottom = 213.0
+texture = ExtResource("21_3va76")
+expand_mode = 1
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+offset_left = 1144.5592
+offset_top = 91.72484
+offset_right = 1262.0823
+offset_bottom = 217.72484
+rotation = 0.12965493
+texture = ExtResource("22_wmecs")
+expand_mode = 1
 
 [node name="Panel" type="Panel" parent="."]
 z_index = 1
@@ -271,6 +303,10 @@ rotation = -2.3536022
 texture = ExtResource("17_enc0b")
 expand_mode = 1
 
+[connection signal="mouse_entered" from="Appliances/Bell" to="Appliances/Bell" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Appliances/Bell" to="Appliances/Bell" method="_on_mouse_exited"]
+[connection signal="area_entered" from="Appliances/FinishedPlate" to="Appliances/FinishedPlate" method="_on_area_entered"]
+[connection signal="area_exited" from="Appliances/FinishedPlate" to="Appliances/FinishedPlate" method="_on_area_exited"]
 [connection signal="mouse_entered" from="Appliances/light" to="Appliances/light" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="Appliances/light" to="Appliances/light" method="_on_mouse_exited"]
 [connection signal="pressed" from="Panel/SkipButton" to="." method="_on_skip_button_pressed"]

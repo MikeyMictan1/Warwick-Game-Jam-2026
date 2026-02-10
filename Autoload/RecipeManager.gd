@@ -454,6 +454,8 @@ func shake_screen(duration: float) -> void:
 	var elapsed = 0.0
 	
 	while elapsed < duration:
+		if main_scene == null:
+			return
 		var offset_x = randf_range(-shake_strength, shake_strength)
 		var offset_y = randf_range(-shake_strength, shake_strength)
 		main_scene.position = original_position + Vector2(offset_x, offset_y)

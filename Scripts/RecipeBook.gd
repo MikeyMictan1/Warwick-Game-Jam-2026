@@ -85,21 +85,21 @@ func _add_entry(ingredient: IngredientResource) -> void:
 	# Container for each entry
 	var entry = VBoxContainer.new()
 	entry.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
-	entry.add_theme_constant_override("separation", 4)
+	entry.add_theme_constant_override("separation", 8)
 	
 	# Icon
 	var icon = TextureRect.new()
 	icon.texture = ingredient.get_ingredient_icon()
 	icon.expand_mode = TextureRect.EXPAND_FIT_WIDTH_PROPORTIONAL
 	icon.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-	icon.custom_minimum_size = Vector2(80, 80)
+	icon.custom_minimum_size = Vector2(120, 120)
 	entry.add_child(icon)
 	
 	# Name label
 	var label = Label.new()
 	label.text = ingredient.get_ingredient_name().replace("_", " ")
 	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	label.add_theme_font_size_override("font_size", 14)
+	label.add_theme_font_size_override("font_size", 20)
 	entry.add_child(label)
 	
 	grid.add_child(entry)

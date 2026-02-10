@@ -44,10 +44,18 @@ func _on_area_exited(area: Area2D):
 func boom(viewport: Viewport,event: InputEvent,shape_idx: int,area: Area2D):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 		RecipeManager.explode_kitchen()
+		resume_light()
 
 func yay(viewport: Viewport,event: InputEvent,shape_idx: int,area: Area2D):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+		resume_light()
 		self.queue_free()
+
+func resume_light():
+	# Resume the light system when bomb is defused or explodes
+	var light = get_tree().get_first_node_in_group("light")
+	if light:
+		light.resume_light_system()
 
 func update_outline(show: bool):
 	if not shader_material:
@@ -70,3 +78,6 @@ func _process(delta: float) -> void:
 	var milliseconds = int((game_timer - int(game_timer)) * 100)
 	
 	timer_text.text = "%02d:%02d" % [seconds, milliseconds]
+	
+	if seconds <= 0:
+		RecipeManager.explode_kitchen()

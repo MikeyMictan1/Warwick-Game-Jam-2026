@@ -57,9 +57,19 @@ func add_ingredient(ingredient: IngredientScene):
 	
 	ingredients_in_bowl.append(ingredient)
 	
-	# Disable dragging for ingredients in the bowl
+	# Track that this ingredient is in the bowl
+	ingredient.in_mixing_bowl = self
+	
+	# Stop dragging
 	ingredient.is_dragging = false
-	ingredient.input_pickable = false
+	
+	# Only disable input if there are 2+ ingredients (so single ingredient can be dragged out)
+	if ingredients_in_bowl.size() >= 2:
+		for ing in ingredients_in_bowl:
+			ing.input_pickable = false
+	else:
+		# Keep single ingredient draggable
+		ingredient.input_pickable = true
 	
 	# Turn off the ingredient's outline
 	shader_material.set_shader_parameter("show_outline", false)
@@ -69,6 +79,10 @@ func add_ingredient(ingredient: IngredientScene):
 	ingredient.global_position.x = global_position.x
 	ingredient.global_position.y = global_position.y + MIXING_BOWL_OFFSET
 	ingredient.z_index = 11
+	
+	# Stop timer when in bowl
+	if ingredient.timer:
+		ingredient.timer.stop()
 	
 	# If we have 2 or more ingredients, combine them
 	if ingredients_in_bowl.size() >= 2:
@@ -84,6 +98,10 @@ func combine_ingredients():
 	# Store the bowl position for spawning
 	var bowl_position = Vector2(global_position.x, global_position.y - 80)
 	
+	# Clear references for both ingredients
+	item_a.in_mixing_bowl = null
+	item_b.in_mixing_bowl = null
+	
 	# Remove from our tracking array
 	ingredients_in_bowl.clear()
 	
@@ -93,3 +111,22 @@ func combine_ingredients():
 	sprite.play("on")
 	await get_tree().create_timer(1.5).timeout
 	sprite.play("default")
+
+func remove_ingredient(ingredient: IngredientScene):
+	# Remove from bowl tracking
+	if ingredient in ingredients_in_bowl:
+		ingredients_in_bowl.erase(ingredient)
+	
+	# Clear bowl reference
+	ingredient.in_mixing_bowl = null
+	
+	# Restore ingredient properties
+	ingredient.input_pickable = true
+	ingredient.scale = Vector2(1.0, 1.0)
+	
+	# Restart timer when removed
+	ingredient.start_timers()
+	
+	# If there's still one ingredient left, make it draggable
+	if ingredients_in_bowl.size() == 1:
+		ingredients_in_bowl[0].input_pickable = true

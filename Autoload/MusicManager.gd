@@ -1,6 +1,7 @@
 extends Node
 
 var sfx_click: AudioStreamPlayer = AudioStreamPlayer.new()
+var sfx_bell: AudioStreamPlayer = AudioStreamPlayer.new()
 
 func _ready():
 	process_mode = Node.PROCESS_MODE_ALWAYS
@@ -18,6 +19,12 @@ func _ready():
 	# sfx
 	sfx_click.stream = load("res://Assets/Music/click_sfx.mp3")
 	add_child(sfx_click)
+	
+	sfx_bell.stream = load("res://Assets/Music/bell_sfx.mp3")
+	add_child(sfx_bell)
 
 func play_click_sfx():
 	sfx_click.play()
+
+func play_bell_sfx():
+	sfx_bell.play()

@@ -17,6 +17,7 @@ var drag_offset: Vector2 = Vector2.ZERO
 var is_hovering: bool = false
 var shader_material: ShaderMaterial
 var current_slot: Area2D = null  # Track which slot this ingredient is in
+var in_mixing_bowl: Area2D = null  # Track if this ingredient is in the mixing bowl
 var is_blinking: bool = false
 
 func start_timers():
@@ -63,6 +64,11 @@ func _ready():
 		var bomb_scene = load("res://Scenes/RealBomb.tscn")
 		var new_bomb: Node2D = bomb_scene.instantiate()
 		get_parent().add_child(new_bomb)
+		
+		# Pause the light system during bomb minigame
+		var light = get_tree().get_first_node_in_group("light")
+		if light:
+			light.pause_light_system()
 
 func _on_mouse_entered():
 	is_hovering = true
@@ -131,6 +137,12 @@ func _input_event(_viewport, event, _shape_idx):
 					if chopping_board:
 						chopping_board.remove_ingredient_from_slot(self)
 				
+				# If in mixing bowl, remove from it
+				if in_mixing_bowl != null:
+					var mixing_bowl = in_mixing_bowl
+					if mixing_bowl:
+						mixing_bowl.remove_ingredient(self)
+				
 				update_outline()
 				# Prevent this event from reaching ingredients below this one
 				get_viewport().set_input_as_handled()
@@ -156,8 +168,8 @@ func _process(_delta):
 		update_outline()  # Update outline to check if over appliance
 	
 func ingredient_blink():
-	# Handle blinking for ingredients not on chopping board
-	if current_slot == null and timer:
+	# Handle blinking for ingredients not on chopping board or in mixing bowl
+	if current_slot == null and in_mixing_bowl == null and timer:
 		var time_left = timer.time_left
 		
 		# Start blinking after 10 seconds (5 seconds left on timer)
