@@ -164,6 +164,7 @@ func _ready() -> void:
 	register_recipe(tomato_pasta, oven_appliance, event_explosion)
 	register_recipe(tomato_pizza, oven_appliance, event_explosion)
 	register_recipe(tomato_soup, oven_appliance, event_explosion)
+	register_recipe(garlic_oil, oven_appliance, event_explosion)
 
 	# Washing Machine Recipes
 	register_recipe(cooked_pasta, washing_appliance, pizza_base)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://ccarxryw6scdg"]
+[gd_scene load_steps=22 format=3 uid="uid://ccarxryw6scdg"]
 
 [ext_resource type="Script" uid="uid://dslbl3i32erhh" path="res://Scripts/MainScene.gd" id="1_hpc76"]
 [ext_resource type="Texture2D" uid="uid://bqncy4onfyg1q" path="res://Assets/Art/bg.png" id="2_enc0b"]
@@ -12,11 +12,16 @@
 [ext_resource type="Script" uid="uid://j5w5dc311n0s" path="res://Scripts/bell.gd" id="8_xc4hf"]
 [ext_resource type="Script" uid="uid://dqm4cuvlf07ht" path="res://Scripts/Finished.gd" id="9_6rnll"]
 [ext_resource type="Resource" uid="uid://dyrp0xa815j51" path="res://Resources/Bomb_Picture.tres" id="10_4b75m"]
+[ext_resource type="Texture2D" uid="uid://pbr6jhrt36h6" path="res://Assets/Art/lights/green_light.png" id="10_hx8n4"]
+[ext_resource type="Script" uid="uid://dwpipm78lnuhh" path="res://Scripts/light.gd" id="10_i0j58"]
 [ext_resource type="Resource" uid="uid://dg2qkiec5x3sg" path="res://Resources/Tomato_Sauce.tres" id="11_8ju71"]
 [ext_resource type="Resource" uid="uid://cyjxo1ctfjey8" path="res://Resources/Pufferfish.tres" id="12_xb4mg"]
 [ext_resource type="Resource" uid="uid://iruq2f54b0f5" path="res://Resources/Dried_Pasta.tres" id="13_6t1o7"]
 [ext_resource type="PackedScene" uid="uid://6msliswhcegf" path="res://Scenes/RecipeBook.tscn" id="15_rb"]
 [ext_resource type="Texture2D" uid="uid://qmruegh8vfrd" path="res://Assets/Art/Other/arrow.png" id="17_enc0b"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i0j58"]
+size = Vector2(124.08628, 135.00142)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_enc0b"]
 
@@ -93,6 +98,21 @@ script = ExtResource("9_6rnll")
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Appliances/FinishedPlate"]
 position = Vector2(-121, 55)
 polygon = PackedVector2Array(17, -1, 126, -6, 223, -18, 209, 13, 38, 27, 14, 4)
+
+[node name="light" type="Area2D" parent="Appliances"]
+position = Vector2(893, 607)
+rotation = -2.3536022
+script = ExtResource("10_i0j58")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Appliances/light"]
+position = Vector2(498.82098, 257.15167)
+rotation = 0.78326863
+shape = SubResource("RectangleShape2D_i0j58")
+
+[node name="Sprite2D" type="Sprite2D" parent="Appliances/light"]
+position = Vector2(498.48334, 261.7523)
+scale = Vector2(0.078306556, 0.078306556)
+texture = ExtResource("10_hx8n4")
 
 [node name="IngredientGenerators" type="Node2D" parent="."]
 
@@ -208,10 +228,10 @@ expand_mode = 1
 
 [node name="arrow_5" type="TextureRect" parent="arrows"]
 visible = false
-offset_left = 860.0
-offset_top = 521.0
-offset_right = 1596.5199
-offset_bottom = 1311.8977
+offset_left = 572.2968
+offset_top = 231.80127
+offset_right = 900.8841
+offset_bottom = 619.50854
 rotation = -2.3536022
 texture = ExtResource("17_enc0b")
 expand_mode = 1

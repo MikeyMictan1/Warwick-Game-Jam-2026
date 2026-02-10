@@ -11,6 +11,8 @@ var start_intro: bool
 @onready var arrow_4 : TextureRect = $arrows/arrow_4
 @onready var arrow_5 : TextureRect = $arrows/arrow_5
 
+@onready var light: Area2D = $Appliances/light
+
 func _ready():
 	# Set game state when entering the game scene
 	GameManager.set_in_game(true)
@@ -41,28 +43,48 @@ var dialogue = [
 	"Hey'a Young'in!",
 	"Welcome to the restaurant!",
 	"Your goal is to cook some delectable pasta with tomato sauce! easy, right!",
-	"There's a few rules you should be a-knowin about, so pay VERY VERY VERY VERY close",
-	"attention to what i'm about to tell you.",
+	"There's a few rules you should be a-knowin about, so pay VERY VERY VERY VERY close attention.",
+	"First lets talk ingredients.",
 	"Take any two ingredients, and mix 'em together in the mixin bowl!",
 	"Be careful what you mix, as you could be creatin horrors...",
 	"If you think you've made tomato pasta, put it on the plate and ring the bell!",
 	"You've also got a washing machine to wash your ingredients!",
 	"But dont wash sponges as they will flood the kitchen.",
 	"Your oven here is Falsie! Falsie will cook up any ingredient u throw at her!",
-	"However, falsie HATES tomato-based foods apart from a certain pasta sauce, so be careful",
-	"when feedin her.",
-	"It's also important to note that this light over here will sometimes turn red.",
-	"If it does, you've got 3 seconds to press it! I recommend that you do.",
-	"BUT! The light can also turn a shade of Atomic tangerine - in which case, do NOT press it,",
-	"just let it be.",
+	"However, falsie HATES tomato-based foods apart from a certain pasta sauce, so be careful when feedin her.",
+	"Now for emergencies.",
+	"It's also important to note that this green light over here will sometimes turn red.",
+	"If it does, you've got 3 seconds to press it! I recommend that you do. Do NOT press it while it is green.",
+	"BUT! The light can also turn a shade of Atomic tangerine - in which case, do NOT press it, just let it be.",
+	"Now for the main dish.",
+	"You have a recipe book below to see what you've made so far if you get confused, so feel free to check it out!",
+	"The resturant has accidentally supplied bomb blueprints - these have a chance to turn into a real bomb.",
+	"In this event, please de-fuse the bomb with the provided instructions.",
 	"For making Pasta with Tomato Sauce, you will need to combine boiling pasta with hot pasta sauce.",
-	"The pasta sauce will need caramelised onions, garlic oil, and lots of tomato.",
-	"The resturant has accidentally supplied bomb blueprints - these have a chance to turn into a real",
-	"bomb. In this event, please de-fuse the bomb with the provided instructions.",
-	"The supplied dried pasta is very good for makin pizza, but don't try to make pineapple pizza",
-	"otherwise the police will close the restaurant.",
-	"You have a recipe book to see what you've made so far if you get confused!",
-	"-Sorry, I've got no time to explain any more, good luck!"
+	"How do you get pasta sauce? You must combine caramelised onions and tomato sauce.",
+	"But how do you get caramelised onions I hear you say?",
+	"It involves garlic oil and red onion.",
+	"Remember to be careful with garlic oil! as falsie hates oil!",
+	"however, oil in other appliances such as the mixing bowl, may go well for you.",
+	"I **** love pizza. Even the DCS-Supplied Chicago Town stuff",
+	"The supplied dried pasta is very good for makin pizza.",
+	"HOWEVER. Do not attempt to create pineapple pizza, otherwise the police will close the restaurant.",
+	"Now you might have noticed you have a pufferfish!",
+	"By adding it to the washing machine, you can cause it to reanimate from the dead.",
+	"I heard rumours of if you combine an alive pufferfish with ice cream you create AI.",
+	"In the event of AI creation, it is best to leave it alone completely.",
+	"There are many other ways of making life, such as Komodo Dragons!",
+	"But I heard they don't make for a very good ingredient...",
+	"I don't even know what I'm saying anymore, I'm just really passionate about this restaurant!",
+	"I mean come on lil'guy, you are gonna be cooking! Isn't that exciting!",
+	"You're in the big leagues now, soon you could be a michelin chef.",
+	"There's a few words of wisdom I think you could really use for this task.",
+	"'Appear weak when you are strong, and strong when you are weak.'",
+	"Sun Tzu said that, did you know that? Let his example be an inspiration to you.",
+	"-ALthough then again, he was probably a morally dubious guy, so maybe not.",
+	"But hey, what do I know about the Eastern Zhou period of China?",
+	"I mean I'm a burger flipper, not a historian. This is what James Archbold is for.",
+	"-Sorry, I've got no time to explain! good luck!"
 ]
 
 # progresses on dialogue
@@ -74,6 +96,9 @@ func talk():
 		panel.visible = false
 		# Hide all arrows when dialogue ends
 		hide_all_arrows()
+		# Start the light timer now that dialogue is complete
+		if light:
+			light.start_timer()
 		return
 	
 	# Update arrow visibility and position based on current dialogue
@@ -86,7 +111,7 @@ func talk():
 		# Cancel auto-advance and restart it
 		if auto_advance_timer.time_left > 0:
 			auto_advance_timer.stop()
-		var wait_time = 0.5 if current_index > 13 else 1.0
+		var wait_time = get_wait_time()
 		auto_advance_timer.start(wait_time)
 	# otherwise, start typing the current text
 	else:
@@ -97,7 +122,7 @@ func talk():
 func start_typing(text: String) -> void:
 	await get_tree().process_frame  # let UI update first
 	# Determine typing speed based on current index
-	var typing_delay = 0.01 if current_index > 13 else 0.02
+	var typing_delay = get_typing_delay()
 	
 	for i in range(text.length()):
 		speech_text.text = text.substr(0, i + 1)
@@ -114,13 +139,40 @@ func start_typing(text: String) -> void:
 	if typing == true:
 		typing = false
 		current_index+=1
-		# Start auto-advance timer after typing finishes
-		var wait_time = 0.5 if current_index > 13 else 1.0
-		auto_advance_timer.start(wait_time)
+		# Start auto-advance timer after typing finishes (unless it's the last line)
+		if current_index < dialogue.size():
+			var wait_time = get_wait_time()
+			auto_advance_timer.start(wait_time)
 
 func _on_auto_advance_timeout():
 	if is_talking and not typing:
 		talk()
+
+func get_typing_delay() -> float:
+	if current_index > 38:  
+		return 0
+	elif current_index > 32:  # After "I heard rumours..." - 7x faster
+		return 0.00186
+	elif current_index > 26:  # After "I **** love pizza." - 4x faster
+		return 0.002
+	elif current_index > 19:  # After "de-fuse the bomb" - 3x faster
+		return 0.0067
+	elif current_index > 13:  # After 5th arrow - 2x faster
+		return 0.01
+	else:
+		return 0.02
+
+func get_wait_time() -> float:
+	if current_index > 32:  # After "I heard rumours..." - 7x faster
+		return 0.143
+	elif current_index > 26:  # After "I **** love pizza." - 4x faster
+		return 0.25
+	elif current_index > 19:  # After "de-fuse the bomb" - 3x faster
+		return 0.33
+	elif current_index > 13:  # After 5th arrow - 2x faster
+		return 0.5
+	else:
+		return 1.0
 
 func hide_all_arrows():
 	arrow_1.visible = false
