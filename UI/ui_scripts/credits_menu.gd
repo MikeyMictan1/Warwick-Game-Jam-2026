@@ -1,7 +1,7 @@
 extends Node2D
 
 func _ready() -> void:
-	MusicManager.play_win_music()
+	MusicManager.play_menu_music()
 
 func _on_quit_pressed() -> void:
 	get_tree().quit()

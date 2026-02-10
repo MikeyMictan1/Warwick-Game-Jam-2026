@@ -7,17 +7,21 @@ var sfx_recipe: AudioStreamPlayer = AudioStreamPlayer.new()
 var music_player: AudioStreamPlayer = AudioStreamPlayer.new()
 var game_muted : bool = false
 
+# Track which music is currently playing to avoid restarting
+var current_track: String = ""
+
+# Music track paths
+const TRACK_MENUS = "res://Assets/Bgm/menus.mp3"
+const TRACK_INSTRUCTIONS = "res://Assets/Bgm/instructions.mp3"
+const TRACK_MAIN_GAME = "res://Assets/Bgm/main_scene_music.mp3"
+const TRACK_WIN = "res://Assets/Bgm/win_music.mp3"
+
 func _ready():
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	add_child(music_player)
-	var stream = load("res://Assets/Music/bg_music.mp3")
-	if stream is AudioStream:
-		if stream.has_method("set_loop"):
-			stream.set_loop(true)
-		elif stream is AudioStreamMP3:
-			stream.loop = true
-	music_player.stream = stream
-	music_player.play()
+	
+	# Start with menu music
+	play_track(TRACK_MENUS)
 	
 	# sfx
 	sfx_click.stream = load("res://Assets/Music/click_sfx.mp3")
@@ -31,6 +35,32 @@ func _ready():
 
 	sfx_recipe.stream = load("res://Assets/Music/recipe_sfx.mp3")
 	add_child(sfx_recipe)
+
+func play_track(track_path: String) -> void:
+	# Don't restart if same track is already playing
+	if current_track == track_path and music_player.playing:
+		return
+	
+	var stream = load(track_path)
+	if stream is AudioStream:
+		if stream is AudioStreamMP3:
+			stream.loop = true
+		music_player.stream = stream
+		music_player.play()
+		current_track = track_path
+		print("Now playing: ", track_path)
+
+func play_menu_music():
+	play_track(TRACK_MENUS)
+
+func play_instructions_music():
+	play_track(TRACK_INSTRUCTIONS)
+
+func play_main_game_music():
+	play_track(TRACK_MAIN_GAME)
+
+func play_win_music():
+	play_track(TRACK_WIN)
 
 func play_click_sfx():
 	sfx_click.play()

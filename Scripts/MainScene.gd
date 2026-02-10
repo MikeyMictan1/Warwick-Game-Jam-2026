@@ -19,6 +19,9 @@ func _ready():
 	GameManager.set_in_game(true)
 	start_intro = true
 	
+	# Play instructions music during dialogue
+	MusicManager.play_instructions_music()
+	
 	# Create auto-advance timer
 	auto_advance_timer = Timer.new()
 	auto_advance_timer.one_shot = true
@@ -100,6 +103,8 @@ func talk():
 		# Start the light timer now that dialogue is complete
 		if light:
 			light.start_timer()
+		# Switch to main game music
+		MusicManager.play_main_game_music()
 		return
 	
 	# Update arrow visibility and position based on current dialogue

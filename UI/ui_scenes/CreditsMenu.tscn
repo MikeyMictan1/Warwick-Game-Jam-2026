@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bv611hw22sn7p"]
 
 [ext_resource type="Theme" uid="uid://dpvcn618erk1d" path="res://UI/ui_themes/OtherButtonTheme.tres" id="1_cwyfi"]
-[ext_resource type="Script" uid="uid://b81losdd0ykv5" path="res://UI/ui_scripts/winning_menu.gd" id="1_gnruo"]
+[ext_resource type="Script" path="res://UI/ui_scripts/credits_menu.gd" id="1_gnruo"]
 
 [node name="CreditsMenu" type="Node2D"]
 script = ExtResource("1_gnruo")

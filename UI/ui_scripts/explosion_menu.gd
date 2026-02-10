@@ -3,6 +3,7 @@ extends Node2D
 @onready var explosion_text : RichTextLabel = $CanvasLayer/Control/ExplosionText
 
 func _ready() -> void:
+	MusicManager.play_menu_music()
 	# displays the custom message onto the explsiion menu
 	var message = RecipeManager.explosion_message
 	explosion_text.text = message

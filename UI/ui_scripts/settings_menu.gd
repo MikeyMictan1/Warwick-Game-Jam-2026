@@ -3,6 +3,7 @@ extends Node2D
 @onready var screen_shake_button: CheckButton = $CanvasLayer/Control/ScreenShakeButton
 
 func _ready() -> void:
+	MusicManager.play_menu_music()
 	# Update button state to match current setting
 	if screen_shake_button:
 		screen_shake_button.button_pressed = not SaveManager.screen_shake_enabled
