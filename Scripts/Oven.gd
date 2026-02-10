@@ -81,6 +81,7 @@ func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("click") and is_talking:
 		talk()
 
+
 func actually_cook():
 	# Use RecipeManager to cook
 	RecipeManager.combine_oven(cur_ingredient_obj, global_position)
@@ -122,15 +123,51 @@ func start_typing(text: String) -> void:
 		audio_stream_speech.pitch_scale = 0.8 + randf_range(-0.1,0.1)
 		if text.substr(0, i + 1) in ['a','e','i','o','u']:
 			audio_stream_speech.pitch_scale += 0.2
-		audio_stream_speech.play()
 		
 		if typing == true:
 			await get_tree().create_timer(0.02).timeout
 			# wait a bit before next letter is added
-		audio_stream_speech.stop()
+		
+		if audio_stream_speech.playing == false:
+			audio()
+		
 	if typing == true:
 		typing = false
 		current_index+=1
 
+func audio():
+	audio_stream_speech.play()
+	await get_tree().create_timer(0.15).timeout
+	audio_stream_speech.stop()
 
-var fire_dialogue = {"Garlic":["omg you're cooking lettuce??", "that's crazy bro"]}
+var fire_dialogue = {"Garlic":["Why are you giving me that stinky stuff??", "You know I hate the smell..."],
+					 "Alive_Pufferfish":["Why have you brought him back to live?", "Just.", "To kill him.", "To make him suffer in my fiery pits.", "I expected better."],
+					 "Bomb_Picture":["Well....", "Good luck with that choice....."],
+					 "Burnt_Pasta":["Genuenly, what do you think could come out if you cook BURNT pasta??"],
+					 "Cabbage":["Great.", "Leafy greens."],
+					 "Cactus":["HEY!", "Some respect!", "Why do have to give me a cactus??"],
+					"Cold_Pasta_Sauce":["Well look at that!", "You're getting close!"],
+					"Cold_Pasta_Tomato":["Yea, kid, that don't work.", "Listen to your dad next time.", "AND DON'T FEED ME TOMATO **** UNLESS ITS THE SAUCE!"],
+					"Cooked_Lettuce":["Fun fun green stuff."],
+					"Cooked_Pasta":["Sure, I'll ruin your progress.", "More fun for me!"],
+					"Dragon_Fruit":["Careful with what you feed me.", "I hope you have wildlife handling training."],
+					"Dried_Pasta":["HA!", "You think it'll be that easy?"],
+					"Feet":["Where did that foot come from.", "And why are you using me to destroy the evidence."],
+					"Garlic_Oil":["Why yes! Let's start a kitchen fire!"],
+					"Ice_Cream":["What did you think was gonna happen with ice cream?"],
+					"Intellagama_Lesueurii":["Great, now we're killing animals.", "Amazing."],
+					"Komodo_Dragon":["Great, now we're killing animals.", "Amazing."],
+					"Pufferfish":["Great, now we're killing animals.", "Amazing."],
+					"Lettuce":["Yay......", "Green....."],
+					"Pasta_Salad":["It's meant to be easten cold!!"],
+					"Pasta_Sauce":["Already cooked, kid."],
+					"Petroleum":["Uh......", "How did you get that......"],
+					"Pineapple":["I wonder if this will result in some meta reference to te situation we've been created for."],
+					"Red_Onion":["Fianlly, some good ingreadients."],
+					"Stink_Bomb":["EW.", 'Just.', "Ew."],
+					"Tomato_Pasta":["YOU WERE DONE KID!", "JUST PRESENT THE PASTA!"],
+					"Tomato_Pizza":["I DON'T LIKE TOMATOES!"],
+					"Tomato_Sauce":["I DON'T LIKE TOMATOES!"],
+					"Tomato_Soup":["I DON'T LIKE TOMATOES!"],
+					"Trash":["Trash is trash.", "Don't try to make it better."]
+}

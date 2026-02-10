@@ -58,6 +58,11 @@ func _ready():
 	
 	# Setup timer for ingredient lifetime (15 seconds)
 	start_timers()
+	
+	if get_ingredient_name() == "Real_Bomb":
+		var bomb_scene = load("res://Scenes/RealBomb.tscn")
+		var new_bomb: Node2D = bomb_scene.instantiate()
+		get_parent().add_child(new_bomb)
 
 func _on_mouse_entered():
 	is_hovering = true

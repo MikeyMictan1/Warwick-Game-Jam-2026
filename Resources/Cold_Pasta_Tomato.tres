@@ -1,9 +1,9 @@
 [gd_resource type="Resource" script_class="IngredientResource" load_steps=3 format=3 uid="uid://bjdt1pnwk41lm"]
 
-[ext_resource type="Texture2D" uid="uid://os4diqq4go5e" path="res://icon.svg" id="1_icon"]
 [ext_resource type="Script" uid="uid://d0fahplylun1n" path="res://Scripts/IngredientResource.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://cip7tvkr8gln8" path="res://Assets/Art/Ingredients/Untitled_Artwork-5 22.png" id="2_hywls"]
 
 [resource]
 script = ExtResource("1_script")
 name = "Cold_Pasta_Tomato"
-icon = ExtResource("1_icon")
+icon = ExtResource("2_hywls")
