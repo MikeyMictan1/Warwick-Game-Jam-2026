@@ -47,6 +47,7 @@ func boom(viewport: Viewport,event: InputEvent,shape_idx: int,area: Area2D):
 		resume_light()
 
 func yay(viewport: Viewport,event: InputEvent,shape_idx: int,area: Area2D):
+	MusicManager.play_click_sfx()
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 		resume_light()
 		self.queue_free()
@@ -63,6 +64,7 @@ func update_outline(show: bool):
 	
 	if show:
 		# Green outline when ingredient is dragging over
+		RecipeManager.play_hover_sfx()
 		shader_material.set_shader_parameter("outline_color", Color(0.0, 1.0, 0.0, 1.0))
 		shader_material.set_shader_parameter("show_outline", true)
 	else:

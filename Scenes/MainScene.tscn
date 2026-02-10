@@ -264,7 +264,7 @@ offset_right = 477.0
 offset_bottom = 477.0
 theme = ExtResource("20_gyaec")
 theme_override_font_sizes/font_size = 20
-text = "Intro Skip - I advise you have a re-read though :) "
+text = "Intro Skip - I advise you to (attempt to) read it MANY times though :) "
 autowrap_mode = 3
 
 [node name="arrows" type="Node2D" parent="."]

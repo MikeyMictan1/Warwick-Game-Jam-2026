@@ -384,7 +384,7 @@ func combine_oven(ingredient: IngredientScene, oven_position: Vector2) -> void:
 	elif ing.get_ingredient_name() == "Pineapple_Pizza":
 		event_handler(result_ingredient, "The pineapple pizza was too controversial and caused an explosion. Maybe don't make pineapple pizza next time.")
 		return
-
+	await get_tree().create_timer(0.15).timeout
 	event_handler(result_ingredient)
 	
 	# spawn result with pop animation
