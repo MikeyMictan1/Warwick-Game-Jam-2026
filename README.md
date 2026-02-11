@@ -1,4 +1,4 @@
-# Warwick-Game-Jam-2026 - Let Him Cook (Theme : No Time To Explain!)
+# Let Him Cook - Warwick-Game-Jam-2026 (Theme : No Time To Explain!)
 
 <img width="1454" height="809" alt="cover" src="https://github.com/user-attachments/assets/9ef41f29-2201-4411-8559-b38c436f82cc" />
 
