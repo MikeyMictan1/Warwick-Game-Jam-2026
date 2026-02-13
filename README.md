@@ -1,5 +1,7 @@
 # Let Him Cook - Warwick-Game-Jam-2026 (Theme : No Time To Explain!)
 
+Try it for free on browser here: https://prelude-games.itch.io/let-him-cook
+
 <img width="1454" height="809" alt="cover" src="https://github.com/user-attachments/assets/9ef41f29-2201-4411-8559-b38c436f82cc" />
 
 <img width="1918" height="1077" alt="screen1" src="https://github.com/user-attachments/assets/8c3f9348-c2e2-4c84-8e20-ef859b70b22d" />
